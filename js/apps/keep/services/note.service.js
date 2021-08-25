@@ -1,10 +1,4 @@
-// import { utilService } from "../util.service.js"
-import {utilService} from '../../../services/util.service.js'
-
-export const NoteService = {
-    query,
-    removeNote
-}
+import { utilService } from '../../../services/util.service.js'
 
 const notes = [
     {
@@ -35,7 +29,7 @@ const notes = [
     }
 ]
 
-function query(filterBy) {
+const query = filterBy => {
     // if(filterBy) {
     //     const notesToShow = notes.filter
     // }
@@ -43,9 +37,19 @@ function query(filterBy) {
     return Promise.resolve(notes)
 }
 
-function removeNote(noteId) {
+const removeNote = noteId => {
     const idx = notes.findIndex(note => note.id === noteId)
     notes.splice(idx, 1)
-    // return Promise.resolve(notes)
-    console.log('deleted', noteId);
+    return Promise.resolve(notes)
+}
+
+const changeColor = (noteId, color) => {
+    const note = notes.find(n => n.id === noteId)
+    note.style.backgroundColor = color
+}
+
+export const NoteService = {
+    query,
+    removeNote,
+    changeColor
 }

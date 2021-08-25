@@ -18,13 +18,17 @@ export class NotesApp extends React.Component {
         })
     }
 
+    onRemoveNote = (noteId) => {
+        NoteService.removeNote(noteId).then(this.loadNotes)
+    }
+
     render() {
         const { notes } = this.state
         if (!notes) return <div>Loading...</div>
         return (
             <section className="note-app">
-                 {/* <NoteFilter onSetFilter={this.onSetFilter} />  */}
-                 <NoteList notes={notes} /> 
+                {/* <NoteFilter onSetFilter={this.onSetFilter} />  */}
+                <NoteList notes={notes} onRemoveNote={this.onRemoveNote} />
 
             </section>
         )
