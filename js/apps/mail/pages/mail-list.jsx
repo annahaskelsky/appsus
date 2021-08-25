@@ -6,7 +6,7 @@ export class MailList extends React.Component {
         currUser: null,
         mails: null,
         criteria: {
-            status: null,
+            status: 'inbox',
             txt: null,
             isRead: null,
             isStared: null,
@@ -18,52 +18,35 @@ export class MailList extends React.Component {
         this.loadUser();
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log(this.props.match.params.mailFilter)
-        console.log(prevProps.match.params.mailFilter)
+    componentDidUpdate(prevProps) {
         if (prevProps.match.params.mailFilter !== this.props.match.params.mailFilter) {
-            this.setCriteria();
+            this.setCriteria(this.props.match.params.mailFilter);
         }
-        // console.log(this.props.match)
-        // console.log(prevProps.match)
     }
 
-    setCriteria = () => {
-        // console.log(this.props.match)
+    setCriteria = (currStatus) => {
         const { criteria } = this.state;
-        const statuses = ['sent', 'draft', 'trash']
-        // const url = window.location.href;
-        // const urlParams = url.split('/');
-        // const status = urlParams[urlParams.length - 1]
-        const status = this.props.match.params.mailFilter
-        console.log(status)
-        if (status === 'starred') {
-            console.log('hey')
-            this.setState(prevState => ({criteria: {...prevState.criteria, isStared: true }}))
-            this.loadMails();
-        } else if (statuses.includes(status)) {
-            this.setState(prevState => ({criteria: {...prevState.criteria, status }}))
-            this.loadMails();
+        const statuses = ['inbox', 'sent', 'draft', 'trash']ף
+
+        if (statuses.includes(currStatus)) {
+            this.setState(prevState => ({ criteria: { ...prevState.criteria, status: currStatus } }), () => { this.loadMails() })
         }
     }
 
 
     loadUser = () => {
-        console.log('loading user')
-
         mailService.getUser()
             .then(user => this.setState({ currUser: user }, () => { this.loadMails() }))
     }
 
     loadMails = () => {
         const { currUser, criteria } = this.state;
-        // console.log(currUser)
         mailService.mailsToShow(currUser, criteria)
             .then(mails => this.setState({ mails }));
     }
 
     render() {
-        const { mails, currUser } = this.state;
+        const { mails } = this.state;
         if (!mails) return <React.Fragment>Loading...</React.Fragment>
         return <section className="mail-list">
             {mails.map(mail => <MailPreview key={mail.id} mail={mail} />)}

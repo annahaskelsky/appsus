@@ -96,13 +96,13 @@ function filterBy(user, criteria) {
                 return mail.isTrash;
             case 'draft':
                 return mail.isDraft;
-            default:
-                return true;
+            case 'inbox':
+                return mail.to === user.email;
         }
     });
-    mails = mails.filter(mail => {
-        return (criteria.isStared && mail.isStared) || (!criteria.isStared && mail)
-    })
+    // mails = mails.filter(mail => {
+    //     return (criteria.isStared && mail.isStared) || (!criteria.isStared && mail)
+    // })
 
     return mails;
 }
