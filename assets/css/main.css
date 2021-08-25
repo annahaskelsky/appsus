@@ -1,10 +1,10 @@
 @import '../css/parts/base.css';
-@import '/assets/css/parts/helpers.css';
-@import '/assets/css/parts/app.css';
+@import '../css/parts/helpers.css';
+@import '../css/parts/app.css';
 @import '../css/cmps/app-header.css';
-@import '/assets/css/cmps/app-footer.css';
-@import '/assets/css/pages/app-home.css';
-@import '/assets/css/pages/app-about.css';
+@import '../css/cmps/app-footer.css';
+@import '../css/pages/app-home.css';
+@import '../css/pages/app-about.css';
 @import './apps/keep/main.css';
 @import './apps/mail/main.css';
 
