@@ -1,3 +1,5 @@
+@import '/assets/css/parts/base.css';
 @import '/assets/css/parts/helpers.css';
 @import '/assets/css/cmps/app-header.css';
-@import '/assets/css/parts/base.css';
+@import '/assets/css/cmps/app-footer.css';
+@import '/assets/css/pages/app-home.css'

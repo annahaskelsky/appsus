@@ -12,7 +12,7 @@ const _AppHeader = (props) => {
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/book">Books</NavLink>
                 <NavLink to="/email">Email</NavLink>
-                <NavLink to="/notes">Notes</NavLink>
+                <NavLink to="/keep">Notes</NavLink>
             </nav>
         </section>
     )
