@@ -7,7 +7,7 @@ export function Home() {
             <h1 className="main-layout">Hello Appsus</h1>
             <main>
                 <nav className="main-nav flex">
-                    <Link to="/email"><div className="main-layout flex">
+                    <Link to="/mail"><div className="main-layout flex">
                         <img src="./assets/img/email.png" />
                         <article>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                             Sed aspernatur error perspiciatis, velit aliquid voluptate laudantium,
