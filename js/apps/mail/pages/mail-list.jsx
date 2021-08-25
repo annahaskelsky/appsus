@@ -4,7 +4,14 @@ import { MailPreview } from '../cmps/mail-preview.jsx';
 export class MailList extends React.Component {
     state = {
         currUser: null,
-        mails: null
+        mails: null,
+        critetia: {
+            status: null,
+            txt: null,
+            isRead: null,
+            isStared: null,
+            lables: null
+        }
     }
 
     componentDidMount() {
@@ -13,11 +20,13 @@ export class MailList extends React.Component {
 
     loadUser = () => {
         mailService.getUser()
-            .then(user => this.setState({ currUser: user }, ()=> {this.loadMails(this.state.currUser)}))
+            .then(user => this.setState({ currUser: user }, () => { this.loadMails() }))
     }
 
-    loadMails = (user) => {
-        mailService.mailsToShow(user)
+    loadMails = () => {
+        const { currUser, critetia } = this.state;
+        console.log(currUser)
+        mailService.mailsToShow(currUser, critetia)
             .then(mails => this.setState({ mails }));
     }
 
