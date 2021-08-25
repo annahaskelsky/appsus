@@ -1,0 +1,14 @@
+.mail-app {
+    gap: 30px;
+    min-height: 78vh;
+    padding-top: 20px;
+}
+
+.mail-app aside {
+    width: 20%;
+    padding-inline-start: 30px;
+}
+
+.mail-app main {
+    width: 80%;
+}

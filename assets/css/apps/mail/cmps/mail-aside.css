@@ -1,0 +1,29 @@
+.mail-aside-container {
+    height: 100%;
+    width: 100%;
+}
+
+.mail-aside-container ul {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.mail-aside-container li {
+    width: 80%;
+}
+
+.mail-aside-container a {
+    width: 100%;
+    background-color: rgb(245, 241, 241);
+    gap: 5px;
+    border-radius: 20px;
+    padding-inline-start: 10px;
+}
+
+.mail-aside-container a:hover {
+    background-color: rgb(209, 204, 204);
+}

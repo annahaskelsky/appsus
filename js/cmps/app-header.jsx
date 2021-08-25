@@ -11,7 +11,7 @@ const _AppHeader = (props) => {
             <nav className="flex">
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/book">Books</NavLink>
-                <NavLink to="/email">Email</NavLink>
+                <NavLink to="/mail">Email</NavLink>
                 <NavLink to="/keep">Notes</NavLink>
             </nav>
         </section>
