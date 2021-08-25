@@ -1,11 +1,12 @@
 import { utilService } from '../../../services/util.service.js'
 
-const notes = [
+let notes = [
     {
         id: "n101",
         type: "note-txt",
         isPinned: true,
-        info: { txt: "Fullstack Me Baby!" }
+        info: { txt: "Fullstack Me Baby!" },
+        backgroundColor: "transparent" 
     },
     {
         id: "n102",
@@ -14,7 +15,7 @@ const notes = [
             url: "https://picsum.photos/100",
             title: "Bobi and Me"
         },
-        style: { backgroundColor: "#00d" }
+        backgroundColor: "#00d"
     },
     {
         id: "n103",
@@ -25,7 +26,8 @@ const notes = [
                 { id: utilService.makeId(), txt: "Driving liscence", doneAt: null },
                 { id: utilService.makeId(), txt: "Coding power", doneAt: 187111111 }
             ]
-        }
+        },
+        backgroundColor: "aqua"
     }
 ]
 
@@ -45,7 +47,8 @@ const removeNote = noteId => {
 
 const changeColor = (noteId, color) => {
     const note = notes.find(n => n.id === noteId)
-    note.style.backgroundColor = color
+    note.backgroundColor = color
+    return Promise.resolve(notes)
 }
 
 export const NoteService = {

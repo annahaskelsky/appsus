@@ -11,10 +11,10 @@ export class NotePreview extends React.Component {
         noteType: null,
         noteStyle: {}
     }
-
+// e => NoteService.changeColor(note.id, e.target.value)
     componentDidMount() {
         const note = this.props.note
-        this.setState({ note, noteType: note.type, noteStyle: note.style })
+        this.setState({ note, noteType: note.type, noteStyle: note.backgroundColor })
     }
 
     // onBack = () => {
