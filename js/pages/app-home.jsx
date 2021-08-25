@@ -8,7 +8,7 @@ export function Home() {
             <main>
                 <nav className="main-nav flex">
                     <Link to="/email"><div className="main-layout flex">
-                        <img src="../../assets/img/email.png" />
+                        <img src="./assets/img/email.png" />
                         <article>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                             Sed aspernatur error perspiciatis, velit aliquid voluptate laudantium,
                             consequuntur voluptatem doloremque odio debitis aperiam voluptates?
@@ -24,10 +24,10 @@ export function Home() {
                             Aliquam reprehenderit eius possimus voluptatibus necessitatibus reiciendis
                             ipsa facilis, ullam, eaque iste, enim doloremque? Ea, placeat illo,
                             ipsam quidem autem, vel omnis eaque id tempore architecto ullam!</article>
-                        <img src="../../assets/img/notes.jpeg" />
+                        <img src="./assets/img/notes.jpeg" />
                     </div></Link>
                     <Link to="/book"><div className="main-layout flex">
-                        <img src="../../assets/img/books.png" />
+                        <img src="./assets/img/books.png" />
                         <article>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                             Sed aspernatur error perspiciatis, velit aliquid voluptate laudantium,
                             consequuntur voluptatem doloremque odio debitis aperiam voluptates?
