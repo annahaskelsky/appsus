@@ -11,10 +11,18 @@ export class NotePreview extends React.Component {
         noteType: null,
         noteStyle: {}
     }
-// e => NoteService.changeColor(note.id, e.target.value)
+
     componentDidMount() {
         const note = this.props.note
-        this.setState({ note, noteType: note.type, noteStyle: note.backgroundColor })
+        this.setState({ note, noteType: note.type })
+    }
+
+    handleColorChange = (color) => {
+        const note = this.state.note
+
+        NoteService.changeColor(note.id, color)
+        note.backgroundColor = color
+        this.setState({ note })
     }
 
     // onBack = () => {
@@ -23,7 +31,7 @@ export class NotePreview extends React.Component {
     //   }
 
     render() {
-        const { note, noteType, noteStyle } = this.state
+        const { note, noteType } = this.state
         if (!note) return <div>Loading...</div>
         const DynamicCmp = (props) => {
             switch (props.type) {
@@ -37,23 +45,14 @@ export class NotePreview extends React.Component {
         }
 
         return (
-            // <article className="note-preview" style={noteStyle}>
-            <div>
+            <article className="note-preview" style={{ backgroundColor: note.backgroundColor }}>
                 <DynamicCmp
                     type={noteType}
                     note={note}
                     onRemoveNote={this.props.onRemoveNote}
-                    noteStyle={noteStyle}
                 />
-                <ActionBar note={note} />
-            </div>
-            // </article>
+                <ActionBar handleColorChange={this.handleColorChange} />
+            </article>
         )
-
-        // return (
-        //     <article className="note-preview">
-        //         <h4>{this.props.note.id}</h4>
-        //     </article>
-        // )
     }
 }

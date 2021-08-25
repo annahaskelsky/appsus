@@ -1,9 +1,10 @@
 export const ImgNote = ({ note }) => {
     return (
-        <article className="note-preview" style={{backgroundColor: note.backgroundColor}}>
-            <h4>{note.id}</h4>
+        <div className="note-container">
             <img src={note.info.url} />
-            <h5>{note.info.title}</h5>
-        </article>
+            <div className="note-content">
+                <h5>{note.info.title}</h5>
+            </div>
+        </div>
     )
 }

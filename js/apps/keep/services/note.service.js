@@ -46,7 +46,7 @@ const removeNote = noteId => {
 }
 
 const changeColor = (noteId, color) => {
-    const note = notes.find(n => n.id === noteId)
+    const note = notes.find(note => note.id === noteId)
     note.backgroundColor = color
     return Promise.resolve(notes)
 }
