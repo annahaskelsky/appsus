@@ -10,8 +10,8 @@
 }
 
 .home .main-nav a {
-   height: 300px; 
-   background-color: #ebebeb;
+    height: 300px;
+    background-color: #ebebeb;
 }
 
 .home .main-nav a div {
@@ -19,7 +19,7 @@
     height: 100%;
     width: 100%;
     gap: 20px;
-
+    margin: 0 20px;
 }
 
 .home .main-nav a div img {
@@ -36,4 +36,3 @@
 /* .home .main-nav a div img:first-child {
 
 } */
-
