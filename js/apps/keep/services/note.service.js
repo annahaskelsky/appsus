@@ -1,17 +1,12 @@
-// import { utilService } from "../util.service.js"
-import {utilService} from '../../../services/util.service.js'
+import { utilService } from '../../../services/util.service.js'
 
-export const NoteService = {
-    query,
-    removeNote
-}
-
-const notes = [
+let notes = [
     {
         id: "n101",
         type: "note-txt",
         isPinned: true,
-        info: { txt: "Fullstack Me Baby!" }
+        info: { txt: "Fullstack Me Baby!" },
+        backgroundColor: "transparent" 
     },
     {
         id: "n102",
@@ -20,7 +15,7 @@ const notes = [
             url: "https://picsum.photos/100",
             title: "Bobi and Me"
         },
-        style: { backgroundColor: "#00d" }
+        backgroundColor: "#00d"
     },
     {
         id: "n103",
@@ -31,11 +26,12 @@ const notes = [
                 { id: utilService.makeId(), txt: "Driving liscence", doneAt: null },
                 { id: utilService.makeId(), txt: "Coding power", doneAt: 187111111 }
             ]
-        }
+        },
+        backgroundColor: "aqua"
     }
 ]
 
-function query(filterBy) {
+const query = filterBy => {
     // if(filterBy) {
     //     const notesToShow = notes.filter
     // }
@@ -43,9 +39,20 @@ function query(filterBy) {
     return Promise.resolve(notes)
 }
 
-function removeNote(noteId) {
+const removeNote = noteId => {
     const idx = notes.findIndex(note => note.id === noteId)
     notes.splice(idx, 1)
-    // return Promise.resolve(notes)
-    console.log('deleted', noteId);
+    return Promise.resolve(notes)
+}
+
+const changeColor = (noteId, color) => {
+    const note = notes.find(n => n.id === noteId)
+    note.backgroundColor = color
+    return Promise.resolve(notes)
+}
+
+export const NoteService = {
+    query,
+    removeNote,
+    changeColor
 }

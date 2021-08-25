@@ -2,6 +2,7 @@ import { TxtNote } from "./dynamic-preview/note-txt-preview.jsx"
 import { ImgNote } from "./dynamic-preview/note-img.jsx"
 import { TodoNote } from "./dynamic-preview/note-todo.jsx"
 import { NoteService } from "../services/note.service.js"
+import { ActionBar } from "./action-bar.jsx"
 const { Link } = ReactRouterDOM
 
 export class NotePreview extends React.Component {
@@ -10,13 +11,10 @@ export class NotePreview extends React.Component {
         noteType: null,
         noteStyle: {}
     }
-
+// e => NoteService.changeColor(note.id, e.target.value)
     componentDidMount() {
-        this.setState({ note: this.props.note, noteType: this.props.note.type })
-    }
-
-    onRemoveNote = (noteId) => {
-        NoteService.removeNote(noteId)
+        const note = this.props.note
+        this.setState({ note, noteType: note.type, noteStyle: note.backgroundColor })
     }
 
     // onBack = () => {
@@ -40,8 +38,15 @@ export class NotePreview extends React.Component {
 
         return (
             // <article className="note-preview" style={noteStyle}>
-            <DynamicCmp type={noteType} note={note} onRemoveNote={this.onRemoveNote} />
-
+            <div>
+                <DynamicCmp
+                    type={noteType}
+                    note={note}
+                    onRemoveNote={this.props.onRemoveNote}
+                    noteStyle={noteStyle}
+                />
+                <ActionBar note={note} />
+            </div>
             // </article>
         )
 
