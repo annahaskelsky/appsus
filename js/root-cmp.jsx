@@ -5,7 +5,7 @@ const { Route, Switch } = ReactRouterDOM
 // import { BookDetails } from './pages/BookDetails.jsx';
 import { BookApp } from 'apps/book/pages/book-index.jsx';
 import { MailApp } from 'apps/mail/pages/mail-index.jsx';
-import { NotesApp } from 'apps/keep/pages/note-index.jsx';
+import { NotesApp } from './apps/keep/note-app.jsx';
 import { AppHeader } from './cmps/app-header.jsx';
 import { AppFooter } from './cmps/app-footer.jsx';
 import { About } from './pages/app-about.jsx';

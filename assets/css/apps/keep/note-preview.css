@@ -1,0 +1,15 @@
+.note-preview {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: .5em;
+    text-align: center;
+    padding: 10px;
+}
+
+.note-preview img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    z-index: 10;
+}
