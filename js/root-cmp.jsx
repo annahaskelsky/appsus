@@ -1,10 +1,10 @@
 
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
-import { BookApp } from 'apps/book/pages/book-index.jsx';
-import { NotesApp } from './apps/keep/index.jsx';
-import { MailApp } from 'apps/mail/index.jsx';
 import { AppHeader } from './cmps/app-header.jsx';
+import { BookApp } from 'apps/book/pages/book-index.jsx';
+import { MailApp } from 'apps/mail/mail-index.jsx';
+import { NotesApp } from 'apps/keep/keep-index.jsx'
 import { AppFooter } from './cmps/app-footer.jsx';
 import { About } from './pages/app-about.jsx';
 import { Home } from './pages/app-home.jsx';

@@ -1,7 +1,7 @@
 import { TxtNote } from "./dynamic-preview/note-txt-preview.jsx"
 import { ImgNote } from "./dynamic-preview/note-img.jsx"
 import { TodoNote } from "./dynamic-preview/note-todo.jsx"
-import { NoteService } from "../../../services/keep/note.service.js"
+import { NoteService } from "../services/note.service.js"
 const { Link } = ReactRouterDOM
 
 export class NotePreview extends React.Component {

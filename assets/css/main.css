@@ -5,4 +5,6 @@
 @import '/assets/css/cmps/app-footer.css';
 @import '/assets/css/pages/app-home.css';
 @import '/assets/css/pages/app-about.css';
-@import './apps/keep/main.css'
+@import './apps/keep/main.css';
+@import './apps/mail/main.css';
+

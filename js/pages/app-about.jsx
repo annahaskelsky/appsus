@@ -12,9 +12,9 @@ export function About() {
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt molestiae qui aut, eveniet necessitatibus, animi hic repellendus quia doloremque sint, dolorem alias voluptatum incidunt illo aperiam consequuntur sit adipisci repudiandae! Delectus totam sed voluptate ullam tempore hic quod similique error minus, non iusto, autem possimus dolorem quasi. Officia, sequi a.
           </p>
           <div className="flex socials">
-            <i class="fab fa-facebook-square"></i>
-            <i class="fab fa-github-square"></i>
-            <i class="fab fa-linkedin"></i>
+            <i className="fab fa-facebook-square"></i>
+            <i className="fab fa-github-square"></i>
+            <i className="fab fa-linkedin"></i>
           </div>
         </div>
         <div>
@@ -23,9 +23,9 @@ export function About() {
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt molestiae qui aut, eveniet necessitatibus, animi hic repellendus quia doloremque sint, dolorem alias voluptatum incidunt illo aperiam consequuntur sit adipisci repudiandae! Delectus totam sed voluptate ullam tempore hic quod similique error minus, non iusto, autem possimus dolorem quasi. Officia, sequi a.
           </p>
           <div className="flex socials">
-            <i class="fab fa-facebook-square"></i>
-            <i class="fab fa-github-square"></i>
-            <i class="fab fa-linkedin"></i>
+            <i className="fab fa-facebook-square"></i>
+            <i className="fab fa-github-square"></i>
+            <i className="fab fa-linkedin"></i>
           </div>
         </div>
       </section>
