@@ -1,0 +1,15 @@
+.about {
+    text-align: center;
+}
+
+.team {
+    justify-content: center;
+    gap: 20px;
+}
+
+.team div {
+    height: 200px;
+    width: 50%;
+    border: 1px solid black;
+}
+
