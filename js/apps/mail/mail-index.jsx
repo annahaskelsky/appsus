@@ -13,8 +13,8 @@ export function MailApp() {
             <main>
                 <Switch>
                     {/* <Route path="/mail/:mailId" component={MailDetails}/> */}
+                    <Route path="/mail/:mailFilter" component={MailList} />
                     <Route path="/mail" component={MailList} />
-                    {/* <Route path="/mail/sent" component={MailList} /> */}
                 </Switch>
             </main>
         </section>

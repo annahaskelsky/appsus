@@ -81,13 +81,6 @@ function getUser() {
 }
 
 function mailsToShow(user, criteria) {
-    console.log(criteria)
-        // let mail = gMails.filter(mail => {
-        //     return (criteria.status && mail.from === user.email)
-        //         || (criteria.trash && mail.isTrash)
-        //         || (criteria.)
-        // })
-
     let mails = filterBy(user, criteria);
 
     if (mails.length > 1) mails.sort((mail1, mail2) => mail2.sentAt - mail1.sentAt);
