@@ -26,7 +26,7 @@ export class MailList extends React.Component {
 
     setCriteria = (currStatus) => {
         const { criteria } = this.state;
-        const statuses = ['inbox', 'sent', 'draft', 'trash']ף
+        const statuses = ['inbox', 'sent', 'draft', 'trash'];
 
         if (statuses.includes(currStatus)) {
             this.setState(prevState => ({ criteria: { ...prevState.criteria, status: currStatus } }), () => { this.loadMails() })
