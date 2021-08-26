@@ -2,6 +2,7 @@ import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/storage.service.js'
 
 export const mailService = {
+    query,
     getUser,
     mailsToShow,
     getMailById,
@@ -18,6 +19,10 @@ _createMails();
 
 function getUser() {
     return Promise.resolve(loggedinUser);
+}
+
+function query() {
+    return Promise.resolve(gMails);
 }
 
 function mailsToShow(user, criteria) {
