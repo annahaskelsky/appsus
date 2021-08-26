@@ -8,11 +8,12 @@ export const mailService = {
     getMailById,
     markMailAsRead,
     deleteMail,
-    sendMail
+    sendMail,
+    toogleStar
 }
 
 
-const loggedinUser = { email: 'Muki@appsus.com', fullname: 'Muki Appsus' }
+const loggedinUser = { email: 'Muki@appsus.com', fullname: 'Muki Shalom' }
 let gMails;
 
 _createMails();
@@ -46,7 +47,7 @@ function _getMailsByStatus(user, criteria) {
         }
     });
     // mails = mails.filter(mail => {
-    //     return (criteria.isStared && mail.isStared) || (!criteria.isStared && mail)
+    //     return (criteria.isStarred && mail.isStarred) || (!criteria.isStarred && mail)
     // })
     return mails;
 }
@@ -88,7 +89,7 @@ function sendMail(mialInfo) {
         to: mialInfo.to,
         from: loggedinUser.email,
         isTrash: false,
-        isStared: false,
+        isStarred: false,
         isDraft: false
     }
 
@@ -106,6 +107,12 @@ function deleteMail(mailId) {
         return;
     }
     _moveMailToTrash(mailIdx);
+}
+
+function toogleStar(mailId) {
+    const mailIdx = getMailIndex(mailId);
+    gMails[mailIdx].isStarred = !gMails[mailIdx].isStarred;
+    _saveMailsToStorage();
 }
 
 function _moveMailToTrash(mailIdx) {
@@ -129,7 +136,7 @@ function _createMails() {
                 from: 'shula@appsus.com',
                 nickname: 'Mom',
                 isTrash: false,
-                isStared: true,
+                isStarred: true,
                 isDraft: false
             }, {
                 id: utilService.makeId(),
@@ -145,7 +152,7 @@ function _createMails() {
                 nickname: 'GitHub',
                 from: 'noreply@github.com',
                 isTrash: false,
-                isStared: false,
+                isStarred: false,
                 isDraft: false
             },
             {
@@ -159,7 +166,7 @@ function _createMails() {
                 to: 'shula@appsus.com',
                 from: 'Muki@appsus.com',
                 isTrash: false,
-                isStared: false,
+                isStarred: false,
                 isDraft: false
             },
             {
@@ -177,21 +184,92 @@ function _createMails() {
                 nickname: 'Amazon',
                 from: 'auto-confirm@amazon.com',
                 isTrash: false,
-                isStared: false,
+                isStarred: false,
                 isDraft: false
             },
             {
                 id: utilService.makeId(),
-                subject: 'Miss you!',
-                body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.' +
-                    'Ratione similique consequatur harum odit, eos hic nostrum excepturi distinctio' +
-                    'tempore earum qui quam vel omnis odio veniam alias dignissimos rerum deserunt?',
-                isRead: true,
+                subject: 'A reminder about your trip',
+                body: 'Your trip is approaching!\n' +
+                    'Are you ready for your trip in 5 days?\n' +
+                    'You can cancel for free until June 13 at 11:59 PM (Ein Bokek time).' +
+                    'After that you will have to pay a cancellation fee.\n\n' +
+                    'Upgrade your trip - See if you can get a better room at booking.com',
+                isRead: false,
                 sentAt: 1151133934594,
                 to: 'Muki@appsus.com',
-                from: 'lala@apssus.com',
+                nickname: 'Booking.com',
+                from: 'noreply@booking.com',
+                isTrash: true,
+                isStarred: false,
+                isDraft: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Your receipt for payment to Netflix.com',
+                body: 'Hey, Muki. \n' +
+                    'You have sent a payment of 46.90  ILS to Netflix.com\n' +
+                    'It may take a few minutes for this transaction to appear in your account.\n' +
+                    'This charge will appear on your credit card transaction details page as "PAYPAL * NETFLIX COM"\n' +
+                    'Payment methods used (total)\n MasterCard x - #### ₪ 46.90 ILS. \nPaypal.',
+                isRead: false,
+                sentAt: 1151453934594,
+                to: 'Muki@appsus.com',
+                from: 'service@paypal.co.il',
                 isTrash: false,
-                isStared: false,
+                isStarred: false,
+                isDraft: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Tel Aviv Water Service',
+                body: 'Hello Muki, \n' +
+                    'Your interactive invoice For the period 02-2021 has arrived.\n' +
+                    'Regards,\n' +
+                    'Tel Aviv Water Service\n',
+                isRead: true,
+                sentAt: 1629977371705 - 10000 * 60 * 60 * 24,
+                to: 'Muki@appsus.com',
+                from: 'noreply@mei-avivim.co.il',
+                isTrash: false,
+                isStarred: false,
+                isDraft: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'CV- Muki Shalom',
+                body: 'Hello, \n' +
+                    'I am attaching my resume for the fullstack developer position you posted.\n' +
+                    'Please let me know if it is relevent.\n' +
+                    'Kind regards,\n' +
+                    'Muki Shalom\n',
+                isRead: true,
+                sentAt: 1629977371705 - 10000 * 60 * 60 * 50,
+                to: 'hr@fifafo.com',
+                from: 'Muki@appsus.com',
+                isTrash: false,
+                isStarred: false,
+                isDraft: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Welcome to Appsus',
+                body: 'Hello, Muki! \n' +
+                    'Welcome to Appsus.\n' +
+                    'This is your new account mail box.\n' +
+                    'You can connect to the app easily and quickly via phone verification by SMS Or by logging in with the' +
+                    'following login information:\n\n' +
+                    'Username: Muki@appsus.com\n' +
+                    'Password: 2934013493\n\n' +
+                    'These details are preliminary details. After first logging in, you can change them.\n' +
+                    'Regards,\n' +
+                    'Appsus team\n',
+                isRead: true,
+                sentAt: 1101133930094,
+                to: 'Muki@appsus.com',
+                from: 'service@appsus.com',
+                isTrash: false,
+                isStarred: false,
                 isDraft: false
             }
         ]

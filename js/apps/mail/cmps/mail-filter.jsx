@@ -23,7 +23,10 @@ export class MailFilter extends React.Component {
     render() {
         const { txt, readStatus } = this.state.filterBy;
         return <section>
-            <input type="search" placeholder="Search" name="txt" value={txt} onChange={this.onHandleChange} />
+            <div className="input-icon">
+                <i className="fas fa-search"></i>
+                <input type="search" placeholder="Search" name="txt" value={txt} onChange={this.onHandleChange} />
+            </div>
             <select name="readStatus" value={readStatus} onChange={this.onHandleChange}>
                 <option value="all">All</option>
                 <option value="read">Read</option>

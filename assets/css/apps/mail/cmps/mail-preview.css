@@ -1,4 +1,4 @@
-.mail-preview {
+.mail-preview a {
     gap: 10px;
     width: 100%;
     border-bottom: 0.5px solid rgb(218, 212, 212);
@@ -11,12 +11,23 @@
 
 .mail-preview p:first-child {
     width: 15%;
+    align-self: center;
 }
 
 .mail-preview p:nth-child(3) {
     flex-grow: 1;
 }
 
-.mail-preview.read {
+.mail-preview a.read {
     font-weight: bolder;
+}
+
+.mail-preview button {
+    font-size: 18px;
+    border: none;
+    background: inherit;
+}
+
+.mail-preview .fas.fa-star {
+    color: rgb(233, 179, 42);
 }

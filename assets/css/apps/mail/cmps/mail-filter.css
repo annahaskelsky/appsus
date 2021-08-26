@@ -1,0 +1,14 @@
+.mail-filter .input-icon i {
+    position: absolute;
+}
+
+.mail-filter .icon {
+    padding: 10px;
+    min-width: 40px;
+}
+
+.mail-filter [name="txt"] {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}

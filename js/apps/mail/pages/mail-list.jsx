@@ -77,12 +77,17 @@ export class MailList extends React.Component {
         eventBusService.emit('unread-mails-count', count)
     }
 
+    onToggleStar = (mailId) => {
+        // console.log('toggling star')
+        mailService.toogleStar(mailId);
+        this.loadMails();
+    }
 
     render() {
         const { mails } = this.state;
         if (!mails) return <React.Fragment>Loading...</React.Fragment>
         return <section className="mail-list">
-            {mails && mails.map(mail => <MailPreview key={mail.id} mail={mail} getUrlParam={this.getUrlParam} />)}
+            {mails && mails.map(mail => <MailPreview key={mail.id} mail={mail} getUrlParam={this.getUrlParam} onToggleStar={this.onToggleStar} />)}
         </section>
     }
 }

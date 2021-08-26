@@ -13,16 +13,12 @@ export class MailAdd extends React.Component {
 
     onHandlechange = (ev) => {
         const field = ev.target.name;
-        console.log(field)
         const value = ev.target.value;
-        console.log(value)
         this.setState((prevState) => ({ ...prevState, newMail: { ...prevState.newMail, [field]: value } }));        
-        console.log(this.state)
     }
 
     onSendMail = (ev) => {
         ev.preventDefault();
-        console.log(this.state.newMail)
         mailService.sendMail(this.state.newMail);
         this.props.history.push('/mail');
     }
