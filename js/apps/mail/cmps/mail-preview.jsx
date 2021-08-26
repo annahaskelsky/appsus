@@ -15,13 +15,13 @@ function getTimeStr(time) {
     return month + ' ' + day
 }
 
-export function MailPreview({ mail, getUrlParam , onToggleStar}) {
+export function MailPreview({ mail, getUrlParam, onToggleStar }) {
     const urlParam = getUrlParam();
     return (<section className="mail-preview flex">
 
-<button onClick={()=>onToggleStar(mail.id)}>{(mail.isStarred)? <i className="fas fa-star"></i> : <i className="far fa-star"></i> }</button>
-        {/* {mail.isStarred && <button onClick={()=>onToggleStar(mail.id)}><i className="fas fa-star"></i></button>}
-        {!mail.isStarred && <button><i className="far fa-star"></i></button>} */}
+        <button onClick={() => onToggleStar(mail.id)}>
+            {(mail.isStarred) ? <i className="fas fa-star"></i> : <i className="far fa-star"></i>}
+        </button>
         <Link to={`/mail/${urlParam}/${mail.id}`} className={"flex  " + (!mail.isRead ? 'read' : '')}>
 
             {(urlParam === 'sent' || urlParam === 'draft') && <p>{(mail.nickname) && mail.nickname || mail.to}</p>}

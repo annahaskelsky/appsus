@@ -27,13 +27,13 @@ function query() {
 }
 
 function mailsToShow(user, criteria, filterBy) {
-    let mails = _getMailsByStatus(user, criteria);
+    let mails = _getMailsByFolder(user, criteria);
     if (filterBy) mails = _getMailsByFilter(mails, filterBy)
     if (mails.length > 1) mails.sort((mail1, mail2) => mail2.sentAt - mail1.sentAt);
     return Promise.resolve(mails);
 }
 
-function _getMailsByStatus(user, criteria) {
+function _getMailsByFolder(user, criteria) {
     let mails = gMails.filter(mail => {
         switch (criteria.status) {
             case 'sent':
@@ -44,11 +44,10 @@ function _getMailsByStatus(user, criteria) {
                 return mail.isDraft;
             case 'inbox':
                 return mail.to === user.email && !mail.isTrash;
+            case 'starred':
+                return mail.isStarred;
         }
     });
-    // mails = mails.filter(mail => {
-    //     return (criteria.isStarred && mail.isStarred) || (!criteria.isStarred && mail)
-    // })
     return mails;
 }
 
