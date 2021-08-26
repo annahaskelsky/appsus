@@ -6,10 +6,11 @@ export class MailFilter extends React.Component {
         filterBy: {
             txt: '',
             readStatus: ''
-        }
+        },
+        sortBy: ''
     }
 
-    onHandleChange = (ev) => {
+    onHandleFilterChange = (ev) => {
         const field = ev.target.name;
         const value = (ev.target.type === 'number') ? +ev.target.value : ev.target.value;
         this.setState((prevState) => ({ ...prevState, filterBy: { ...prevState.filterBy, [field]: value } }),
@@ -25,12 +26,19 @@ export class MailFilter extends React.Component {
         return <section>
             <div className="input-icon">
                 <i className="fas fa-search"></i>
-                <input type="search" placeholder="Search" name="txt" value={txt} onChange={this.onHandleChange} />
+                <input type="search" placeholder="Search" name="txt" value={txt} onChange={this.onHandleFilterChange} />
             </div>
-            <select name="readStatus" value={readStatus} onChange={this.onHandleChange}>
+            <label htmlFor="filter-by">Filter by:</label>
+            <select id="filter-by" name="readStatus" value={readStatus} onChange={this.onHandleFilterChange}>
                 <option value="all">All</option>
                 <option value="read">Read</option>
                 <option value="unread">Unread</option>
+            </select>
+
+            <label htmlFor="sort-by">Sort by:</label>
+            <select id="sort-by">
+                <option value="date">Date</option>
+                <option value="subject">Subject</option>
             </select>
         </section>
     }
