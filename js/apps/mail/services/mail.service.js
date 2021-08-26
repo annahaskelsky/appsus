@@ -9,7 +9,9 @@ export const mailService = {
     toggleReadStatus,
     deleteMail,
     sendMail,
-    toogleStar
+    toogleStar,
+    createDraft,
+    saveToDraft
 }
 
 
@@ -52,7 +54,15 @@ function toggleReadStatus(mailId, diff) {
     _saveMailsToStorage();
 }
 
-function sendMail(mialInfo) {
+function saveToDraft(mialInfo, mailId) {
+    const mailIdx = getMailIndex(mailId);
+    if (mialInfo.to) gMails[mailIdx].to = mialInfo.to;
+    if (mialInfo.subject) gMails[mailIdx].subject = mialInfo.subject;
+    if (mialInfo.body) gMails[mailIdx].body = mialInfo.body;
+    _saveMailsToStorage();
+}
+
+function createDraft(mialInfo) {
     const mail = {
         id: utilService.makeId(),
         subject: (mialInfo.subject) ? mialInfo.subject : 'No subject',
@@ -63,11 +73,18 @@ function sendMail(mialInfo) {
         from: loggedinUser.email,
         isTrash: false,
         isStarred: false,
-        isDraft: false
+        isDraft: true
     }
 
     gMails.unshift(mail);
     _saveMailsToStorage();
+    return Promise.resolve(mail.id)
+}
+
+function sendMail(mailId) {
+    const mailIdx = getMailIndex(mailId);
+    gMails[mailIdx].sentAt = Date.now();
+    gMails[mailIdx].isDraft = false;
 }
 
 function deleteMail(mailId) {
@@ -101,7 +118,7 @@ function _getMailsByFolder(user, criteria) {
     let mails = gMails.filter(mail => {
         switch (criteria.status) {
             case 'sent':
-                return mail.from === user.email;
+                return mail.from === user.email && !mail.isDraft;
             case 'trash':
                 return mail.isTrash;
             case 'draft':

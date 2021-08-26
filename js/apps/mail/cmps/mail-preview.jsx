@@ -21,7 +21,7 @@ export function MailPreview({ mail, getUrlParam, onToggleStar, onDeleteMail , on
         <button onClick={() => onToggleStar(mail.id)}>
             {(mail.isStarred) ? <i className="fas fa-star"></i> : <i className="far fa-star"></i>}
         </button>
-        <Link to={`/mail/${urlParam}/${mail.id}`} className={"flex  " + (!mail.isRead ? 'read' : '')}>
+        <Link to={mail.isDraft ? `/mail/edit/${mail.id}` : `/mail/${urlParam}/${mail.id}`} className={"flex  " + (!mail.isRead ? 'read' : '')}>
 
             {(urlParam === 'sent' || urlParam === 'draft') && <p>{(mail.nickname) && mail.nickname || mail.to}</p>}
             {(urlParam !== 'sent' && urlParam !== 'draft') && <p>{(mail.nickname) && mail.nickname || mail.from}</p>}

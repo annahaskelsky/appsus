@@ -15,6 +15,7 @@ export function MailApp() {
             <main>
                 <MailFilter />
                 <Switch>
+                    <Route path="/mail/edit/:mailId" component={MailAdd}/>
                     <Route path="/mail/new" component={MailAdd}/>
                     <Route path="/mail/:mailFilter/:mailId" component={MailDetails}/>
                     <Route path="/mail/:mailFilter" component={MailList} />
