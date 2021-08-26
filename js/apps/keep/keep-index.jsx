@@ -1,5 +1,5 @@
 import { NoteService } from "./services/note.service.js"
-// import { NoteFilter } from "./cmps/note-filter.jsx"
+import { NoteFilter } from "./cmps/note-filter.jsx"
 import { NoteList } from "./cmps/note-list.jsx"
 
 export class NotesApp extends React.Component {
@@ -39,7 +39,7 @@ export class NotesApp extends React.Component {
         if (!notes) return <div>Loading...</div>
         return (
             <section className="note-app">
-                {/* <NoteFilter onSetFilter={this.onSetFilter} />  */}
+                <NoteFilter onSetFilter={this.onSetFilter} /> 
                 <NoteList notes={notes} 
                 pinnedNotes={pinnedNotes} 
                 onRemoveNote={this.onRemoveNote} 
