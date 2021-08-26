@@ -6,11 +6,16 @@ export class MailAside extends React.Component {
     state = {
         unReadMails: 0
     }
+    removeEventBut;
 
     componentDidMount() {
-        eventBusService.on('unread-mails-count', (unReadMails) => {
+        this.removeEventBut=eventBusService.on('unread-mails-count', (unReadMails) => {
             this.setState({ unReadMails })
         })
+    }
+
+    componentWillUnmount() {
+        this.removeEventBut();
     }
 
     render() {

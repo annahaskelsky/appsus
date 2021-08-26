@@ -15,11 +15,17 @@ export class MailList extends React.Component {
         }
     }
 
+    removeEventBut;
+
     componentDidMount() {
         this.loadUser();
-        eventBusService.on('filter-by', (filterBy) => {
-            this.onFilterBy({ filterBy })
+        this.removeEventBut = eventBusService.on('filter-by', (filterBy) => {
+            this.loadMails(filterBy);
         })
+    }
+
+    componentWillUnmount() {
+        this.removeEventBut();
     }
 
     componentDidUpdate(prevProps) {
@@ -27,7 +33,8 @@ export class MailList extends React.Component {
             const currStatus = this.getUrlParam();
             this.setCriteria(currStatus);
         }
-        mailService.query().then(mails => this.setUnreadCount(mails))
+        mailService.query()
+            .then(mails => this.setUnreadCount(mails))
     }
 
     loadUser = () => {
@@ -41,9 +48,9 @@ export class MailList extends React.Component {
             }))
     }
 
-    loadMails = () => {
+    loadMails = (filterBy = null) => {
         const { currUser, criteria } = this.state;
-        mailService.mailsToShow(currUser, criteria)
+        mailService.mailsToShow(currUser, criteria, filterBy)
             .then(mails => this.setState({ mails }));
     }
 

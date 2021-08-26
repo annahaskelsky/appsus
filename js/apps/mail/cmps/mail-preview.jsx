@@ -23,8 +23,8 @@ export function MailPreview({ mail, getUrlParam }) {
 
             {(urlParam === 'sent' || urlParam === 'draft') && <p>{(mail.nickname) && mail.nickname || mail.to}</p>}
             {(urlParam !== 'sent' && urlParam !== 'draft') && <p>{(mail.nickname) && mail.nickname || mail.from}</p>}
-
-            {mail.subject && <LongTxt text={mail.subject} />}
+            <p>{mail.subject} -</p>
+            {/* {mail.subject && <LongTxt text={mail.subject} /> } */}
             {mail.body && <LongTxt text={mail.body} />}
             {!mail.body && <p>No content</p>}
             <p>{getTimeStr(mail.sentAt)}</p>

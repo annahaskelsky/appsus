@@ -25,9 +25,9 @@ function query() {
     return Promise.resolve(gMails);
 }
 
-function mailsToShow(user, criteria) {
+function mailsToShow(user, criteria, filterBy) {
     let mails = _getMailsByStatus(user, criteria);
-
+    if (filterBy) mails = _getMailsByFilter(mails, filterBy)
     if (mails.length > 1) mails.sort((mail1, mail2) => mail2.sentAt - mail1.sentAt);
     return Promise.resolve(mails);
 }
@@ -49,6 +49,15 @@ function _getMailsByStatus(user, criteria) {
     //     return (criteria.isStared && mail.isStared) || (!criteria.isStared && mail)
     // })
     return mails;
+}
+
+function _getMailsByFilter(mails, filterBy) {
+    let { txt, readStatus } = filterBy;
+    const filteredMails = mails.filter(mail => {
+        return (mail.body.includes(txt) || mail.subject.includes(txt) || mail.to.includes(txt)) &&
+            ((readStatus === 'read') ? mail.isRead : ((readStatus === 'unread') ? !mail.isRead : true))
+    });
+    return filteredMails;
 }
 
 function getMailById(mailId) {
@@ -124,7 +133,7 @@ function _createMails() {
                 isDraft: false
             }, {
                 id: utilService.makeId(),
-                subject: '[GitHub] A first-party GitHub Oauth application has been added to your account',
+                subject: '[GitHub] A first-party application has been added to your account',
                 body: 'Hey Muki!\n\nA first- party GitHub OAuth application(Git Credential Manager) with gist, repo, and workflow' +
                     'scopes was recently authorized to access your account. Visit https://github.com/settings/connections/applications for more information.\n' +
                     'To see this and other security events for your account, visit https://github.com/settings/security-log\n' +
@@ -155,14 +164,18 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                subject: 'Miss you!',
-                body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.' +
-                    'Ratione similique consequatur harum odit, eos hic nostrum excepturi distinctio' +
-                    'tempore earum qui quam vel omnis odio veniam alias dignissimos rerum deserunt?',
-                isRead: true,
+                subject: 'Verify your new Amazon account',
+                body: 'To verify your email address, please use the following One Time Password (OTP):\n #####\n' +
+                    'Do not share this OTP with anyone. Amazon takes your account security very seriously.' +
+                    ' Amazon Customer Service will never ask you to disclose or verify your Amazon password, OTP, credit card,' +
+                    ' or banking account number. If you receive a suspicious email with a link to update your account information,' +
+                    ' do not click on the link—instead, report the email to Amazon for investigation.\n' +
+                    'Thank you!',
+                isRead: false,
                 sentAt: Date.now() - 1000 * 60 * 60 * 24,
                 to: 'Muki@appsus.com',
-                from: 'lala@apssus.com',
+                nickname: 'Amazon',
+                from: 'auto-confirm@amazon.com',
                 isTrash: false,
                 isStared: false,
                 isDraft: false
