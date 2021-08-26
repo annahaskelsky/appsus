@@ -15,12 +15,13 @@ export class MailList extends React.Component {
     }
 
     componentDidMount() {
+    
         this.loadUser();
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.mailFilter !== this.props.match.params.mailFilter) {
-            const currStatus=this.getUrlParam();
+            const currStatus = this.getUrlParam();
             this.setCriteria(currStatus);
         }
     }
@@ -34,14 +35,17 @@ export class MailList extends React.Component {
         }
     }
 
-    getUrlParam=()=>{
+    getUrlParam = () => {
         return this.props.match.params.mailFilter;
     }
 
 
     loadUser = () => {
         mailService.getUser()
-            .then(user => this.setState({ currUser: user }, () => { this.loadMails() }))
+            .then(user => this.setState({ currUser: user }, () => {
+                const currStatus = this.getUrlParam();
+                this.setCriteria(currStatus);        
+                this.loadMails() }))
     }
 
     loadMails = () => {
@@ -54,7 +58,7 @@ export class MailList extends React.Component {
         const { mails } = this.state;
         if (!mails) return <React.Fragment>Loading...</React.Fragment>
         return <section className="mail-list">
-            {mails.map(mail => <MailPreview key={mail.id} mail={mail} getUrlParam={this.getUrlParam}/>)}
+            {mails.map(mail => <MailPreview key={mail.id} mail={mail} getUrlParam={this.getUrlParam} />)}
         </section>
     }
 }

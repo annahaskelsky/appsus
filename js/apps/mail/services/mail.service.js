@@ -5,9 +5,11 @@ export const mailService = {
     getUser,
     mailsToShow,
     getMailById,
-    markMailAsRead
-
+    markMailAsRead,
+    deleteMail,
+    sendMail
 }
+
 
 const loggedinUser = { email: 'Muki@appsus.com', fullname: 'Muki Appsus' }
 let gMails;
@@ -35,13 +37,12 @@ function _filterBy(user, criteria) {
             case 'draft':
                 return mail.isDraft;
             case 'inbox':
-                return mail.to === user.email;
+                return mail.to === user.email && !mail.isTrash;
         }
     });
     // mails = mails.filter(mail => {
     //     return (criteria.isStared && mail.isStared) || (!criteria.isStared && mail)
     // })
-
     return mails;
 }
 
@@ -51,10 +52,51 @@ function getMailById(mailId) {
 
 }
 
+function getMailIndex(mailId) {
+    return gMails.findIndex(mail => mail.id === mailId);
+}
+
 function markMailAsRead(mailId) {
-    const mailIdx = gMails.findIndex(mail => mail.id === mailId);
+    const mailIdx = getMailIndex(mailId)
     if (!mailIdx || !gMails[mailIdx]) return;
     gMails[mailIdx].isRead = true;
+    _saveMailsToStorage();
+}
+
+
+function sendMail(mialInfo) {
+    const mail = {
+        id: utilService.makeId(),
+        subject: (mialInfo.subject) ? mialInfo.subject : 'No subject',
+        body: (mialInfo.body) ? mialInfo.body : 'No content',
+        isRead: true,
+        sentAt: Date.now(),
+        to: mialInfo.to,
+        from: loggedinUser.email,
+        isTrash: false,
+        isStared: false,
+        isDraft: false
+    }
+
+    gMails.unshift(mail);
+    _saveMailsToStorage();
+}
+
+function deleteMail(mailId) {
+    const mailIdx = getMailIndex(mailId);
+    console.log(mailIdx)
+    if (!gMails[mailIdx]) return;
+    if (gMails[mailIdx].isTrash) {
+        gMails.splice(mailIdx, 1);
+        _saveMailsToStorage();
+        return;
+    }
+    _moveMailToTrash(mailIdx);
+}
+
+function _moveMailToTrash(mailIdx) {
+    console.log(mailIdx)
+    gMails[mailIdx].isTrash = true;
     _saveMailsToStorage();
 }
 
