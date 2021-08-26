@@ -94,7 +94,6 @@ export class MailList extends React.Component {
     }
 
     onToggleReadStatus = (mailId) => {
-        console.log('toggling read')
         mailService.toggleReadStatus(mailId);
         this.loadMails();
     }
