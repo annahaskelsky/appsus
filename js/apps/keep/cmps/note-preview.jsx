@@ -1,6 +1,7 @@
 import { TxtNote } from "./dynamic-preview/note-txt-preview.jsx"
 import { ImgNote } from "./dynamic-preview/note-img.jsx"
 import { TodoNote } from "./dynamic-preview/note-todo.jsx"
+import { VideoNote } from "./dynamic-preview/note-video.jsx"
 import { NoteService } from "../services/note.service.js"
 import { ActionBar } from "./action-bar.jsx"
 const { Link } = ReactRouterDOM
@@ -23,6 +24,11 @@ export class NotePreview extends React.Component {
         this.setState({ note })
     }
 
+    onMarkUnmarkTodo = (note, todoId) => {
+        NoteService.markUnmark(note, todoId)
+        this.setState({ note })
+    }
+
     // onBack = () => {
     //     // this.props.history.push('/keep')
     //     console.log(this.props);
@@ -39,15 +45,20 @@ export class NotePreview extends React.Component {
                     return <ImgNote {...props} />
                 case 'note-todos':
                     return <TodoNote {...props} />
+                case 'note-video':
+                    return <VideoNote {...props} />
             }
         }
 
         return (
             <article className="note-preview" style={{ backgroundColor: note.backgroundColor }}>
-                <DynamicCmp
-                    type={noteType}
-                    note={note}
-                />
+                <Link to={`/keep/${note.id}`}>
+                    <DynamicCmp
+                        type={noteType}
+                        note={note}
+                        onMarkUnmarkTodo={this.onMarkUnmarkTodo}
+                    />
+                </Link>
                 <ActionBar note={note}
                     handleColorChange={this.handleColorChange}
                     onRemoveNote={this.props.onRemoveNote}

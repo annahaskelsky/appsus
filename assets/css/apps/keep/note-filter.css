@@ -1,0 +1,15 @@
+.note-filter {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filter-by-type {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-by-type>* {
+    cursor: pointer;
+}

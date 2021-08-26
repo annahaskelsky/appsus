@@ -1,8 +1,11 @@
 .note-list, .pinned-notes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 240px);
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-rows: masonry;
     justify-content: center;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 0 20px;
 }
 
 .pinned-notes {
