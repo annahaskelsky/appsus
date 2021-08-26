@@ -8,15 +8,14 @@ import { NoteDetails } from "./cmps/note-details.jsx"
 export class NotesApp extends React.Component {
     state = {
         notes: null,
-        pinnedNotes: null,
-        filterBy: ''
+        pinnedNotes: null
     }
 
     componentDidMount() {
         this.loadNotes()
     }
 
-    loadNotes = () => {
+    loadNotes = (filterBy) => {
         NoteService.getPinnedNotes().then(pinnedNotes => {
             this.setState({ pinnedNotes })
         })
