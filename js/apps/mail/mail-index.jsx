@@ -1,6 +1,7 @@
 const { Route, Switch } = ReactRouterDOM
 
 import { MailAside } from './cmps/mail-aside.jsx';
+import { MailFilter } from './cmps/mail-filter.jsx';
 import { MailDetails } from './pages/mail-details.jsx';
 import { MailList } from './pages/mail-list.jsx';
 import { MailAdd } from './pages/mail-add.jsx';
@@ -12,6 +13,7 @@ export function MailApp() {
                 <MailAside />
             </aside>
             <main>
+                <MailFilter />
                 <Switch>
                     <Route path="/mail/new" component={MailAdd}/>
                     <Route path="/mail/:mailFilter/:mailId" component={MailDetails}/>

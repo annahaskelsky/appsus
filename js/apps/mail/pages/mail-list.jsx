@@ -1,5 +1,6 @@
 import { mailService } from '../services/mail.service.js';
 import { MailPreview } from '../cmps/mail-preview.jsx';
+import { eventBusService } from '../../../services/eventbus.service.js'
 
 export class MailList extends React.Component {
     state = {
@@ -15,8 +16,10 @@ export class MailList extends React.Component {
     }
 
     componentDidMount() {
-    
         this.loadUser();
+        eventBusService.on('filter-by', (filterBy) => {
+            this.onFilterBy({ filterBy })
+        })
     }
 
     componentDidUpdate(prevProps) {
@@ -24,6 +27,24 @@ export class MailList extends React.Component {
             const currStatus = this.getUrlParam();
             this.setCriteria(currStatus);
         }
+        mailService.query().then(mails => this.setUnreadCount(mails))
+    }
+
+    loadUser = () => {
+        mailService.getUser()
+            .then(user => this.setState({ currUser: user }, () => {
+                const currStatus = this.getUrlParam();
+                this.setCriteria(currStatus);
+                this.loadMails();
+                mailService.query().then(mails => this.setUnreadCount(mails))
+
+            }))
+    }
+
+    loadMails = () => {
+        const { currUser, criteria } = this.state;
+        mailService.mailsToShow(currUser, criteria)
+            .then(mails => this.setState({ mails }));
     }
 
     setCriteria = (currStatus) => {
@@ -39,26 +60,22 @@ export class MailList extends React.Component {
         return this.props.match.params.mailFilter;
     }
 
-
-    loadUser = () => {
-        mailService.getUser()
-            .then(user => this.setState({ currUser: user }, () => {
-                const currStatus = this.getUrlParam();
-                this.setCriteria(currStatus);        
-                this.loadMails() }))
+    setUnreadCount = (mails) => {
+        const { currUser } = this.state;
+        if (!currUser) return 0;
+        let count = 0;
+        mails.map(mail => {
+            if (mail.to === currUser.email && !mail.isRead) count++;
+        })
+        eventBusService.emit('unread-mails-count', count)
     }
 
-    loadMails = () => {
-        const { currUser, criteria } = this.state;
-        mailService.mailsToShow(currUser, criteria)
-            .then(mails => this.setState({ mails }));
-    }
 
     render() {
         const { mails } = this.state;
         if (!mails) return <React.Fragment>Loading...</React.Fragment>
         return <section className="mail-list">
-            {mails.map(mail => <MailPreview key={mail.id} mail={mail} getUrlParam={this.getUrlParam} />)}
+            {mails && mails.map(mail => <MailPreview key={mail.id} mail={mail} getUrlParam={this.getUrlParam} />)}
         </section>
     }
 }
