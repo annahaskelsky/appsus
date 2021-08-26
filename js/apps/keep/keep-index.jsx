@@ -19,15 +19,8 @@ export class NotesApp extends React.Component {
         NoteService.getPinnedNotes().then(pinnedNotes => {
             this.setState({ pinnedNotes })
         })
-        NoteService.query(this.state.filterBy).then(notes => {
+        NoteService.query(filterBy).then(notes => {
             this.setState({ notes })
-            console.log(this.state);
-        })
-    }
-
-    onSetFilter = (filterBy) => {
-        this.setState({ filterBy: { ...filterBy } }, () => {
-            this.loadNotes()
         })
     }
 
@@ -46,22 +39,27 @@ export class NotesApp extends React.Component {
     onAddNote = (note) => {
         NoteService.addNote(note).then(this.loadNotes)
     }
+    renderNotes = () => {
+        this.setState({ notes: this.loadNotes()})
+    }
 
     render() {
         const { notes, pinnedNotes } = this.state
         if (!notes) return <div>Loading...</div>
         return (
             <section className="note-app">
-                <NoteFilter onSetFilter={this.onSetFilter} />
+                <NoteFilter loadNotes={this.loadNotes} />
                 <AddNote onAddNote={this.onAddNote} />
-                <NoteList notes={notes}
+                <NoteList
+                    notes={notes}
                     pinnedNotes={pinnedNotes}
                     onRemoveNote={this.onRemoveNote}
                     onDuplicateNote={this.onDuplicateNote}
-                    onPinUnpinNote={this.onPinUnpinNote} />
-                    <Switch>
-                        <Route path="/keep/:noteId" component={NoteDetails} />
-                    </Switch>
+                    onPinUnpinNote={this.onPinUnpinNote}
+                />
+                <Switch>
+                    <Route path="/keep/:noteId" component={(props) => <NoteDetails {...props} renderNotes={this.renderNotes} />} />
+                </Switch>
             </section>
         )
     }
