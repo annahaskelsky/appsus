@@ -6,7 +6,7 @@ let notes = [
         type: "note-txt",
         isPinned: true,
         info: { txt: "Fullstack Me Baby!" },
-        backgroundColor: "transparent" 
+        backgroundColor: "transparent"
     },
     {
         id: "n102",
@@ -31,6 +31,27 @@ let notes = [
     }
 ]
 
+const pinnedNotes = []
+
+
+
+const getPinnedNotes = () => {
+    const pinnedNotesIds = notes.filter(note => note.isPinned).map(note => note.id)
+    console.log(pinnedNotesIds);
+
+    pinnedNotesIds.forEach(id => {
+        const idx = notes.findIndex(note => note.id === id)
+        const currNote = notes[idx]
+        pinnedNotes.push(currNote)
+        notes.splice(idx, 1)
+    })
+    console.log(pinnedNotes);
+    return Promise.resolve(pinnedNotes)
+
+    // const pinnedNotes = notes.filter(note => note.isPinned)
+    // return Promise.resolve(pinnedNotes)
+}
+
 const query = filterBy => {
     // if(filterBy) {
     //     const notesToShow = notes.filter
@@ -51,8 +72,35 @@ const changeColor = (noteId, color) => {
     return Promise.resolve(notes)
 }
 
+const duplicateNote = noteId => {
+    const idx = notes.findIndex(note => note.id === noteId)
+    const note = notes[idx]
+    notes.unshift({ ...note, id: utilService.makeId() })
+    return Promise.resolve(notes)
+}
+
+const pinUnpinNote = (note) => {
+    if (note.isPinned) {
+        const idx = pinnedNotes.findIndex(n => n.id === note.id)
+        const currNote = pinnedNotes[idx]
+        currNote.isPinned = false
+        pinnedNotes.splice(idx, 1)
+        notes.unshift(currNote)
+    } else {
+        const idx = notes.findIndex(n => n.id === note.id)
+        const currNote = notes[idx]
+        currNote.isPinned = true
+        notes.splice(idx, 1)
+        pinnedNotes.unshift(currNote)
+    }
+    return Promise.resolve()
+}
+
 export const NoteService = {
     query,
     removeNote,
-    changeColor
+    changeColor,
+    duplicateNote,
+    getPinnedNotes,
+    pinUnpinNote
 }

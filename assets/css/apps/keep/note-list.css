@@ -1,6 +1,10 @@
-.note-list {
+.note-list, .pinned-notes {
     display: grid;
     grid-template-columns: repeat(auto-fit, 240px);
     justify-content: center;
     gap: 20px;
+}
+
+.pinned-notes {
+    margin-bottom: 20px;
 }

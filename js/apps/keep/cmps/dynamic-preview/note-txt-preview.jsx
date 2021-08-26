@@ -1,9 +1,8 @@
-export const TxtNote = ({ note, onRemoveNote }) => {
+export const TxtNote = ({ note}) => {
     return (
         <div className="note-container">
             <div className="note-content">
                 <h4>{note.info.txt}</h4>
-                <span onClick={() => { onRemoveNote(note.id) }}>X</span>
             </div>
         </div>
     )

@@ -19,9 +19,7 @@ export class NotePreview extends React.Component {
 
     handleColorChange = (color) => {
         const note = this.state.note
-
         NoteService.changeColor(note.id, color)
-        note.backgroundColor = color
         this.setState({ note })
     }
 
@@ -49,9 +47,12 @@ export class NotePreview extends React.Component {
                 <DynamicCmp
                     type={noteType}
                     note={note}
-                    onRemoveNote={this.props.onRemoveNote}
                 />
-                <ActionBar handleColorChange={this.handleColorChange} />
+                <ActionBar note={note}
+                    handleColorChange={this.handleColorChange}
+                    onRemoveNote={this.props.onRemoveNote}
+                    onDuplicateNote={this.props.onDuplicateNote}
+                    onPinUnpinNote={this.props.onPinUnpinNote} />
             </article>
         )
     }
