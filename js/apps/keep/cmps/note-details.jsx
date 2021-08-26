@@ -10,12 +10,7 @@ export class NoteDetails extends React.Component {
     }
 
     componentDidMount() {
-        this.isMount = true
         this.loadNote()
-    }
-
-    componentWillUnmount() {
-        this.isMount = false
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -27,14 +22,13 @@ export class NoteDetails extends React.Component {
     }
 
     onBack = () => {
-        this.props.history.push('/note')
+        this.props.history.push('/keep')
     }
 
     loadNote = () => {
         const id = this.props.match.params.noteId
         NoteService.getNoteById(id)
             .then(note => {
-                if (!note) this.props.history.push('/')
                 this.setState({ ...note.info })
             })
     }
@@ -47,8 +41,7 @@ export class NoteDetails extends React.Component {
         const { img, video, title, txt, todos } = this.state
         const id = this.props.match.params.noteId
         const note = { img, video, title, txt, todos }
-        NoteService.editNote(note, id).then(this.loadNote)
-        if (this.isMount) this.props.renderNotes()
+        NoteService.editNote(note, id).then(this.onBack())
     }
 
     render() {

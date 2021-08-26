@@ -39,9 +39,9 @@ export class NotesApp extends React.Component {
     onAddNote = (note) => {
         NoteService.addNote(note).then(this.loadNotes)
     }
-    renderNotes = () => {
-        this.setState({ notes: this.loadNotes()})
-    }
+    // renderNotes = () => {
+    //     this.setState({ notes: this.loadNotes() })
+    // }
 
     render() {
         const { notes, pinnedNotes } = this.state
@@ -58,7 +58,8 @@ export class NotesApp extends React.Component {
                     onPinUnpinNote={this.onPinUnpinNote}
                 />
                 <Switch>
-                    <Route path="/keep/:noteId" component={(props) => <NoteDetails {...props} renderNotes={this.renderNotes} />} />
+                    <Route path="/keep/:noteId" component={NoteDetails} />
+                    {/* <Route path="/keep/:noteId" component={(props) => <NoteDetails {...props} renderNotes={this.renderNotes} />} /> */}
                 </Switch>
             </section>
         )
