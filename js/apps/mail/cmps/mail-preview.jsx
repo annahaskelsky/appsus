@@ -15,20 +15,30 @@ function getTimeStr(time) {
     return month + ' ' + day
 }
 
-export function MailPreview({ mail, getUrlParam }) {
-
+export function MailPreview({ mail, getUrlParam, onToggleStar, onDeleteMail , onToggleReadStatus}) {
     const urlParam = getUrlParam();
-    return (
-        <Link to={`/mail/${urlParam}/${mail.id}`} className={"flex mail-preview " + (!mail.isRead ? 'read' : '')}>
+    return (<section className="mail-preview flex align-center">
+        <button onClick={() => onToggleStar(mail.id)}>
+            {(mail.isStarred) ? <i className="fas fa-star"></i> : <i className="far fa-star"></i>}
+        </button>
+        <Link to={`/mail/${urlParam}/${mail.id}`} className={"flex  " + (!mail.isRead ? 'read' : '')}>
 
             {(urlParam === 'sent' || urlParam === 'draft') && <p>{(mail.nickname) && mail.nickname || mail.to}</p>}
             {(urlParam !== 'sent' && urlParam !== 'draft') && <p>{(mail.nickname) && mail.nickname || mail.from}</p>}
-
-            {mail.subject && <LongTxt text={mail.subject} />}
+            <p>{mail.subject} -</p>
             {mail.body && <LongTxt text={mail.body} />}
             {!mail.body && <p>No content</p>}
             <p>{getTimeStr(mail.sentAt)}</p>
 
         </Link>
+        <section className="buttons-hover">
+            <button onClick={()=>onDeleteMail(mail.id)}><i className="fa fa-trash" aria-hidden="true" title="Delete"></i></button>
+            <button onClick={()=>onToggleReadStatus(mail.id)}>{mail.isRead ?
+                <i className="fas fa-envelope" title="Mark as unread"></i> :
+                <i className="fas fa-envelope-open-text" title="Mark as read"></i>}
+            </button>
+        </section>
+    </section >
     )
 }
+

@@ -1,0 +1,28 @@
+.mail-filter {
+    margin-bottom: 20px;
+}
+
+.mail-filter .input-icon i {
+    position: absolute;
+}
+
+.mail-filter .icon {
+    padding: 10px;
+    min-width: 40px;
+}
+
+.mail-filter [name="txt"] {
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+.mail-filter label {
+    margin-inline-end: 10px;
+}
+
+.mail-filter select {
+    margin-inline-end: 10px;
+}

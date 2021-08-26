@@ -1,4 +1,8 @@
 .mail-preview {
+    position: relative;
+}
+
+.mail-preview a {
     gap: 10px;
     width: 100%;
     border-bottom: 0.5px solid rgb(218, 212, 212);
@@ -11,12 +15,48 @@
 
 .mail-preview p:first-child {
     width: 15%;
+    align-self: center;
 }
 
 .mail-preview p:nth-child(3) {
     flex-grow: 1;
 }
 
-.mail-preview.read {
+.mail-preview a.read {
     font-weight: bolder;
+}
+
+.mail-preview button {
+    font-size: 18px;
+    border: none;
+    background: inherit;
+}
+
+.mail-preview .fas.fa-star {
+    color: rgb(233, 179, 42);
+}
+
+.mail-preview .far.fa-star {
+    color: rgb(184, 172, 172);
+}
+
+.buttons-hover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgb(194, 186, 186);
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mail-preview .buttons-hover {
+    display: none;
+}
+
+.mail-preview:hover .buttons-hover {
+    display: flex;
 }
