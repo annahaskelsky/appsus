@@ -54,8 +54,6 @@ let notes = [
 
 const pinnedNotes = []
 
-
-
 const getPinnedNotes = () => {
     const pinnedNotesIds = notes.filter(note => note.isPinned).map(note => note.id)
 
@@ -117,10 +115,10 @@ const addNote = (note) => {
     return Promise.resolve(notes)
 }
 
-const editNote = (noteInfo, id) => {
+const editNoteContent = (noteInfo, id) => {
     const note = notes.find(n => n.id === id)
     note.info = noteInfo
-    return Promise.resolve(note)
+    return Promise.resolve()
 }
 
 const removeNote = noteId => {
@@ -174,9 +172,27 @@ const getNoteById = (noteId) => {
     }
 }
 
+const getId = url => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+
+    return (match && match[2].length === 11)
+        ? match[2]
+        : null;
+}
+
+const addTodo = (noteId, todo) => {
+    console.log(todo);
+    let note = notes.find(note => note.id === noteId)
+    if(!note) note = pinnedNotes.find(note => note.id === noteId)
+    console.log(note);
+    note.info.todos.push({id: utilService.makeId(), txt: todo, doneAt: null})
+    return Promise.resolve()
+}
+
 export const NoteService = {
     query,
-    editNote,
+    editNoteContent,
     removeNote,
     changeColor,
     duplicateNote,
@@ -184,5 +200,7 @@ export const NoteService = {
     pinUnpinNote,
     markUnmark,
     addNote,
-    getNoteById
+    getNoteById,
+    getId,
+    addTodo
 }
