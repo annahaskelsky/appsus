@@ -1,0 +1,8 @@
+.new-mail {
+    flex-direction: column;
+}
+
+.new-mail form {
+    flex-direction: column;
+    gap: 20px;
+}

@@ -16,3 +16,7 @@
 .mail-preview p:nth-child(3) {
     flex-grow: 1;
 }
+
+.mail-preview.read {
+    font-weight: bolder;
+}

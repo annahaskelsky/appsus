@@ -1,0 +1,28 @@
+.mail-details {
+    flex-direction: column;
+}
+
+.mail-details>* {
+    margin-top: 20px;
+}
+
+.mail-details nav {
+    border-bottom: 0.5px solid rgb(212, 206, 206);
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.mail-details nav>* {
+    font-size: 20px;
+}
+
+.mail-details button {
+    border: none;
+}
+
+.mail-details p {
+    white-space: pre-wrap;
+    line-height: 1.5;
+}

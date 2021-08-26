@@ -1,4 +1,6 @@
 @import './pages/index.css';
-@import './cmps/mail-aside.css';
 @import './pages/mail-list.css';
+@import './pages/mail-add.css';
+@import './pages/mail-details.css';
+@import './cmps/mail-aside.css';
 @import './cmps/mail-preview.css';
