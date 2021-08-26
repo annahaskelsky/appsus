@@ -26,13 +26,13 @@ function query() {
 }
 
 function mailsToShow(user, criteria) {
-    let mails = _filterBy(user, criteria);
+    let mails = _getMailsByStatus(user, criteria);
 
     if (mails.length > 1) mails.sort((mail1, mail2) => mail2.sentAt - mail1.sentAt);
     return Promise.resolve(mails);
 }
 
-function _filterBy(user, criteria) {
+function _getMailsByStatus(user, criteria) {
     let mails = gMails.filter(mail => {
         switch (criteria.status) {
             case 'sent':

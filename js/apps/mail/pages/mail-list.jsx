@@ -17,6 +17,9 @@ export class MailList extends React.Component {
 
     componentDidMount() {
         this.loadUser();
+        eventBusService.on('filter-by', (filterBy) => {
+            this.onFilterBy({ filterBy })
+        })
     }
 
     componentDidUpdate(prevProps) {
@@ -63,9 +66,7 @@ export class MailList extends React.Component {
         let count = 0;
         mails.map(mail => {
             if (mail.to === currUser.email && !mail.isRead) count++;
-            // console.log(count);
         })
-        // return count;
         eventBusService.emit('unread-mails-count', count)
     }
 
@@ -74,7 +75,7 @@ export class MailList extends React.Component {
         const { mails } = this.state;
         if (!mails) return <React.Fragment>Loading...</React.Fragment>
         return <section className="mail-list">
-            {mails.map(mail => <MailPreview key={mail.id} mail={mail} getUrlParam={this.getUrlParam} />)}
+            {mails && mails.map(mail => <MailPreview key={mail.id} mail={mail} getUrlParam={this.getUrlParam} />)}
         </section>
     }
 }
