@@ -17,13 +17,18 @@ function getTimeStr(time) {
 
 export function MailPreview({ mail, getUrlParam }) {
 
+    const urlParam = getUrlParam();
     return (
-        <Link to={`/mail/${getUrlParam()}/${mail.id}`} className={"flex mail-preview " + (!mail.isRead ? 'read' : '' )}>
-            <p>{(mail.nickname) && mail.nickname || mail.from}</p>
+        <Link to={`/mail/${urlParam}/${mail.id}`} className={"flex mail-preview " + (!mail.isRead ? 'read' : '')}>
+
+            {(urlParam === 'sent' || urlParam === 'draft') && <p>{(mail.nickname) && mail.nickname || mail.to}</p>}
+            {(urlParam !== 'sent' && urlParam !== 'draft') && <p>{(mail.nickname) && mail.nickname || mail.from}</p>}
+
             {mail.subject && <LongTxt text={mail.subject} />}
             {mail.body && <LongTxt text={mail.body} />}
             {!mail.body && <p>No content</p>}
             <p>{getTimeStr(mail.sentAt)}</p>
+
         </Link>
     )
 }
