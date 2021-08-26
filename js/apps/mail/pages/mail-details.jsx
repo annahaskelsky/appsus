@@ -21,7 +21,7 @@ export class MailDetails extends React.Component {
                 return id;
             })
             .then(id=>{
-                mailService.markMailAsRead(id);
+                mailService.toggleReadStatus(id, 'read');
             })
     }
 
@@ -29,7 +29,6 @@ export class MailDetails extends React.Component {
         mailService.deleteMail(mailId);
         this.props.history.push('/mail');
     }
-
 
     getTimeFormat=(date)=>{
         return new Date(date).toLocaleString();

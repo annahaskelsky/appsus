@@ -27,3 +27,7 @@
 .mail-aside-container a:hover {
     background-color: rgb(209, 204, 204);
 }
+
+.mail-aside-container a.active {
+    background-color: rgb(177, 165, 165);
+}

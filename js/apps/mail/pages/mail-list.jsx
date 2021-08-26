@@ -78,16 +78,32 @@ export class MailList extends React.Component {
     }
 
     onToggleStar = (mailId) => {
-        // console.log('toggling star')
         mailService.toogleStar(mailId);
         this.loadMails();
     }
 
+    onDeleteMail = (mailId) => {
+        mailService.deleteMail(mailId);
+        this.props.history.push('/mail');
+        this.loadMails();
+    }
+
+    onToggleReadStatus = (mailId) => {
+        console.log('toggling read')
+        mailService.toggleReadStatus(mailId);
+        this.loadMails();
+    }
+
     render() {
-        const { mails } = this.state;
+        const { mails, isCheckedAll } = this.state;
         if (!mails) return <React.Fragment>Loading...</React.Fragment>
         return <section className="mail-list">
-            {mails && mails.map(mail => <MailPreview key={mail.id} mail={mail} getUrlParam={this.getUrlParam} onToggleStar={this.onToggleStar} />)}
+            {mails && mails.map(mail =>
+                <MailPreview key={mail.id} mail={mail}
+                    onToggleReadStatus={this.onToggleReadStatus}
+                    onDeleteMail={this.onDeleteMail}
+                    getUrlParam={this.getUrlParam}
+                    onToggleStar={this.onToggleStar} />)}
         </section>
     }
 }

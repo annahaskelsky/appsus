@@ -6,7 +6,7 @@ export const mailService = {
     getUser,
     mailsToShow,
     getMailById,
-    markMailAsRead,
+    toggleReadStatus,
     deleteMail,
     sendMail,
     toogleStar
@@ -33,6 +33,61 @@ function mailsToShow(user, criteria, filterBy) {
     return Promise.resolve(mails);
 }
 
+
+function getMailById(mailId) {
+    const mail = gMails.find(mail => mail.id === mailId)
+    return Promise.resolve(mail)
+
+}
+
+function getMailIndex(mailId) {
+    return gMails.findIndex(mail => mail.id === mailId);
+}
+
+function toggleReadStatus(mailId, diff) {
+    const mailIdx = getMailIndex(mailId)
+    if (mailIdx === 'Undefined' || !gMails[mailIdx]) return;
+    if (diff === 'read') gMails[mailIdx].isRead = true;
+    else gMails[mailIdx].isRead = !gMails[mailIdx].isRead;
+    _saveMailsToStorage();
+}
+
+function sendMail(mialInfo) {
+    const mail = {
+        id: utilService.makeId(),
+        subject: (mialInfo.subject) ? mialInfo.subject : 'No subject',
+        body: (mialInfo.body) ? mialInfo.body : 'No content',
+        isRead: true,
+        sentAt: Date.now(),
+        to: mialInfo.to,
+        from: loggedinUser.email,
+        isTrash: false,
+        isStarred: false,
+        isDraft: false
+    }
+
+    gMails.unshift(mail);
+    _saveMailsToStorage();
+}
+
+function deleteMail(mailId) {
+    const mailIdx = getMailIndex(mailId);
+    if (!gMails[mailIdx]) return;
+    if (gMails[mailIdx].isTrash) {
+        gMails.splice(mailIdx, 1);
+        _saveMailsToStorage();
+        return;
+    }
+    _moveMailToTrash(mailIdx);
+}
+
+function toogleStar(mailId) {
+    const mailIdx = getMailIndex(mailId);
+    gMails[mailIdx].isStarred = !gMails[mailIdx].isStarred;
+    _saveMailsToStorage();
+}
+
+
 function _getMailsByFolder(user, criteria) {
     let mails = gMails.filter(mail => {
         switch (criteria.status) {
@@ -58,60 +113,6 @@ function _getMailsByFilter(mails, filterBy) {
             ((readStatus === 'read') ? mail.isRead : ((readStatus === 'unread') ? !mail.isRead : true))
     });
     return filteredMails;
-}
-
-function getMailById(mailId) {
-    const mail = gMails.find(mail => mail.id === mailId)
-    return Promise.resolve(mail)
-
-}
-
-function getMailIndex(mailId) {
-    return gMails.findIndex(mail => mail.id === mailId);
-}
-
-function markMailAsRead(mailId) {
-    const mailIdx = getMailIndex(mailId)
-    if (!mailIdx || !gMails[mailIdx]) return;
-    gMails[mailIdx].isRead = true;
-    _saveMailsToStorage();
-}
-
-
-function sendMail(mialInfo) {
-    const mail = {
-        id: utilService.makeId(),
-        subject: (mialInfo.subject) ? mialInfo.subject : 'No subject',
-        body: (mialInfo.body) ? mialInfo.body : 'No content',
-        isRead: true,
-        sentAt: Date.now(),
-        to: mialInfo.to,
-        from: loggedinUser.email,
-        isTrash: false,
-        isStarred: false,
-        isDraft: false
-    }
-
-    gMails.unshift(mail);
-    _saveMailsToStorage();
-}
-
-function deleteMail(mailId) {
-    const mailIdx = getMailIndex(mailId);
-    console.log(mailIdx)
-    if (!gMails[mailIdx]) return;
-    if (gMails[mailIdx].isTrash) {
-        gMails.splice(mailIdx, 1);
-        _saveMailsToStorage();
-        return;
-    }
-    _moveMailToTrash(mailIdx);
-}
-
-function toogleStar(mailId) {
-    const mailIdx = getMailIndex(mailId);
-    gMails[mailIdx].isStarred = !gMails[mailIdx].isStarred;
-    _saveMailsToStorage();
 }
 
 function _moveMailToTrash(mailIdx) {
