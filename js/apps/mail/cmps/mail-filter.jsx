@@ -7,23 +7,34 @@ export class MailFilter extends React.Component {
             txt: '',
             readStatus: ''
         },
-        sortBy: ''
+        sortBy: 'date'
     }
 
     onHandleFilterChange = (ev) => {
         const field = ev.target.name;
-        const value = (ev.target.type === 'number') ? +ev.target.value : ev.target.value;
+        const value = ev.target.value;
         this.setState((prevState) => ({ ...prevState, filterBy: { ...prevState.filterBy, [field]: value } }),
             () => { this.onSetFilter() });
+    }
+
+    onHandleSortChange=(ev)=> {
+        const value = ev.target.value;
+        this.setState((prevState) => ({ ...prevState, sortBy: value }),
+            () => { this.onSetSort() });
     }
 
     onSetFilter = () => {
         eventBusService.emit('filter-by', this.state.filterBy);
     }
 
+    onSetSort=()=>{
+        eventBusService.emit('sort-by', this.state.sortBy);
+    }
+
     render() {
         const { txt, readStatus } = this.state.filterBy;
-        return <section>
+        const {sortBy}=this.state
+        return <section className="mail-filter">
             <div className="input-icon">
                 <i className="fas fa-search"></i>
                 <input type="search" placeholder="Search" name="txt" value={txt} onChange={this.onHandleFilterChange} />
@@ -36,7 +47,7 @@ export class MailFilter extends React.Component {
             </select>
 
             <label htmlFor="sort-by">Sort by:</label>
-            <select id="sort-by">
+            <select id="sort-by" name={sortBy} value={sortBy} onChange={this.onHandleSortChange}>
                 <option value="date">Date</option>
                 <option value="subject">Subject</option>
             </select>

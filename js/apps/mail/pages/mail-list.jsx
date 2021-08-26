@@ -15,17 +15,22 @@ export class MailList extends React.Component {
         }
     }
 
-    removeEventBut;
+    removeEventButFilter;
+    removeEventButSort;
 
     componentDidMount() {
         this.loadUser();
-        this.removeEventBut = eventBusService.on('filter-by', (filterBy) => {
+        this.removeEventButFilter = eventBusService.on('filter-by', (filterBy) => {
             this.loadMails(filterBy);
+        })
+        this.removeEventButSort = eventBusService.on('sort-by', (sortBy) => {
+            this.loadMails(null, sortBy);
         })
     }
 
     componentWillUnmount() {
-        this.removeEventBut();
+        this.removeEventButFilter();
+        this.removeEventButSort();
     }
 
     componentDidUpdate(prevProps) {
@@ -48,9 +53,9 @@ export class MailList extends React.Component {
             }))
     }
 
-    loadMails = (filterBy = null) => {
+    loadMails = (filterBy = null, sortBy = null) => {
         const { currUser, criteria } = this.state;
-        mailService.mailsToShow(currUser, criteria, filterBy)
+        mailService.mailsToShow(currUser, criteria, filterBy, sortBy)
             .then(mails => this.setState({ mails }));
     }
 

@@ -26,10 +26,10 @@ function query() {
     return Promise.resolve(gMails);
 }
 
-function mailsToShow(user, criteria, filterBy) {
+function mailsToShow(user, criteria, filterBy, sortBy) {
     let mails = _getMailsByFolder(user, criteria);
     if (filterBy) mails = _getMailsByFilter(mails, filterBy)
-    if (mails.length > 1) mails.sort((mail1, mail2) => mail2.sentAt - mail1.sentAt);
+    if (mails.length > 1) mails = _sortMails(mails, sortBy)
     return Promise.resolve(mails);
 }
 
@@ -85,6 +85,15 @@ function toogleStar(mailId) {
     const mailIdx = getMailIndex(mailId);
     gMails[mailIdx].isStarred = !gMails[mailIdx].isStarred;
     _saveMailsToStorage();
+}
+
+function _sortMails(mails, sortBy) {
+    if (sortBy !== 'subject') mails.sort((mail1, mail2) => mail2.sentAt - mail1.sentAt);
+    else mails.sort((mail1, mail2) => {
+        return (mail1.subject.charAt(0) < mail2.subject.charAt(0)) ? -1 : 1
+    })
+
+    return mails;
 }
 
 
