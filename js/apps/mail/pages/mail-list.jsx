@@ -20,7 +20,8 @@ export class MailList extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.mailFilter !== this.props.match.params.mailFilter) {
-            this.setCriteria(this.props.match.params.mailFilter);
+            const currStatus=this.getUrlParam();
+            this.setCriteria(currStatus);
         }
     }
 
@@ -31,6 +32,10 @@ export class MailList extends React.Component {
         if (statuses.includes(currStatus)) {
             this.setState(prevState => ({ criteria: { ...prevState.criteria, status: currStatus } }), () => { this.loadMails() });
         }
+    }
+
+    getUrlParam=()=>{
+        return this.props.match.params.mailFilter;
     }
 
 
@@ -49,7 +54,7 @@ export class MailList extends React.Component {
         const { mails } = this.state;
         if (!mails) return <React.Fragment>Loading...</React.Fragment>
         return <section className="mail-list">
-            {mails.map(mail => <MailPreview key={mail.id} mail={mail} />)}
+            {mails.map(mail => <MailPreview key={mail.id} mail={mail} getUrlParam={this.getUrlParam}/>)}
         </section>
     }
 }
