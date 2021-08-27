@@ -1,12 +1,10 @@
 .mail-app {
     gap: 30px;
-    /* min-height: 78vh; */
     padding-top: 20px;
 }
 
 .mail-app aside {
     font-size: 25px;
-    /* background-color: rgb(228, 215, 215); */
     width: 80%;
     padding-inline-start: 10px;
     position: fixed;
@@ -32,7 +30,8 @@ body.mail-aside-open .mail-app aside {
 @media (min-width: 560px) {
     .mail-app aside {
         width: 20%;
-        padding-inline-start: 30px;
+        height: unset;
+        /* padding-inline-start: 30px; */
         position: unset;
         font-size: unset;
         box-shadow: 0px 0px 0px transparent;

@@ -22,7 +22,7 @@ export class MailAside extends React.Component {
         const { unReadMails } = this.state
         return (
             <section className="mail-aside-container">
-                <Link to="/mail/new"><i className="fas fa-plus"></i> Compose</Link>
+                <Link to="/mail/new" className="compose-btn"><i className="fas fa-plus"></i> Compose</Link>
                 <ul className="clean-list  flex">
                     <li>
                         <NavLink to="/mail/inbox" className="flex align-center">
