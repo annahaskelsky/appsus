@@ -53,5 +53,6 @@
         width: 600px;
         margin-top: unset;
         margin-bottom: unset;
+        margin-inline-start: unset;
     }
 }

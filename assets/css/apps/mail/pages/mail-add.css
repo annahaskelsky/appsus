@@ -4,7 +4,13 @@
 
 .new-mail form {
     flex-direction: column;
+    gap: 45px;
+}
+
+.new-mail-header {
     gap: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 .new-mail form :first-child {
@@ -13,19 +19,56 @@
 
 .new-mail input,
 .new-mail textarea {
-    width: 30%;
-    height: 2em;
+    margin: auto;
+    width: 90%;
     font-size: 18px;
-    padding-inline-start: 8px;
+    padding-inline-start: 10px;
+    border-radius: 8px;
+    border-color: #e0e0e0;
+    border: 2px solid transparent;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    transition: box-shadow 0.4s;
 }
 
 .new-mail textarea {
-    width: 100%;
-    height: 300px;
+    width: 90%;
+    height: 150px;
+    font-family: inherit;
 }
 
 .new-mail button {
-    width: 15%;
+    font-size: 18px;
+    width: 100px;
+    margin: auto;
     height: 50px;
     border-radius: 10px;
+    background-color: #3F97CA;
+    border: 2px solid transparent;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    transition: box-shadow 0.4s;
+}
+
+@media (min-width: 560px) {
+    .new-mail-header {
+        justify-content: unset;
+    }
+    .new-mail form {
+        gap: 20px;
+    }
+    .new-mail input {
+        width: 30%;
+        margin: unset;
+    }
+    .new-mail textarea {
+        margin: unset;
+        width: 100%;
+        height: 300px;
+    }
+    .new-mail button:hover {
+        box-shadow: 0 1px 2px 0 rgb(60 64 67 / 60%), 0 2px 6px 2px rgb(60 64 67 / 40%);
+    }
+    .new-mail input:hover,
+    .new-mail textarea:hover {
+        box-shadow: 0 1px 2px 0 rgb(60 64 67 / 60%), 0 2px 6px 2px rgb(60 64 67 / 40%);
+    }
 }
