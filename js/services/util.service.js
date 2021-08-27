@@ -2,7 +2,8 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    debounce
+    debounce,
+    getRandomColor
 }
 
 function makeId(length = 6) {
@@ -48,3 +49,12 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 };
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}

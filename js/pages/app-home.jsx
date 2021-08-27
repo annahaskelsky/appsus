@@ -18,13 +18,13 @@ export function Home() {
                     </div></Link>
                     <Link to="/keep">
                     <div className="main-layout flex">
+                        <img src="./assets/img/notes.jpeg" />
                         <article>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                             Sed aspernatur error perspiciatis, velit aliquid voluptate laudantium,
                             consequuntur voluptatem doloremque odio debitis aperiam voluptates?
                             Aliquam reprehenderit eius possimus voluptatibus necessitatibus reiciendis
                             ipsa facilis, ullam, eaque iste, enim doloremque? Ea, placeat illo,
                             ipsam quidem autem, vel omnis eaque id tempore architecto ullam!</article>
-                        <img src="./assets/img/notes.jpeg" />
                     </div></Link>
                     <Link to="/book"><div className="main-layout flex">
                         <img src="./assets/img/books.png" />

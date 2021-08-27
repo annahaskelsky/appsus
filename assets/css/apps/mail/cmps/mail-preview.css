@@ -9,17 +9,50 @@
     cursor: pointer;
 }
 
+.name-preview-i {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-inline-end: 10px;
+}
+
 .mail-preview:hover {
     background-color: rgb(194, 186, 186);
 }
 
-.mail-preview p:first-child {
-    width: 15%;
-    align-self: center;
+.mail-preview .info-preview {
+    flex-grow: 1;
+    flex-direction: column;
+    margin: 10px 0;
 }
 
-.mail-preview p:nth-child(3) {
-    flex-grow: 1;
+.mail-preview .info-preview p {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mail-preview .info-preview .mail-body-preview {
+    display: none;
+}
+
+.mail-preview .info-preview p {
+    margin: unset;
+    line-height: 1.6;
+}
+
+.mail-preview .info-preview .name-preview {
+    margin-bottom: 10px;
+    margin-inline-end: 15px;
+}
+
+.mail-preview .date-preview {
+    font-size: 12px;
 }
 
 .mail-preview a.read {
@@ -30,6 +63,13 @@
     font-size: 18px;
     border: none;
     background: inherit;
+}
+
+.mail-preview .fa-star {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    font-size: 25px;
 }
 
 .mail-preview .fas.fa-star {
@@ -59,4 +99,31 @@
 
 .mail-preview:hover .buttons-hover {
     display: flex;
+}
+
+@media (min-width: 560px) {
+    .mail-preview .date-preview {
+        font-size: unset;
+    }
+    .name-preview-i {
+        display: none;
+    }
+    .mail-preview .info-preview {
+        flex-direction: unset;
+        gap: 15px;
+        align-items: center;
+    }
+    .mail-preview .info-preview .name-preview {
+        width: 15%;
+        align-self: center;
+        margin-bottom: unset;
+    }
+    .mail-preview .fa-star {
+        font-size: unset;
+        position: unset;
+        padding-inline-end: 10px;
+    }
+    .mail-preview .info-preview .mail-body-preview {
+        display: unset;
+    }
 }

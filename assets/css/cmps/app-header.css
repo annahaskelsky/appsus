@@ -1,8 +1,7 @@
 header {
     border-bottom: 1px solid gray;
     background-color: rgb(202, 64, 64);
-    margin-bottom: 40px;
-    height: 7vh;
+    height: 10vh;
 }
 
 .app-header {
@@ -21,4 +20,10 @@ header {
 
 .logo-container img {
     height: 60px;
+}
+
+@media (min-width: 560px) {
+    header {
+        margin-bottom: 40px;
+    }
 }

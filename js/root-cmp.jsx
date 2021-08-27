@@ -12,21 +12,21 @@ import { Home } from './pages/app-home.jsx';
 export function App() {
     return (
         <Router>
-            <header>
-                <AppHeader />
-            </header>
-            <main className="app">
-                <Switch>
-                    <Route path="/keep" component={NotesApp} />
-                    <Route path="/book" component={BookApp} />
-                    <Route path="/mail" component={MailApp} />
-                    <Route path="/about" component={About} />
-                    <Route path="/" component={Home} />
-                </Switch>
-            </main>
-            <footer>
-                <AppFooter />
-            </footer>
+                <header>
+                    <AppHeader />
+                </header>
+                <main className="app">
+                    <Switch>
+                        <Route path="/keep" component={NotesApp} />
+                        <Route path="/book" component={BookApp} />
+                        <Route path="/mail" component={MailApp} />
+                        <Route path="/about" component={About} />
+                        <Route path="/" component={Home} />
+                    </Switch>
+                </main>
+                <footer>
+                    <AppFooter />
+                </footer>
         </Router>
     )
 }

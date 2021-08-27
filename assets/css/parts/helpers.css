@@ -17,6 +17,12 @@
 }
 
 .main-layout {
-    max-width: 1300px;
+    max-width: 540px;
     margin: auto;
+}
+
+@media (min-width: 560px) {
+    .main-layout {
+        max-width: 1300px;
+    }
 }

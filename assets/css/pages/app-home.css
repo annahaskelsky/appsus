@@ -5,16 +5,18 @@
 }
 
 .home .main-nav {
+    padding: 0 30px;
     flex-direction: column;
-    gap: 20px;
+    gap: 60px;
+    align-items: center;
 }
 
 .home .main-nav a {
-    height: 300px;
     background-color: #ebebeb;
 }
 
 .home .main-nav a div {
+    flex-direction: column;
     align-items: center;
     height: 100%;
     width: 100%;
@@ -32,6 +34,17 @@
     font-size: 1.2rem;
 }
 
-/* .home .main-nav a div img:first-child {
-
-} */
+@media (min-width: 840px) {
+    .home .main-nav a div {
+        flex-direction: unset;
+    }
+    .home .main-nav a {
+        height: 300px;
+    }
+    .home .main-nav a:nth-child(2) div {
+        flex-direction: row-reverse;
+    }
+    .home .main-nav {
+        gap: 30px;
+    }
+}
