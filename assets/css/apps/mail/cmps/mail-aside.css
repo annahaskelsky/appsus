@@ -13,14 +13,15 @@
 }
 
 .mail-aside-container li {
-    width: 80%;
+    width: 100%;
 }
 
 .mail-aside-container ul a {
     width: 100%;
-    gap: 5px;
+    gap: 10px;
     border-radius: 20px;
     transition: color 0.5s;
+    padding-inline-start: 10px;
 }
 
 .mail-aside-container ul a:hover {
