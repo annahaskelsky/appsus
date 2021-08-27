@@ -11,7 +11,7 @@
     opacity: 1;
 }
 
-.note-preview .action-bar-container {
+.action-bar-container {
     opacity: 0;
 }
 
@@ -19,31 +19,4 @@
     color: #202124;
     opacity: 0.71;
     font-size: .9rem;
-}
-
-.action-bar-container>div {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.action-bar-container>div>div:first-child {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.218s ease-in-out;
-}
-
-.action-bar-container>div>div:last-child {
-    padding: 8px 9px;
-}
-
-.action-bar-container>div>div:first-child:hover {
-    background-color: #e9eaead5;
 }

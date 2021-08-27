@@ -9,9 +9,9 @@
     transition-timing-function: ease-in;
     border-color: #e0e0e0;
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
-    width: 600px;
     margin: 32px auto 16px auto;
     position: relative;
+    width: 400px;
 }
 
 .input-container > input {
@@ -20,4 +20,11 @@
     outline: none !important;
     padding: 12px 16px;
     width: 100%;
+}
+
+@media (min-width:560px) {
+    .input-container {
+        width: 600px;
+
+    }
 }

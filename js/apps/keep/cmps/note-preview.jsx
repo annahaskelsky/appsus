@@ -17,7 +17,10 @@ export class NotePreview extends React.Component {
     handleColorChange = (color) => {
         const note = this.state.note
         NoteService.changeColor(note.id, color).then(this.setState({ note }))
+    }
 
+    handleEdit = (infoNote) => {
+        this.setState({ note: { ...this.state.note, info: infoNote } })
     }
 
     onMarkUnmarkTodo = (todoId) => {
@@ -36,7 +39,9 @@ export class NotePreview extends React.Component {
                     note={note}
                     onMarkUnmarkTodo={this.onMarkUnmarkTodo}
                 />
-                <ActionBar note={note}
+                <ActionBar
+                    note={note}
+                    handleEdit={this.handleEdit}
                     handleColorChange={this.handleColorChange}
                     onRemoveNote={this.props.onRemoveNote}
                     onDuplicateNote={this.props.onDuplicateNote}

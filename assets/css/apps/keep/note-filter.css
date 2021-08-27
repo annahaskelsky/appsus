@@ -13,3 +13,11 @@
 .filter-by-type>* {
     cursor: pointer;
 }
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    /* flex-direction: column; */
+    /* width: 60vw; */
+}

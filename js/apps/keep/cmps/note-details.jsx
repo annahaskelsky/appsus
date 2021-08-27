@@ -7,35 +7,32 @@ export class NoteDetails extends React.Component {
         title: null,
         txt: null,
         todos: [],
-        isAddTodo: false,
-        newTodo: ''
+        isAddTodo: true,
+        todosNumber: 1,
+        newTodoValue: ''
     }
 
     imageRef = React.createRef()
     videoRef = React.createRef()
+    newTodoRef = React.createRef()
 
     componentDidMount() {
         this.loadNote()
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.match.params.noteId !== this.props.match.params.noteId) {
+        if (prevProps.note !== this.props.note) {
             this.loadNote()
+            return
+        }
+        const todosProps = prevProps.note.info.todos
+        if (todosProps.length !== prevState.todos.length) {
+            this.setState({ todos: [...todosProps] })
         }
     }
 
-
-    onBack = () => {
-        this.props.history.push('/keep')
-    }
-
     loadNote = () => {
-        const id = this.props.match.params.noteId
-        this.setState({newTodo: '', isAddTodo: false})
-        NoteService.getNoteById(id)
-            .then(note => {
-                this.setState({ ...note.info })
-            })
+        this.setState({ ...this.props.note.info })
     }
 
     handleChange = ({ target: { name, value } }) => {
@@ -50,47 +47,72 @@ export class NoteDetails extends React.Component {
         this.setState({ [name]: value })
     }
 
-    handleSubmit = () => {
-        const { img, video, title, txt, todos } = this.state
-        const id = this.props.match.params.noteId
-        const note = { img, video, title, txt, todos }
-        NoteService.editNoteContent(note, id).then(this.onBack())
-    }
-
-    handleChangeFile = (e) => {
+    handleChangeFile = () => {
         const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0])
+        reader.readAsDataURL(this.imageRef.current.files[0])
         reader.onloadend = () => {
             this.videoRef.current.value = ''
             this.setState({ img: reader.result, video: null })
         }
     }
 
-    handleTodoChange = ({ target: { name, value } }) => {
+    handleTodoChange = ({ target: { value } }) => {
         this.setState({ newTodo: value })
     }
 
     onAddTodo = () => {
-        const noteId = this.props.match.params.noteId
-        NoteService.addTodo(noteId, this.state.newTodo).then(this.onBack())
+        const { newTodo } = this.state
+        if (!newTodo) return
+        NoteService.addTodo(this.props.note.id, newTodo)
+        this.newTodoRef.current.value = ''
+        this.setState({ newTodo: '' })
+    }
+
+    handleSubmit = () => {
+        const { img, video, title, txt, todos } = this.state
+        const noteInfo = { img, video, title, txt, todos }
+        this.props.handleSubmit(noteInfo)
+    }
+
+    handleRemoveTodo = (todoId) => {
+        const { todos } = this.state
+        const newTodos = todos.filter(t => t.id !== todoId)
+        NoteService.removeTodo(this.props.note.id, todoId).then(() => {
+            this.setState({ todos: newTodos })
+        })
     }
 
     render() {
-        const { img, video, title, txt, todos, isAddTodo, newTodo } = this.state
+        const { img, video, title, txt, todos, isAddTodo } = this.state
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', width: '15%', margin: '0 auto' }}>
-                <input type="file" ref={this.imageRef} onChange={this.handleChangeFile} />
-                {img && <img src={img} />}
-                <label htmlFor="video">Video:</label>
-                <input type="text" ref={this.videoRef} id="video" name="video" onChange={this.handleChange} />
+            <div className="note-details-container">
+                <div className="note-details-img-container">
+                    {img && <img src={img} />}
+                </div>
+                <div className="note-details-img-icon">
+                    <span>Upload Image</span> <button className="icon-button" onClick={() => this.imageRef.current.click()}><i class="fas fa-upload"></i></button>
+                </div>
+                <input type="file" className="note-details-img-input" id="edit-image" ref={this.imageRef} onChange={this.handleChangeFile} />
+
+                <input type="text" id="video" ref={this.videoRef} name="video" placeholder="Youtube Url" onChange={this.handleChange} />
                 {video && <iframe src={video} width="100%" height="200" />}
-                <input name="title" onChange={this.handleChange} value={title || ''} />
+
+                <input type="text" name="title" onChange={this.handleChange} value={title || ''} />
                 <textarea name="txt" onChange={this.handleChange} value={txt || ''} />
-                {isAddTodo && <div><input type="text" name="todo" value={newTodo} onChange={this.handleTodoChange} />
-                    <button onClick={this.onAddTodo}>+</button>
-                </div>}
-                <button onClick={() => this.setState({ isAddTodo: true })}>Add todo</button>
-                <button onClick={this.handleSubmit}>Submit</button>
+                {isAddTodo &&
+                    todos.map(todo => (
+                        <div key={todo.id} className="note-details-todo-container">
+                            <div>{todo.txt}</div>
+                            <button className="icon-button" onClick={() => this.handleRemoveTodo(todo.id)}><i class="far fa-times-circle"></i></button>
+                        </div>
+                    ))
+                }
+                <div className="note-details-todo-container">
+                    <input ref={this.newTodoRef} type="text" name="todo" placeholder="Add Todo" onChange={this.handleTodoChange} />
+                    <button className="icon-button" onClick={this.onAddTodo}><i class="fas fa-plus-circle"></i></button>
+                </div>
+
+                <button className="note-details-submit" onClick={this.handleSubmit}>Submit</button>
             </div>
         )
     }

@@ -87,6 +87,7 @@ const query = filterBy => {
         })
         return Promise.resolve(notesToShow)
     }
+    return Promise.resolve(notes)
 }
 
 const markUnmark = (note, todoId) => {
@@ -195,11 +196,18 @@ const getId = url => {
 }
 
 const addTodo = (noteId, todo) => {
-    console.log(todo);
     let note = notes.find(note => note.id === noteId)
     if (!note) note = pinnedNotes.find(note => note.id === noteId)
-    console.log(note);
     note.info.todos.push({ id: utilService.makeId(), txt: todo, doneAt: null })
+    return Promise.resolve()
+}
+
+const removeTodo = (noteId, todoId) => {
+    let note = notes.find(note => note.id === noteId)
+    if (!note) note = pinnedNotes.find(note => note.id === noteId)
+    const idx = note.info.todos.findIndex(t => t.id !== todoId)
+    note.info.todos.splice(idx, 1)
+    console.log(notes);
     return Promise.resolve()
 }
 
@@ -215,5 +223,6 @@ export const NoteService = {
     addNote,
     getNoteById,
     getId,
-    addTodo
+    addTodo,
+    removeTodo
 }

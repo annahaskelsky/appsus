@@ -2,6 +2,9 @@
     width: 240px;
     border: .2px solid #e0e0e0;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .note-preview:hover .action-bar-container {
@@ -13,6 +16,11 @@
     width: 100%;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+}
+
+.note-preview iframe {
+    border: none;
+    outline: none;
 }
 
 .note-content {

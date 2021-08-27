@@ -44,7 +44,7 @@ export class NotesApp extends React.Component {
         const { notes, pinnedNotes } = this.state
         if (!notes) return <div>Loading...</div>
         return (
-            <section className="note-app">
+            <section className="note-app main-layout">
                 <NoteFilter loadNotes={this.loadNotes} />
                 <AddNote onAddNote={this.onAddNote} />
                 <NoteList

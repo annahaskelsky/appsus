@@ -22,12 +22,17 @@ export class NoteFilter extends React.Component {
     render() {
         return (
             <section className="note-filter">
-                <input type="text" name="txt-filter" placeholder="Search for a note" onChange={(ev) => this.handleChange(ev.target.value, true)} />
-                <div className="filter-by-type">
-                    <div onClick={() => this.handleChange('img', false)}><i className="far fa-image" ></i></div>
-                    <div onClick={() => this.handleChange('todos', false)}><i className="fas fa-list-ul"></i></div>
-                    <div onClick={() => this.handleChange('txt', false)}><i className="fas fa-file-alt"></i></div>
-                    <div onClick={() => this.handleChange('video', false)}><i className="fas fa-video"></i></div>
+                <div className="input-container">
+                    <div className="input-wrapper">
+                        <input type="text" name="txt-filter" placeholder="Search for a note" onChange={(ev) => this.handleChange(ev.target.value, true)} />
+                        <div className="filter-by-type">
+                            <button className="icon-button" onClick={() => this.handleChange('img')}><i className="far fa-image" ></i></button>
+                            <button className="icon-button" onClick={() => this.handleChange('todos')}><i className="fas fa-list-ul"></i></button>
+                            <button className="icon-button" onClick={() => this.handleChange('txt')}><i className="fas fa-file-alt"></i></button>
+                            <button className="icon-button" onClick={() => this.handleChange('video')}><i className="fas fa-video"></i></button>
+                            <button className="icon-button" onClick={() => this.handleChange('')}><i className="fas fa-globe-americas"></i></button>
+                        </div>
+                    </div>
                 </div>
             </section>
         )

@@ -1,16 +1,48 @@
+import { NoteService } from "../services/note.service.js"
+import { NoteDetails } from "./note-details.jsx"
 import { Palette } from "./palette.jsx"
 
-const { Link } = ReactRouterDOM
+export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNote, onPinUnpinNote, handleEdit }) => {
 
-export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNote, onPinUnpinNote }) => {
+    const modalRef = React.createRef()
+
+    const handleWindowClick = event => {
+        console.log(event.target);
+        if (modalRef.current && event.target === modalRef.current) {
+            if (modalRef.current) modalRef.current.style.display = "none";
+        }
+    }
+
+    const handleSubmit = noteInfo => {
+        NoteService.editNoteContent(noteInfo, note.id).then(() => {
+            handleEdit(noteInfo)
+        })
+    }
 
     return (
-        <div className="action-bar-container">
-            <Palette handleColorChange={handleColorChange}/>
-            <div><div onClick={() => onDuplicateNote(note.id)}><i className="far fa-copy"></i></div></div>
-            <div><div onClick={() => onRemoveNote(note.id)}><i className="far fa-trash-alt"></i></div></div>
-            <Link to={`/keep/${note.id}`}><div><div><i className="fas fa-pencil-alt"></i></div></div></Link>
-            <div><div onClick={() => onPinUnpinNote(note)}><i className="fas fa-thumbtack"></i></div></div>
+        <div>
+            <div className="action-bar-container">
+                <Palette className="action-bar-item" handleColorChange={handleColorChange} />
+                <button className="icon-button" onClick={() => onDuplicateNote(note.id)}><i className="far fa-copy"></i></button>
+                <button className="icon-button" onClick={() => onRemoveNote(note.id)}><i className="far fa-trash-alt"></i></button>
+                <button className="icon-button" onClick={() => modalRef.current.style.display = "block"}><i className="fas fa-pencil-alt"></i></button>
+                <button className="icon-button" onClick={() => onPinUnpinNote(note)}><i className="fas fa-thumbtack"></i></button>
+            </div>
+            <div id="myModal" className="modal" ref={modalRef} onClick={handleWindowClick}>
+                <div className="modal-content">
+                    <NoteDetails
+                        note={note}
+                        handleSubmit={(noteInfo) => {
+                            handleSubmit(noteInfo)
+                            modalRef.current.style.display = "none"
+                        }}
+                        handleEdit={(infoNote) => {
+                            handleEdit(infoNote)
+                            modalRef.current.style.display = "none"
+                        }}
+                    />
+                </div>
+            </div>
         </div>
     )
 }

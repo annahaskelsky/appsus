@@ -1,7 +1,7 @@
 import { Palette } from "./palette.jsx"
 
 export const AddNoteInput = ({ placeholder, handleChange, color, handleColorChange, handleChangeFile, onAddNote }) => {
-    const [isExpanded, setIsExpanded] = React.useState(true)
+    const [isExpanded, setIsExpanded] = React.useState(false)
     const inputContainerRef = React.useRef()
     React.useEffect(() => {
         document.addEventListener('click', handleWindowClick)
@@ -18,7 +18,7 @@ export const AddNoteInput = ({ placeholder, handleChange, color, handleColorChan
 
     return (
         <div onClick={() => setIsExpanded(true)} className="input-container" ref={inputContainerRef} style={{ borderColor: color }}>
-            <input name="title" onChange={handleChange} placeholder={placeholder} />
+            <input name="title" onChange={handleChange} placeholder={placeholder} autoComplete="off" />
             {isExpanded &&
                 <div className="add-note-bottom">
                     <textarea
