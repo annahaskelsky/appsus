@@ -18,7 +18,7 @@ function getTimeStr(time) {
 }
 
 export function MailPreview({ mail, getUrlParam, onToggleStar, onDeleteMail, onToggleReadStatus }) {
-    const namePreviewStyle = { backgroundColor: utilService.getRandomColor() }
+    const namePreviewStyle = { backgroundColor: mail.color }
     const urlParam = getUrlParam();
     return (<section className="mail-preview flex align-center">
         <button onClick={() => onToggleStar(mail.id)}>

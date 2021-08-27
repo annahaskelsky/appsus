@@ -9,15 +9,23 @@
     display: none;
 }
 
-.app-layout header.menu-open .screen {
+.app-layout header.menu-open .screen,
+.mail-app aside.aside-menu-open .screen {
     display: block;
+}
+
+.mail-app aside.aside-menu-open .screen {
+    top: 0;
+    left: -138px;
+    width: 55%;
 }
 
 @media (min-width: 560px) {
     .screen {
         display: none;
     }
-    .app-layout header.menu-open .screen {
+    .app-layout header.menu-open .screen,
+    .mail-app aside.aside-menu-open .screen {
         display: none;
     }
 }

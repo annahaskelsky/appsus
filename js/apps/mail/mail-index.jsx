@@ -5,6 +5,7 @@ import { MailFilter } from './cmps/mail-filter.jsx';
 import { MailDetails } from './pages/mail-details.jsx';
 import { MailList } from './pages/mail-list.jsx';
 import { MailAdd } from './pages/mail-add.jsx';
+import { Screen } from '../../cmps/screen.jsx'
 
 export class MailApp extends React.Component {
 
@@ -12,8 +13,7 @@ export class MailApp extends React.Component {
         isSideMenuOpen: false
     }
 
-    toggleSideMemu = () => {
-        console.log('toggling')
+    toggleMenu = () => {
         this.setState({ isSideMenuOpen: !this.state.isSideMenuOpen })
     }
 
@@ -22,12 +22,13 @@ export class MailApp extends React.Component {
 
         return (
             <section className="mail-app flex main-layout">
-                {/* <aside className="aside-menu-open"> */}
-                <aside className={isSideMenuOpen? 'aside-menu-open' : ''}>
-                    <MailAside />
+                <aside className={isSideMenuOpen ? 'aside-menu-open' : ''}>
+
+                    <MailAside toggleMenu={this.toggleMenu}/>
+                    <Screen toggleMenu={this.toggleMenu} />
                 </aside>
                 <main>
-                    <MailFilter toggleSideMemu={this.toggleSideMemu} />
+                    <MailFilter toggleMenu={this.toggleMenu} />
                     <Switch>
                         <Route path="/mail/edit/:mailId" component={MailAdd} />
                         <Route path="/mail/new" component={MailAdd} />

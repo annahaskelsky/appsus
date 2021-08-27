@@ -14,13 +14,13 @@
     left: 0;
     height: 100%;
     box-shadow: 0px 0px 0px transparent;
-    transform: translateX(-100%);
+    transform: translateX(160%);
     transition: transform .6s;
-    z-index: 2;
+    z-index: 6;
 }
 
 .mail-app aside.aside-menu-open {
-    transform: translateX(0);
+    transform: translateX(50%);
     box-shadow: 8px 0px 20px rgb(0 0 0 / 20%);
 }
 
@@ -49,5 +49,6 @@
     }
     .mail-app aside.aside-menu-open {
         box-shadow: unset;
+        transform: unset;
     }
 }

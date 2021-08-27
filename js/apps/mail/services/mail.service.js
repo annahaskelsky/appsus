@@ -73,7 +73,8 @@ function createDraft(mialInfo) {
         from: loggedinUser.email,
         isTrash: false,
         isStarred: false,
-        isDraft: true
+        isDraft: true,
+        color: utilService.getRandomColor()
     }
 
     gMails.unshift(mail);
@@ -163,7 +164,8 @@ function _createMails() {
                 nickname: 'Mom',
                 isTrash: false,
                 isStarred: true,
-                isDraft: false
+                isDraft: false,
+                color: utilService.getRandomColor()
             }, {
                 id: utilService.makeId(),
                 subject: '[GitHub] A first-party application has been added to your account',
@@ -179,7 +181,8 @@ function _createMails() {
                 from: 'noreply@github.com',
                 isTrash: false,
                 isStarred: false,
-                isDraft: false
+                isDraft: false,
+                color: utilService.getRandomColor()
             },
             {
                 id: utilService.makeId(),
@@ -193,7 +196,8 @@ function _createMails() {
                 from: 'Muki@appsus.com',
                 isTrash: false,
                 isStarred: false,
-                isDraft: false
+                isDraft: false,
+                color: utilService.getRandomColor()
             },
             {
                 id: utilService.makeId(),
@@ -211,7 +215,8 @@ function _createMails() {
                 from: 'auto-confirm@amazon.com',
                 isTrash: false,
                 isStarred: false,
-                isDraft: false
+                isDraft: false,
+                color: utilService.getRandomColor()
             },
             {
                 id: utilService.makeId(),
@@ -228,7 +233,8 @@ function _createMails() {
                 from: 'noreply@booking.com',
                 isTrash: true,
                 isStarred: false,
-                isDraft: false
+                isDraft: false,
+                color: utilService.getRandomColor()
             },
             {
                 id: utilService.makeId(),
@@ -244,7 +250,8 @@ function _createMails() {
                 from: 'service@paypal.co.il',
                 isTrash: false,
                 isStarred: false,
-                isDraft: false
+                isDraft: false,
+                color: utilService.getRandomColor()
             },
             {
                 id: utilService.makeId(),
@@ -259,7 +266,8 @@ function _createMails() {
                 from: 'noreply@mei-avivim.co.il',
                 isTrash: false,
                 isStarred: false,
-                isDraft: false
+                isDraft: false,
+                color: utilService.getRandomColor()
             },
             {
                 id: utilService.makeId(),
@@ -275,7 +283,8 @@ function _createMails() {
                 from: 'Muki@appsus.com',
                 isTrash: false,
                 isStarred: false,
-                isDraft: false
+                isDraft: false,
+                color: utilService.getRandomColor()
             },
             {
                 id: utilService.makeId(),
@@ -296,7 +305,8 @@ function _createMails() {
                 from: 'service@appsus.com',
                 isTrash: false,
                 isStarred: false,
-                isDraft: false
+                isDraft: false,
+                color: utilService.getRandomColor()
             }
         ]
     }
