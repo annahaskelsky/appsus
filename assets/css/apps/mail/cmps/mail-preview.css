@@ -11,8 +11,8 @@
     
     .name-preview-i {
         font-size: 20px;
-        min-width: 40px;
-        height: 40px;
+        min-width: 35px;
+        height: 35px;
         border-radius: 50%;
         align-self: center;
         display: flex;
