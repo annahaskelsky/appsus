@@ -1,40 +1,48 @@
+import { Input } from "../../../cmps/input.jsx";
+import { AddNoteInput } from "./add-note-input.jsx";
+
 export class AddNote extends React.Component {
     state = {
-        isFocused: false,
-        newNote: {
-            title: '',
-            content: ''
+        title: null,
+        content: null,
+        color: '#ffffff',
+        img: null,
+        video: null,
+        todos: []
+    }
+
+    handleChange = ({ target: { name, value } }) => {
+        this.setState({ [name]: value })
+    }
+
+    handleColorChange = (color) => {
+        this.setState({ color })
+    }
+
+    handleChangeFile = (e) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0])
+        reader.onloadend = () => {
+            this.setState({ img: reader.result })
         }
     }
 
-    handleFocus = () => {
-        this.setState({ isFocused: true })
-    }
-
-    handleBlur = () => {
-        console.log('blur');
-        this.setState({ isFocused: false })
-    }
-
-    handleChange = ({ target }) => {
-        const field = target.name
-        const value = target.value
-        this.setState(prevState => ({ newNote: { ...prevState.newNote, [field]: value } }))
+    onAddNote = () => {
+        this.props.onAddNote(this.state)
     }
 
     render() {
-        const { isFocused } = this.state
-        const { title, content } = this.state.newNote
+        const { color } = this.state
         return (
             <section className="add-note">
-                <input placeholder="Take a note..." name="title" value={title} autoComplete="off" onFocus={this.handleFocus} onChange={this.handleChange} />
-                {isFocused &&
-                    <div className="add-note-bottom">
-                        <textarea cols="30" rows="10" placeholder="body" name="content"
-                            value={content} onChange={this.handleChange}
-                            onFocus={() => console.log('focus')} onBlur={this.handleBlur} />
-                        <button onClick={() => this.props.onAddNote(this.state.newNote)}>Add</button>
-                    </div>}
+                <AddNoteInput
+                    placeholder="Take a note..."
+                    handleChange={this.handleChange}
+                    color={color}
+                    handleColorChange={this.handleColorChange}
+                    handleChangeFile={this.handleChangeFile}
+                    onAddNote={this.onAddNote}
+                />
             </section>
         )
     }

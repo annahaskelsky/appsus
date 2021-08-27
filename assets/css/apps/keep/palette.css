@@ -1,0 +1,39 @@
+.palette-container {
+    position: relative;
+}
+
+.palette-colors-container {
+    position: absolute;
+    width: 136px;
+    background-color: white;
+    display: none;
+    transition: background-color 0.218s ease-in-out;
+    top: -100px;
+    left: 15px;
+    z-index: 1;
+    -webkit-box-shadow: 0px 0px 5px 0px #000000;
+    box-shadow: 0px 0px 5px 0px #000000;
+}
+
+.palette-container:hover .palette-colors-container {
+    display: grid;
+    grid-template-columns: repeat(4, 25px);
+    grid-template-rows: repeat(3, 25px);
+    justify-content: space-around;
+    gap: 5px;
+}
+
+.palette-colors-container>div {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.palette-colors-container>div:hover {
+    border: 1px solid black;
+}
+
+.palette-colors-container>div:nth-child(4) {
+    border: 1px solid rgb(204, 204, 204);
+}

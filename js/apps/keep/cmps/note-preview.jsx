@@ -16,8 +16,8 @@ export class NotePreview extends React.Component {
 
     handleColorChange = (color) => {
         const note = this.state.note
-        NoteService.changeColor(note.id, color)
-        this.setState({ note })
+        NoteService.changeColor(note.id, color).then(this.setState({ note }))
+
     }
 
     onMarkUnmarkTodo = (todoId) => {
@@ -26,23 +26,16 @@ export class NotePreview extends React.Component {
         this.setState({ note })
     }
 
-    // onBack = () => {
-    //     // this.props.history.push('/keep')
-    //     console.log(this.props);
-    //   }
-
     render() {
         const { note } = this.state
         if (!note) return <div>Loading...</div>
 
         return (
             <article className="note-preview" style={{ backgroundColor: note.backgroundColor }}>
-                <Link to={`/keep/${note.id}`}>
-                    <NoteDynamicPreview
-                        note={note}
-                        onMarkUnmarkTodo={this.onMarkUnmarkTodo}
-                    />
-                </Link>
+                <NoteDynamicPreview
+                    note={note}
+                    onMarkUnmarkTodo={this.onMarkUnmarkTodo}
+                />
                 <ActionBar note={note}
                     handleColorChange={this.handleColorChange}
                     onRemoveNote={this.props.onRemoveNote}

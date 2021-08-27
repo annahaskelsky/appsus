@@ -1,6 +1,5 @@
 
 export const NoteDynamicPreview = ({ note, onMarkUnmarkTodo }) => {
-
     if (!note || note && !note.info) return null
     return (
         <div className="note-container">

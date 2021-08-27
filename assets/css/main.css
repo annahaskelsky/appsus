@@ -6,5 +6,6 @@
 @import '../css/pages/app-home.css';
 @import '../css/pages/app-about.css';
 @import './apps/keep/main.css';
+@import './apps/keep/palette.css';
 @import './apps/mail/main.css';
-
+@import '../css/cmps/input.css';

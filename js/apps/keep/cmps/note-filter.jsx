@@ -27,7 +27,7 @@ export class NoteFilter extends React.Component {
                     <div onClick={() => this.handleChange('img', false)}><i className="far fa-image" ></i></div>
                     <div onClick={() => this.handleChange('todos', false)}><i className="fas fa-list-ul"></i></div>
                     <div onClick={() => this.handleChange('txt', false)}><i className="fas fa-file-alt"></i></div>
-                    <div onClick={() => this.handleChange('video', false)}><i className="fas fa-image"></i></div>
+                    <div onClick={() => this.handleChange('video', false)}><i className="fas fa-video"></i></div>
                 </div>
             </section>
         )

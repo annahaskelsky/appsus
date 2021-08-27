@@ -106,17 +106,23 @@ const markUnmark = (note, todoId) => {
 const addNote = (note) => {
     const newNote = {
         id: utilService.makeId(),
-        type: 'note-txt',
         isPinned: false,
-        info: { title: note.title, txt: note.content },
-        backgroundColor: "#ffffff"
+        info: {
+            img: note.img,
+            video: note.video,
+            title: note.title,
+            txt: note.content,
+            todos: note.todos
+        },
+        backgroundColor: note.color
     }
     notes.unshift(newNote)
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 const editNoteContent = (noteInfo, id) => {
-    const note = notes.find(n => n.id === id)
+    let note = notes.find(n => n.id === id)
+    if (!note) note = pinnedNotes.find(n => n.id === id)
     note.info = noteInfo
     return Promise.resolve()
 }
@@ -134,16 +140,23 @@ const removeNote = noteId => {
 }
 
 const changeColor = (noteId, color) => {
-    const note = notes.find(note => note.id === noteId)
+    const note = notes.find(note => note.id === noteId) || pinnedNotes.find(note => note.id === noteId)
     note.backgroundColor = color
-    return Promise.resolve(notes)
+    return Promise.resolve()
 }
 
 const duplicateNote = noteId => {
-    const idx = notes.findIndex(note => note.id === noteId)
-    const note = notes[idx]
-    notes.unshift({ ...note, id: utilService.makeId() })
-    return Promise.resolve(notes)
+    let note
+    let idx = notes.findIndex(note => note.id === noteId)
+    if (idx < 0) {
+        idx = pinnedNotes.findIndex(note => note.id === noteId)
+        note = pinnedNotes[idx]
+        pinnedNotes.unshift({ ...note, id: utilService.makeId() })
+    } else {
+        note = notes[idx]
+        notes.unshift({ ...note, id: utilService.makeId() })
+    }
+    return Promise.resolve()
 }
 
 const pinUnpinNote = (note) => {
@@ -184,9 +197,9 @@ const getId = url => {
 const addTodo = (noteId, todo) => {
     console.log(todo);
     let note = notes.find(note => note.id === noteId)
-    if(!note) note = pinnedNotes.find(note => note.id === noteId)
+    if (!note) note = pinnedNotes.find(note => note.id === noteId)
     console.log(note);
-    note.info.todos.push({id: utilService.makeId(), txt: todo, doneAt: null})
+    note.info.todos.push({ id: utilService.makeId(), txt: todo, doneAt: null })
     return Promise.resolve()
 }
 
