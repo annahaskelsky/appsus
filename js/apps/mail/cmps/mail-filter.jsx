@@ -35,7 +35,7 @@ export class MailFilter extends React.Component {
         const { txt, readStatus } = this.state.filterBy;
         const {sortBy}=this.state
         return <section className="mail-filter">
-            <div className="input-icon">
+            <div className="input-icon input-container">
                 <i className="fas fa-search"></i>
                 <input type="search" placeholder="Search" name="txt" value={txt} onChange={this.onHandleFilterChange} />
             </div>

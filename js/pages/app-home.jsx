@@ -4,7 +4,9 @@ const { Link } = ReactRouterDOM
 export function Home() {
     return (
         <section className="home">
-            <h1 className="main-layout">Hello Appsus</h1>
+            <div className="hero-container">
+                <h1 className="main-layout">Hello Appsus</h1>
+            </div>
             <main>
                 <nav className="main-nav flex">
                     <Link to="/mail"><div className="main-layout flex">
@@ -15,7 +17,7 @@ export function Home() {
                     </div></Link>
                     <Link to="/keep">
                         <div className="main-layout flex">
-                            <img src="./assets/img/notes.jpeg" />
+                            <img src="./assets/img/note.png" />
                             <article>Notes app that makes it easy to capture a thought or list for yourself,
                                 and share it with friends and family.
                                 Quickly capture what’s on your mind and get a reminder later at the right place or time.
