@@ -14,6 +14,7 @@ const _AppHeader = (props) => {
                 <NavLink to="/mail">Email</NavLink>
                 <NavLink to="/keep">Notes</NavLink>
             </nav>
+            <button className="btn-menu-toggle" onClick="">☰</button>
         </section>
     )
 }
