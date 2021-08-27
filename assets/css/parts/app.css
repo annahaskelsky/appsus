@@ -7,14 +7,3 @@
 .app-layout main.app {
     flex-grow: 1;
 }
-
-.btn-menu-toggle {
-    /* align-self: center; */
-    position: absolute;
-    right: 10px;
-    top: 2.5vh;
-}
-
-/* main.app.menu-open {
-
-} */

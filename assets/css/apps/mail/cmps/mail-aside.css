@@ -18,14 +18,14 @@
 
 .mail-aside-container a {
     width: 100%;
-    background-color: rgb(245, 241, 241);
+    background-color: #def0f5;
     gap: 5px;
     border-radius: 20px;
     padding-inline-start: 10px;
 }
 
 .mail-aside-container a:hover {
-    background-color: rgb(209, 204, 204);
+    background-color: #D1EAF0;
 }
 
 .mail-aside-container a.active {

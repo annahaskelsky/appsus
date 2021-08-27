@@ -22,8 +22,8 @@ export class App extends React.Component {
         const {isMenuOpen} = this.state
         return (
             <Router>
-                <header className={`${isMenuOpen ? 'menu-open' : ''}`}>
-                    <button className="btn-menu-toggle" onClick={this.toggleMenu}>☰</button>
+                <header className={isMenuOpen ? "menu-open" : ""}>
+                    <button className="btn-menu-toggle" onClick={this.toggleMenu}></button>
                     <AppHeader />
                 </header>
                 <main className="app">
