@@ -8,13 +8,12 @@ const _AppHeader = (props) => {
                 <img src="./assets/img/logo.png" />
                 <h1 >Appsus</h1>
             </div>
-            <nav className="flex">
+            <nav className="flex header-nav">
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/book">Books</NavLink>
                 <NavLink to="/mail">Email</NavLink>
                 <NavLink to="/keep">Notes</NavLink>
             </nav>
-            <button className="btn-menu-toggle" onClick="">☰</button>
         </section>
     )
 }
