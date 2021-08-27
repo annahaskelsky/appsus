@@ -1,3 +1,9 @@
-main.app {
-    min-height: 86vh;
+.app-layout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-layout main.app {
+    flex-grow: 1;
 }

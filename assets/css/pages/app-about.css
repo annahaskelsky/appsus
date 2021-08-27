@@ -3,12 +3,13 @@
 }
 
 .team {
+    flex-direction: column;
     justify-content: center;
     gap: 20px;
 }
 
 .team div {
-    width: 50%;
+    width: 100%;
     padding: 20px;
 }
 
@@ -20,8 +21,19 @@
 
 .socials {
     gap: 10px;
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     justify-content: center;
     margin: auto;
 }
 
+@media (min-width: 560px) {
+    .team {
+        flex-direction: unset;
+    }
+    .team div {
+        width: 50%
+    }
+    .socials {
+        font-size: 2.5rem;
+    }
+}

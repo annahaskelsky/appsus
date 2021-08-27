@@ -1,14 +1,46 @@
 .mail-app {
     gap: 30px;
-    min-height: 78vh;
+    /* min-height: 78vh; */
     padding-top: 20px;
 }
 
 .mail-app aside {
-    width: 20%;
-    padding-inline-start: 30px;
+    font-size: 25px;
+    /* background-color: rgb(228, 215, 215); */
+    width: 80%;
+    padding-inline-start: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    box-shadow: 0px 0px 0px transparent;
+    transform: translateX(-100%);
+    transition: transform .6s;
+    z-index: 2;
+}
+
+body.mail-aside-open .mail-app aside {
+    transform: translateX(0);
+    box-shadow: 8px 0px 20px rgb(0 0 0 / 20%);
 }
 
 .mail-app main {
-    width: 80%;
+    width: 100%;
+    padding: 0 10px;
+}
+
+@media (min-width: 560px) {
+    .mail-app aside {
+        width: 20%;
+        padding-inline-start: 30px;
+        position: unset;
+        font-size: unset;
+        box-shadow: 0px 0px 0px transparent;
+        transform: unset;
+    }
+    .mail-app main {
+        width: 80%;
+        padding: unset;
+        padding-inline-end: 30px;
+    }
 }
