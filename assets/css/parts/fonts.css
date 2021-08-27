@@ -1,9 +1,9 @@
 @font-face {
     font-family: "Noto-Reg";
-    src: url("/assets/fonts/NotoSans-Regular.ttf");
+    src: url("../../fonts/NotoSans-Regular.ttf");
 }
 
 @font-face {
     font-family: "Noto-Bold";
-    src: url("/assets/fonts/NotoSans-Bold.ttf");
+    src: url("../../fonts/NotoSans-Bold.ttf");
 }
