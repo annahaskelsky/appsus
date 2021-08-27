@@ -63,6 +63,8 @@
     font-size: 18px;
     border: none;
     background: inherit;
+    color: #757575;
+    transition: color 0.3s;
 }
 
 .mail-preview .fa-star {
@@ -125,5 +127,8 @@
     }
     .mail-preview .info-preview .mail-body-preview {
         display: unset;
+    }
+    .mail-preview button:hover {
+        color: unset;
     }
 }
