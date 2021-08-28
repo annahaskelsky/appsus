@@ -27,10 +27,11 @@ export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNo
                 <button className="icon-button" onClick={() => modalRef.current.style.display = "block"}><i className="fas fa-pencil-alt"></i></button>
                 <button className="icon-button" onClick={() => onPinUnpinNote(note)}><i className={`fas fa-thumbtack ${note.isPinned && "pinned"}`}></i></button>
             </div>
-            <div id="myModal" className="modal" ref={modalRef} onClick={handleWindowClick}>
+            <div id="myModal" className="modal" ref={modalRef} onMouseDown={handleWindowClick}>
                 <div className="modal-content">
                     <NoteDetails
                         note={note}
+                        isNew={false}
                         handleSubmit={(noteInfo) => {
                             handleSubmit(noteInfo)
                             modalRef.current.style.display = "none"

@@ -1,5 +1,5 @@
 import { utilService } from '../../../services/util.service.js'
-import {storageService} from '../../../services/storage.service.js'
+import { storageService } from '../../../services/storage.service.js'
 
 // let notes = [
 //     {
@@ -63,18 +63,18 @@ let gPinnedNotes
 
 const getPinnedNotes = () => {
     let pinnedNotes = storageService.loadFromStorage('pinnedNotesDB')
-   if(!pinnedNotes || !pinnedNotes.length) {
-       pinnedNotes = []
-       const pinnedNotesIds = gNotes.filter(note => note.isPinned).map(note => note.id)
-       pinnedNotesIds.forEach(id => {
-           const idx = gNotes.findIndex(note => note.id === id)
-           const currNote = gNotes[idx]
-           pinnedNotes.push(currNote)
-           gNotes.splice(idx, 1)
-       })
-   }
-   gPinnedNotes = pinnedNotes
-   savePinnedNotesToStorage()
+    if (!pinnedNotes || !pinnedNotes.length) {
+        pinnedNotes = []
+        const pinnedNotesIds = gNotes.filter(note => note.isPinned).map(note => note.id)
+        pinnedNotesIds.forEach(id => {
+            const idx = gNotes.findIndex(note => note.id === id)
+            const currNote = gNotes[idx]
+            pinnedNotes.push(currNote)
+            gNotes.splice(idx, 1)
+        })
+    }
+    gPinnedNotes = pinnedNotes
+    savePinnedNotesToStorage()
     return Promise.resolve(gPinnedNotes)
 
     // const pinnedNotes = notes.filter(note => note.isPinned)
@@ -92,7 +92,7 @@ const query = filterBy => {
         return Promise.resolve(notesToShow)
     } else if (filterBy.txt) {
         const searchStr = filterBy.txt
-        const notesToShow = notes.filter(note => {
+        const notesToShow = gNotes.filter(note => {
             if (note.info.txt) return note.info.txt.toLowerCase().includes(searchStr)
             if (note.info.title) return note.info.title.toLowerCase().includes(searchStr)
             if (note.info.todos) return note.info.todos.some(todo => todo.includes(searchStr))
@@ -125,18 +125,18 @@ const markUnmark = (note, todoId) => {
     return Promise.resolve(currNote)
 }
 
-const addNote = (note) => {
+const addNote = (noteInfo) => {
     const newNote = {
         id: utilService.makeId(),
         isPinned: false,
         info: {
-            img: note.img,
-            video: note.video,
-            title: note.title,
-            txt: note.content,
-            todos: note.todos
+            img: noteInfo.img,
+            video: noteInfo.video,
+            title: noteInfo.title,
+            txt: noteInfo.content,
+            todos: [...noteInfo.todos]
         },
-        backgroundColor: note.color
+        backgroundColor: noteInfo.color
     }
     gNotes.unshift(newNote)
     saveNotesToStorage()
@@ -236,6 +236,8 @@ const addTodo = (noteId, todo) => {
     return Promise.resolve()
 }
 
+const addNewNoteTodo = todo => Promise.resolve({ id: utilService.makeId(), txt: todo, doneAt: null })
+
 const removeTodo = (noteId, todoId) => {
     let note = gNotes.find(note => note.id === noteId)
     if (!note) note = gPinnedNotes.find(note => note.id === noteId)
@@ -248,7 +250,7 @@ const removeTodo = (noteId, todoId) => {
 
 const createNotes = () => {
     let notes = storageService.loadFromStorage('notesDB')
-    if(!notes || !notes.length) {
+    if (!notes || !notes.length) {
         notes = [
             {
                 id: "n101",
@@ -272,9 +274,9 @@ const createNotes = () => {
                     todos: []
                 },
                 backgroundColor: "#ccff90"
-            }, 
+            },
             {
-            id: "n103",
+                id: "n103",
                 info: {
                     img: "assets/img/note-img-2.jpeg",
                     video: null,
@@ -307,7 +309,7 @@ const createNotes = () => {
                     txt: null,
                     todos: [
                         { id: utilService.makeId(), txt: "Master javascript", doneAt: null },
-                    { id: utilService.makeId(), txt: "Finish this project", doneAt: null }]
+                        { id: utilService.makeId(), txt: "Finish this project", doneAt: null }]
                 },
                 backgroundColor: "#f28b82"
             }
@@ -316,7 +318,7 @@ const createNotes = () => {
     gNotes = notes.filter(note => !note.isPinned)
     saveNotesToStorage()
     let pinnedNotes = storageService.loadFromStorage('pinnedNotesDB')
-    if(!pinnedNotes || !pinnedNotes.length){
+    if (!pinnedNotes || !pinnedNotes.length) {
         gPinnedNotes = notes.filter(note => note.isPinned)
         savePinnedNotesToStorage()
     }
@@ -344,6 +346,7 @@ export const NoteService = {
     getNoteById,
     getId,
     addTodo,
+    addNewNoteTodo,
     removeTodo,
     createNotes
 }

@@ -1,4 +1,5 @@
 import { NoteService } from "../services/note.service.js"
+import { Palette } from "./palette.jsx"
 
 export class NoteDetails extends React.Component {
     state = {
@@ -17,10 +18,13 @@ export class NoteDetails extends React.Component {
     newTodoRef = React.createRef()
 
     componentDidMount() {
-        this.loadNote()
+        if (!this.props.isNew) {
+            this.loadNote()
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
+        if (this.props.isNew) return
         if (prevProps.note !== this.props.note) {
             this.loadNote()
             return
@@ -32,7 +36,7 @@ export class NoteDetails extends React.Component {
     }
 
     loadNote = () => {
-        this.setState({ ...this.props.note.info })
+        if (this.props.note) this.setState({ ...this.props.note.info })
     }
 
     handleChange = ({ target: { name, value } }) => {
@@ -63,7 +67,13 @@ export class NoteDetails extends React.Component {
     onAddTodo = () => {
         const { newTodo } = this.state
         if (!newTodo) return
-        NoteService.addTodo(this.props.note.id, newTodo)
+        if (this.props.isNew) {
+            NoteService.addNewNoteTodo(newTodo).then((todo) => {
+                this.setState({ todos: [...this.state.todos, todo] })
+            })
+        } else {
+            NoteService.addTodo(this.props.note.id, newTodo)
+        }
         this.newTodoRef.current.value = ''
         this.setState({ newTodo: '' })
     }
@@ -72,6 +82,16 @@ export class NoteDetails extends React.Component {
         const { img, video, title, txt, todos } = this.state
         const noteInfo = { img, video, title, txt, todos }
         this.props.handleSubmit(noteInfo)
+        this.setState({
+            img: null,
+            video: null,
+            title: null,
+            txt: null,
+            todos: [],
+            isAddTodo: true,
+            todosNumber: 1,
+            newTodoValue: ''
+        })
     }
 
     handleRemoveTodo = (todoId) => {
@@ -112,7 +132,8 @@ export class NoteDetails extends React.Component {
                     <button className="icon-button" onClick={this.onAddTodo}><i className="fas fa-plus-circle"></i></button>
                 </div>
 
-                <button className="note-details-submit" onClick={this.handleSubmit}>Submit</button>
+                {this.props.isNew && <Palette handleColorChange={this.props.handleColorChange} />}
+                <button className="main-button" onClick={this.handleSubmit}>Submit</button>
             </div>
         )
     }
