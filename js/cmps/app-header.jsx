@@ -10,9 +10,9 @@ const _AppHeader = (props) => {
             </div>
             <nav className="flex header-nav">
                 <NavLink className="effect-underline" to="/about" onClick={()=> props.toggleMenu()}>About</NavLink>
-                <NavLink className="effect-underline" to="/book" onClick={()=> props.toggleMenu()}>Books</NavLink>
                 <NavLink className="effect-underline" to="/mail" onClick={()=> props.toggleMenu()}>Email</NavLink>
                 <NavLink className="effect-underline" to="/keep" onClick={()=> props.toggleMenu()}>Notes</NavLink>
+                <NavLink className="effect-underline" to="/book" onClick={()=> props.toggleMenu()}>Books</NavLink>
             </nav>
         </section>
     )
