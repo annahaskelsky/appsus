@@ -78,6 +78,10 @@
     border-radius: 8px;
 }
 
+.note-details-container img {
+    width: 100%;
+}
+
 .note-details-container iframe {
     margin-bottom: 15px;
 }
@@ -123,15 +127,4 @@
 .note-details-todo-container button {
     font-size: 18px;
     color: #444444;
-}
-
-.note-details-submit {
-    border: 0;
-    outline: none;
-    width: 90%;
-    margin-bottom: 15px;
-    padding: 12px 16px;
-    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
-    background-color: #1b4965;
-    color: white;
 }

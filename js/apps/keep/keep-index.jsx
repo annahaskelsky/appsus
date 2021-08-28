@@ -37,8 +37,11 @@ export class NotesApp extends React.Component {
         NoteService.pinUnpinNote(note).then(this.loadNotes)
     }
 
-    onAddNote = (note) => {
-        NoteService.addNote(note).then(this.loadNotes)
+    onAddNote = (note, cb) => {
+        NoteService.addNote(note).then(() => {
+            this.loadNotes()
+            cb && cb()
+        })
     }
 
     render() {

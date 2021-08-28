@@ -1,13 +1,18 @@
+import { NoteService } from "../services/note.service.js";
 import { AddNoteInput } from "./add-note-input.jsx";
+import { NoteDetails } from "./note-details.jsx";
 
 export class AddNote extends React.Component {
     state = {
-        title: null,
-        content: null,
-        color: '#ffffff',
-        img: null,
-        video: null,
-        todos: []
+        color: '#ffffff'
+    }
+
+    modalRef = React.createRef()
+
+    handleWindowClick = event => {
+        if (this.modalRef.current && event.target === this.modalRef.current) {
+            if (this.modalRef.current) this.modalRef.current.style.display = "none";
+        }
     }
 
     handleChange = ({ target: { name, value } }) => {
@@ -26,22 +31,28 @@ export class AddNote extends React.Component {
         }
     }
 
-    onAddNote = () => {
-        this.props.onAddNote(this.state)
+    handleSubmit = noteInfo => {
+        const { color } = this.state
+        this.props.onAddNote({ ...noteInfo, color }, () => this.setState({ color: '#ffffff' }))
     }
 
+
     render() {
-        const { color } = this.state
         return (
             <section className="add-note">
-                <AddNoteInput
-                    placeholder="Take a note..."
-                    handleChange={this.handleChange}
-                    color={color}
-                    handleColorChange={this.handleColorChange}
-                    handleChangeFile={this.handleChangeFile}
-                    onAddNote={this.onAddNote}
-                />
+                <button onClick={() => this.modalRef.current.style.display = "block"} className="main-button" style={{ width: '100px' }}>Add Note</button>
+                <div id="myModal" className="modal" ref={this.modalRef} onMouseDown={this.handleWindowClick}>
+                    <div className="modal-content" style={{ backgroundColor: this.state.color }}>
+                        <NoteDetails
+                            isNew={true}
+                            handleSubmit={(noteInfo) => {
+                                this.handleSubmit(noteInfo)
+                                this.modalRef.current.style.display = "none"
+                            }}
+                            handleColorChange={this.handleColorChange}
+                        />
+                    </div>
+                </div>
             </section>
         )
     }
