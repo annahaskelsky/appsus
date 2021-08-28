@@ -18,7 +18,6 @@ export class MailAdd extends React.Component {
     componentDidMount() {
         this.draftInterval = setInterval(this.onSaveToDraft, 5000);
         const urlParam = this.props.match.params.mailId;
-        console.log(urlParam);
         mailService.getMailById(urlParam)
             .then(mail => {
                 if (mail) this.setDraftInfo(mail)
@@ -63,7 +62,7 @@ export class MailAdd extends React.Component {
                 <h1>New mail</h1>
             </div>
             <form className="flex" onSubmit={this.onSendMail}>
-                <input type="email" name="to" placeholder="To" value={to} required onChange={this.onHandlechange} />
+                <input type="email" name="to" placeholder="To" value={to || ""} required onChange={this.onHandlechange} />
                 <input type="text" name="subject" placeholder="Subject" value={subject} onChange={this.onHandlechange} />
                 <textarea placeholder="Text goes here" name="body" value={body} onChange={this.onHandlechange}></textarea>
                 <button className="main-button">Send</button>
