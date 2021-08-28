@@ -9,7 +9,9 @@ export function About() {
         <div className="team-member">
           <img src="./assets/img/shir.jpg" />
           <h2>Shir Lavi</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt molestiae qui aut, eveniet necessitatibus, animi hic repellendus quia doloremque sint, dolorem alias voluptatum incidunt illo aperiam consequuntur sit adipisci repudiandae! Delectus totam sed voluptate ullam tempore hic quod similique error minus, non iusto, autem possimus dolorem quasi. Officia, sequi a.
+          <p>28 from Tel Aviv, holds a bachelor's degree in marketing and communication, currently a fullstack developer.<br />
+            Programming languages: Javascript, HTML, CSS.<br/>
+            Other tools: Photoshop, After Effects, Premiere.
           </p>
           <div className="flex socials">
             <a href="https://www.facebook.com/shir.lavi.5682" target="_blank"><i className="fab fa-facebook-square"></i></a>

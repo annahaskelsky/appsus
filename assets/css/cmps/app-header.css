@@ -56,12 +56,6 @@ header {
     gap: 50px;
 }
 
-
-/* .app-layout header.menu-open .btn-menu-toggle::after {
-    content: 'x';
-    color: #1b4965;
-} */
-
 .app-layout header.menu-open .app-header nav a {
     color: #212121;
     font-size: 2rem;
@@ -98,7 +92,6 @@ header {
         transition: none;
     }
     .app-header nav a {
-        /* transform: rotate(0deg); */
         transition: all 0.7s;
     }
     .header-nav a:hover {
