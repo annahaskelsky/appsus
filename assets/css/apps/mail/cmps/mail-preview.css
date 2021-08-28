@@ -59,7 +59,6 @@
         font-size: 18px;
         border: none;
         background: inherit;
-        /* color: rgb(184, 172, 172); */
         transition: color 0.3s;
     }
     
@@ -68,7 +67,6 @@
         bottom: 10px;
         right: 5px;
         font-size: 25px;
-        /* z-index: 1; */
     }
     
     .mail-preview .fas.fa-star {
@@ -83,7 +81,6 @@
         position: absolute;
         bottom: 8px;
         right: 38px;
-        /* z-index: 1; */
         width: 70px;
         display: flex;
         justify-content: center;
