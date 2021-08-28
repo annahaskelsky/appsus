@@ -100,7 +100,6 @@ export class MailList extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         const { mails } = this.state;
         const {toggleMenu}=this.props;
         if (!mails) return <React.Fragment>Loading...</React.Fragment>

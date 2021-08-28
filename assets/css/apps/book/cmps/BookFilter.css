@@ -1,12 +1,13 @@
 .filter-by {
     margin: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .filter-by>* {
     margin-inline-end: 10px;
 }
 
-.filter-by button,
 .filter-by input {
     border: none;
     border-radius: 10px;
@@ -19,7 +20,7 @@
 }
 
 .filter-by button {
-    background-color: #5FA8D3;
-    color: white;
     width: 4em;
+    display: flex;
+    justify-content: center;
 }

@@ -92,7 +92,7 @@
         background-color: white;
     }
     
-    @media (min-width: 560px) {
+    @media (min-width: 800px) {
         .mail-preview .date-preview {
             font-size: unset;
         }

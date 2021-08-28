@@ -1,3 +1,6 @@
+const { Link } = ReactRouterDOM
+
+
 export class BookFilter extends React.Component {
     state = {
         filterBy: {
@@ -27,7 +30,8 @@ export class BookFilter extends React.Component {
             <input id="min-price" name="minPrice" type="number" value={minPrice} placeholder="Minimum price" onChange={this.handleChange}/>
             <label htmlFor="max-price">Maximum price:</label>
             <input id="max-price" name="maxPrice" type="number" value={maxPrice} placeholder="Maximum price" onChange={this.handleChange}/>
-            <button>Filter</button>
+            <button className="main-button">Filter</button>
+            <Link to="/book/BookAdd"><div className="main-button">Add book</div></Link>
         </form>
     }
 }

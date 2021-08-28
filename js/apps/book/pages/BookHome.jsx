@@ -31,9 +31,9 @@ export class BookHome extends React.Component {
         const { books } = this.state;
         if (!books) return <div>Loading...</div>
         return (
-            <section className="book-app">
+            <section className="book-app main-layout">
                 <BookFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
-                <Link to="/book/BookAdd">Add book</Link>
+                
                 <BookList books={books} />
             </section>
         )
