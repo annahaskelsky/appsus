@@ -47,8 +47,8 @@ export class MailDetails extends React.Component {
         return <section className="mail-details flex">
             <nav>
                 <Link to="/mail"><i className="fas fa-arrow-left icon-button" title="Go to inbox"></i></Link>
-                <button onClick={()=>this.onDeleteMail(mail.id)} className="icon-button"><i className="fa fa-trash" aria-hidden="true" title="Remove to trash"></i></button>
-                <button onClick={this.onSendToNote} className="icon-button"><i className="fas fa-paper-plane"></i></button>
+                <button onClick={()=>this.onDeleteMail(mail.id)} className="icon-button"><i className="fa fa-trash" title="Remove to trash"></i></button>
+                <button onClick={this.onSendToNote} className="icon-button"><i className="fas fa-sticky-note" title="Save as note"></i></button>
             </nav>
             <h2>{mail.subject}</h2>
             <h4>{mail.from}</h4>
