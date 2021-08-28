@@ -1,0 +1,49 @@
+.user-msg {
+    background-color: white;
+    border-radius: 10px;
+    width: 40%;
+    /* height: 500px; */
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 20px;
+}
+
+.user-msg h1 {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.user-msg button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.user-msg a:hover {
+    font-size: 20px;
+}
+
+.user-msg.success {
+    border: 5px solid rgb(135, 221, 135);
+}
+
+.user-msg.success button {
+    background-color: rgb(135, 221, 135);
+}
+
+.user-msg.success button:hover {
+    background-color: rgb(109, 179, 109);
+}
+
+.user-msg.danger {
+    border: 3px solid rgb(221, 148, 135);
+}
+
+.user-msg.danger button {
+    background-color: rgb(221, 148, 135);
+}
+
+.user-msg.danger button:hover {
+    background-color: rgb(194, 130, 118);
+}

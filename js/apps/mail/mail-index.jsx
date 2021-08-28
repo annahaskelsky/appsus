@@ -24,8 +24,8 @@ export class MailApp extends React.Component {
             <section className="mail-app flex main-layout">
                 <aside className={isSideMenuOpen ? 'aside-menu-open' : ''}>
 
-                    <MailAside toggleMenu={this.toggleMenu}/>
                     <Screen toggleMenu={this.toggleMenu} />
+                    <MailAside toggleMenu={this.toggleMenu}/>
                 </aside>
                 <main>
                     <MailFilter toggleMenu={this.toggleMenu} />

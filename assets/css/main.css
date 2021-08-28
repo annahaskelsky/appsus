@@ -9,6 +9,7 @@
 @import '../css/pages/app-about.css';
 @import './apps/keep/main.css';
 @import './apps/keep/palette.css';
+@import './apps/book/main.css';
 @import './apps/mail/main.css';
 @import '../css/cmps/input.css';
 @import '../css/cmps/button.css';

@@ -1,0 +1,14 @@
+.search-page {
+    margin-top: 50px;
+}
+
+.search-page h2 {
+    margin-bottom: 30px;
+}
+
+.search-page input {
+    height: 30px;
+    width: 300px;
+    font-size: 18px;
+    padding-inline-start: 10px;
+}

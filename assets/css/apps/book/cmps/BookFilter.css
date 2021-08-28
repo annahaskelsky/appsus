@@ -1,0 +1,25 @@
+.filter-by {
+    margin: 20px;
+}
+
+.filter-by>* {
+    margin-inline-end: 10px;
+}
+
+.filter-by button,
+.filter-by input {
+    border: none;
+    border-radius: 10px;
+    font-size: 1.08rem;
+    height: 1.5em;
+}
+
+.filter-by input {
+    width: 8em;
+}
+
+.filter-by button {
+    background-color: #5FA8D3;
+    color: white;
+    width: 4em;
+}

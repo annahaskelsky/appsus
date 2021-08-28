@@ -1,0 +1,14 @@
+.book-review-page h1 {
+    margin-top: 20px;
+}
+
+.book-review-page form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-review-page form>* {
+    margin-top: 10px;
+}

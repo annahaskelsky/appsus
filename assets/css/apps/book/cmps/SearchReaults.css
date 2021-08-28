@@ -1,0 +1,41 @@
+.results h3 {
+    margin-top: 20px;
+}
+
+.search-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-list li {
+    width: 50%;
+    line-height: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.search-list li p {
+    margin-inline-start: 20px;
+}
+
+.search-list li button {
+    background-color: #5FA8D3;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    margin-inline-end: 20px;
+}
+
+
+/* .search-list li button:hover {
+    background-color: rgb(243, 227, 0);
+} */
