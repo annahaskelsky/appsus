@@ -28,13 +28,12 @@ export class MailApp extends React.Component {
                     <MailAside toggleMenu={this.toggleMenu}/>
                 </aside>
                 <main>
-                    <MailFilter toggleMenu={this.toggleMenu} />
                     <Switch>
                         <Route path="/mail/edit/:mailId" component={MailAdd} />
                         <Route path="/mail/new" component={MailAdd} />
                         <Route path="/mail/:mailFilter/:mailId" component={MailDetails} />
-                        <Route path="/mail/:mailFilter" component={MailList} />
-                        <Route path="/mail" component={MailList} />
+                        <Route path="/mail/:mailFilter" component= {(props)=> <MailList {...props} toggleMenu={this.toggleMenu}/>} />
+                        <Route path="/mail" component= {(props)=> <MailList {...props} toggleMenu={this.toggleMenu}/>} />
                     </Switch>
                 </main>
             </section>

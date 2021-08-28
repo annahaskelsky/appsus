@@ -25,6 +25,7 @@ export class MailFilter extends React.Component {
 
     onSetFilter = () => {
         eventBusService.emit('filter-by', this.state.filterBy);
+
     }
 
     onSetSort = () => {
@@ -40,9 +41,9 @@ export class MailFilter extends React.Component {
             <div className="input-search input-container flex">
                 <label htmlFor="search"><i className="fas fa-search"></i></label>
                 <input type="search" id="search" placeholder="Search" name="txt" value={txt} onChange={this.onHandleFilterChange} />
-                <button className="aside-toggle-btn" onClick={()=> this.props.toggleMenu()}></button>
+                <button className="aside-toggle-btn" onClick={() => this.props.toggleMenu()}></button>
             </div>
-            <div className="flex justify-center align-center">
+            <div className="flex justify-center align-center ">
                 <label htmlFor="filter-by">Filter by:</label>
                 <select id="filter-by" name="readStatus" value={readStatus} onChange={this.onHandleFilterChange}>
                     <option value="all">All</option>
