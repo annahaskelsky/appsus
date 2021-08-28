@@ -26,11 +26,11 @@
 }
 
 .mail-aside-container ul a:hover {
-    background-color: #D1EAF0;
+    background-color: #d8dcdd;
 }
 
 .mail-aside-container a.active {
-    background-color: #9FCBE5;
+    background-color: #bababa;
 }
 
 .mail-aside-container .compose-btn {
