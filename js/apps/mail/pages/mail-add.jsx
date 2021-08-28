@@ -58,7 +58,7 @@ export class MailAdd extends React.Component {
         return <section className="new-mail flex">
             <div className="new-mail-header flex">
 
-                <Link to="/mail"><i className="fas fa-arrow-left" title="Go to inbox"></i></Link>
+                <Link to="/mail"><i className="fas fa-arrow-left icon-button" title="Go to inbox"></i></Link>
                 <h1>New mail</h1>
             </div>
             <form className="flex" onSubmit={this.onSendMail}>

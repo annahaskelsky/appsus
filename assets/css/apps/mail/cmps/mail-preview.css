@@ -59,7 +59,7 @@
         font-size: 18px;
         border: none;
         background: inherit;
-        color: rgb(184, 172, 172);
+        /* color: rgb(184, 172, 172); */
         transition: color 0.3s;
     }
     
@@ -124,6 +124,9 @@
             top: 0;
             right: 0;
             height: 98%;
+        }
+        .buttons-hover button {
+            font-size: 16px;
         }
         .mail-preview .buttons-hover {
             display: none;

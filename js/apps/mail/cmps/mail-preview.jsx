@@ -43,8 +43,8 @@ export function MailPreview({ mail, getUrlParam, onToggleStar, onDeleteMail, onT
 
         </Link>
         <section className="buttons-hover">
-            <button onClick={() => onDeleteMail(mail.id)}><i className="fa fa-trash" aria-hidden="true" title="Delete"></i></button>
-            <button onClick={() => onToggleReadStatus(mail.id)}>{mail.isRead ?
+            <button onClick={() => onDeleteMail(mail.id) } className="icon-button"><i className="fa fa-trash" aria-hidden="true" title="Delete"></i></button>
+            <button onClick={() => onToggleReadStatus(mail.id)} className="icon-button">{mail.isRead ?
                 <i className="fas fa-envelope" title="Mark as unread"></i> :
                 <i className="fas fa-envelope-open-text" title="Mark as read"></i>}
             </button>
