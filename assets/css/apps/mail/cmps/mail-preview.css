@@ -68,7 +68,7 @@
         bottom: 10px;
         right: 5px;
         font-size: 25px;
-        z-index: 2;
+        /* z-index: 1; */
     }
     
     .mail-preview .fas.fa-star {
@@ -81,10 +81,10 @@
     
     .buttons-hover {
         position: absolute;
-        bottom: 10px;
-        right: 15px;
-        z-index: 1;
-        width: 100px;
+        bottom: 8px;
+        right: 38px;
+        /* z-index: 1; */
+        width: 70px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -124,6 +124,7 @@
             top: 0;
             right: 0;
             height: 98%;
+            width: 100px;
         }
         .buttons-hover button {
             font-size: 16px;

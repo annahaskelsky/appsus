@@ -1,123 +1,124 @@
 header {
-  border-bottom: 1px solid gray;
-  background-color: var(--mainDark);
-  height: 70px;
-  color: white;
-  box-shadow: 0px 7px 15px -5px rgba(0, 0, 0, 0.58);
-  position: sticky;
-  top: 0;
-  z-index: 1;
+    border-bottom: 1px solid gray;
+    background-color: var(--mainDark);
+    height: 70px;
+    color: white;
+    box-shadow: 0px 7px 15px -5px rgba(0, 0, 0, 0.58);
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .app-header {
-  height: inherit;
+    height: inherit;
 }
 
 .app-header nav {
-  gap: 20px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  flex-direction: column;
-  min-width: 250px;
-  background-color: rgb(255 255 255 / 90%);
-  height: 100vh;
-  box-shadow: 0px 0px 0px transparent;
-  transform: translateX(100%);
-  transition: transform 0.6s;
-  z-index: 5;
+    gap: 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    min-width: 250px;
+    background-color: rgb(255 255 255 / 90%);
+    height: 100vh;
+    box-shadow: 0px 0px 0px transparent;
+    transform: translateX(100%);
+    transition: transform 0.6s;
+    z-index: 8;
 }
 
 .btn-menu-toggle {
-  position: absolute;
-  right: 10px;
-  top: 5px;
-  margin-inline-end: 20px;
-  z-index: 6;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 45px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    margin-inline-end: 20px;
+    z-index: 6;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 45px;
 }
 
 .btn-menu-toggle::after {
-  color: white;
-  content: '☰';
-  box-shadow: none;
+    color: white;
+    content: '☰';
+    box-shadow: none;
 }
 
 .app-header nav a.active {
-  border-bottom: 2px solid white;
+    border-bottom: 2px solid white;
 }
 
 .app-layout header.menu-open .header-nav {
-  transform: translateX(0);
-  box-shadow: -8px 0px 20px rgb(0 0 0 / 20%);
-  gap: 50px;
+    transform: translateX(0);
+    box-shadow: -8px 0px 20px rgb(0 0 0 / 20%);
+    gap: 50px;
 }
 
-.app-layout header.menu-open .btn-menu-toggle::after {
-  content: 'x';
-  color: #1b4965;
-}
+
+/* .app-layout header.menu-open .btn-menu-toggle::after {
+    content: 'x';
+    color: #1b4965;
+} */
 
 .app-layout header.menu-open .app-header nav a {
-  color: #1b4965;
-  font-size: 2rem;
-  text-align: center;
+    color: #212121;
+    font-size: 2rem;
+    text-align: center;
 }
 
 .app-layout header.menu-open .app-header a:first-child {
-  margin-top: 80px;
+    margin-top: 80px;
 }
 
 .logo-container {
-  cursor: pointer;
-  margin-inline-start: 20px;
+    cursor: pointer;
+    margin-inline-start: 20px;
 }
 
 .logo-container img {
-  height: 60px;
+    height: 60px;
 }
 
 @media (min-width: 560px) {
-  header {
-    margin-bottom: 40px;
-  }
-  .app-header nav {
-    margin-inline-end: 20px;
-    position: static;
-    flex-direction: row;
-    align-items: center;
-    min-width: unset;
-    background-color: inherit;
-    height: unset;
-    box-shadow: unset;
-    transform: none;
-    transition: none;
-  }
-  .app-header nav a {
-    /* transform: rotate(0deg); */
-    transition: all 0.7s;
-  }
-  .header-nav a:hover {
-    color: #cae9ff;
-    transform: rotate(15deg);
-  }
-  .btn-menu-toggle {
-    display: none;
-  }
-  .app-layout header.menu-open .header-nav {
-    transform: unset;
-    box-shadow: unset;
-    gap: 20px;
-  }
-  .app-layout header.menu-open .app-header nav a {
-    color: unset;
-    font-size: unset;
-    text-align: unset;
-  }
-  .app-layout header.menu-open .app-header a:first-child {
-    margin-top: unset;
-  }
+    header {
+        margin-bottom: 40px;
+    }
+    .app-header nav {
+        margin-inline-end: 20px;
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        min-width: unset;
+        background-color: inherit;
+        height: unset;
+        box-shadow: unset;
+        transform: none;
+        transition: none;
+    }
+    .app-header nav a {
+        /* transform: rotate(0deg); */
+        transition: all 0.7s;
+    }
+    .header-nav a:hover {
+        color: #cae9ff;
+        transform: rotate(15deg);
+    }
+    .btn-menu-toggle {
+        display: none;
+    }
+    .app-layout header.menu-open .header-nav {
+        transform: unset;
+        box-shadow: unset;
+        gap: 20px;
+    }
+    .app-layout header.menu-open .app-header nav a {
+        color: unset;
+        font-size: unset;
+        text-align: unset;
+    }
+    .app-layout header.menu-open .app-header a:first-child {
+        margin-top: unset;
+    }
 }
