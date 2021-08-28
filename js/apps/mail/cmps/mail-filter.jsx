@@ -31,13 +31,16 @@ export class MailFilter extends React.Component {
         eventBusService.emit('sort-by', this.state.sortBy);
     }
 
+
     render() {
         const { txt, readStatus } = this.state.filterBy;
         const { sortBy } = this.state
+
         return <section className="mail-filter flex align-center justify-center">
             <div className="input-search input-container flex">
                 <label htmlFor="search"><i className="fas fa-search"></i></label>
                 <input type="search" id="search" placeholder="Search" name="txt" value={txt} onChange={this.onHandleFilterChange} />
+                <button className="aside-toggle-btn" onClick={()=> this.props.toggleMenu()}></button>
             </div>
             <div className="flex justify-center align-center">
                 <label htmlFor="filter-by">Filter by:</label>

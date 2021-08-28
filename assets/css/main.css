@@ -3,6 +3,7 @@
 @import '../css/parts/fonts.css';
 @import '../css/parts/app.css';
 @import '../css/cmps/app-header.css';
+@import '../css/cmps/screen.css';
 @import '../css/cmps/app-footer.css';
 @import '../css/pages/app-home.css';
 @import '../css/pages/app-about.css';

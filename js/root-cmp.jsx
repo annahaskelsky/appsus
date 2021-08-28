@@ -8,7 +8,7 @@ import { NotesApp } from 'apps/keep/keep-index.jsx'
 import { AppFooter } from './cmps/app-footer.jsx';
 import { About } from './pages/app-about.jsx';
 import { Home } from './pages/app-home.jsx';
-
+import { Screen } from './cmps/screen.jsx'
 export class App extends React.Component {
     state = {
         isMenuOpen: false
@@ -19,12 +19,13 @@ export class App extends React.Component {
     }
 
     render() {
-        const {isMenuOpen} = this.state
+        const { isMenuOpen } = this.state;
         return (
             <Router>
                 <header className={isMenuOpen ? "menu-open" : ""}>
+                    <Screen toggleMenu={this.toggleMenu} />
                     <button className="btn-menu-toggle" onClick={this.toggleMenu}></button>
-                    <AppHeader />
+                    <AppHeader toggleMenu={this.toggleMenu} />
                 </header>
                 <main className="app">
                     <Switch>

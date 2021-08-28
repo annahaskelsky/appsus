@@ -1,5 +1,5 @@
 .home .hero-container {
-    background: url("/assets/img/background-3.jpeg") no-repeat;
+    background: url("../../img/background-3.jpeg") no-repeat;
     background-position: bottom;
     height: 500px;
     margin-bottom: 30px;

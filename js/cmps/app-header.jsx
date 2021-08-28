@@ -9,10 +9,10 @@ const _AppHeader = (props) => {
                 <h1 >Appsus</h1>
             </div>
             <nav className="flex header-nav">
-                <NavLink to="/about">About</NavLink>
-                <NavLink to="/book">Books</NavLink>
-                <NavLink to="/mail">Email</NavLink>
-                <NavLink to="/keep">Notes</NavLink>
+                <NavLink to="/about" onClick={()=> props.toggleMenu()}>About</NavLink>
+                <NavLink to="/book" onClick={()=> props.toggleMenu()}>Books</NavLink>
+                <NavLink to="/mail" onClick={()=> props.toggleMenu()}>Email</NavLink>
+                <NavLink to="/keep" onClick={()=> props.toggleMenu()}>Notes</NavLink>
             </nav>
         </section>
     )

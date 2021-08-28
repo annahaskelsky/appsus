@@ -17,21 +17,20 @@ export class MailAdd extends React.Component {
 
     componentDidMount() {
         this.draftInterval = setInterval(this.onSaveToDraft, 5000);
-        const urlParam=this.props.match.params.mailId;
-        console.log(urlParam)
+        const urlParam = this.props.match.params.mailId;
         mailService.getMailById(urlParam)
-        .then(mail=> {
-            if(mail) this.setDraftInfo(mail) 
-        })
+            .then(mail => {
+                if (mail) this.setDraftInfo(mail)
+            })
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearInterval(this.draftInterval);
 
     }
 
-    setDraftInfo=(mail)=> {
-        this.setState({newMail: {to: mail.to, subject: mail.subject, body: mail.body, id: mail.id}, isCreated: true})
+    setDraftInfo = (mail) => {
+        this.setState({ newMail: { to: mail.to, subject: mail.subject, body: mail.body, id: mail.id }, isCreated: true })
     }
 
     onHandlechange = (ev) => {
@@ -57,8 +56,11 @@ export class MailAdd extends React.Component {
     render() {
         const { to, subject, body } = this.state.newMail
         return <section className="new-mail flex">
-            <Link to="/mail"><i className="fas fa-arrow-left" title="Go to inbox"></i></Link>
-            <h1>New mail</h1>
+            <div className="new-mail-header flex">
+
+                <Link to="/mail"><i className="fas fa-arrow-left" title="Go to inbox"></i></Link>
+                <h1>New mail</h1>
+            </div>
             <form className="flex" onSubmit={this.onSendMail}>
                 <input type="email" name="to" placeholder="To" value={to} required onChange={this.onHandlechange} />
                 <input type="text" name="subject" placeholder="Subject" value={subject} onChange={this.onHandlechange} />
