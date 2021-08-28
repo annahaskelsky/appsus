@@ -20,8 +20,10 @@
 .mail-aside-container ul a {
     width: 100%;
     gap: 10px;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     transition: color 0.5s;
+    line-height: 30px;
     padding-inline-start: 10px;
 }
 
