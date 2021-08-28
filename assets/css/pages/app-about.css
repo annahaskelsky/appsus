@@ -40,12 +40,12 @@
 }
 
 .socials>* {
-    color: #5fa8d3;
+    color: rgb(33, 33, 33);
     transition: color 0.3s;
 }
 
 .socials>*:hover {
-    color: #1b4965;
+    color: #B8ACAC;
 }
 
 @media (min-width: 560px) {
