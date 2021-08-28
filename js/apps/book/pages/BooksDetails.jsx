@@ -64,14 +64,14 @@ export class BooksDetails extends React.Component {
         if (!book) return <div>Loading...</div>
         const price = book.listPrice.amount;
 
-        return <section className="book-details-container">
+        return <section className="book-details-container main-layout">
                 <article className="book-details-header">
                     <Link to={`/book/${bookService.getNextBookId(book.id, -1)}`}> ᐸ Previous Book</Link>
                     <Link to={`/book/${bookService.getNextBookId(book.id, 1)}`}>Next Book ᐳ</Link>
                 </article>
             <div className="book-details">
                 <div>
-                    <Link to="/book">Go back</Link>
+                    <Link to="/book"><button className="main-button">Go back</button></Link>
                     <h2 className="book-title">{book.title} </h2>
                     {book.listPrice.isOnSale && <h3>On Sale!</h3>}
                     {price && <h3 className={(price > 150) ? 'red' : ((price < 20) ? 'green' : '')}>
@@ -85,7 +85,7 @@ export class BooksDetails extends React.Component {
                     <h5>Categories: {book.categories.join(', ')}</h5>
                     <h5>Language: {book.language}</h5>
 
-                    <Link to={`/book/BookReview/${book.id}`}>Add review</Link>
+                    <Link to={`/book/BookReview/${book.id}`}><button className="main-button">Add review</button></Link>
                 </div>
                 <img src={book.thumbnail} />
             </div>

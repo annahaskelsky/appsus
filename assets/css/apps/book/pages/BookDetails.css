@@ -49,33 +49,6 @@
     cursor: pointer;
 }
 
-.book-details a {
-    font-size: 18px;
-    width: 100px;
-    /* margin: auto; */
-    padding: 5px;
-    margin-top: 20px;
-    height: 50px;
-    border-radius: 10px;
-    background-color: #5FA8D3;
-    color: white;
-    border: 2px solid transparent;
-    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
-    transition: box-shadow 0.4s;
-}
-
-
-/* .book-details a {
-    color: white;
-    background-color: #5FA8D3;
-    display: inline-block;
-    line-height: 25px;
-    border-radius: 20px;
-    margin-top: 10px;
-    padding-inline-end: 20px;
-    padding-inline-start: 20px;
-} */
-
 .book-details a:first-of-type {
     width: 100px;
 }

@@ -39,7 +39,7 @@ export class BookReview extends React.Component {
 
     render() {
 
-        return <section className="book-review-page">
+        return <section className="book-review-page main-layout">
             <h1>Book Review</h1>
             <form onSubmit={this.onSubmitReview}>
                 <label htmlFor="user-name">Name: </label>

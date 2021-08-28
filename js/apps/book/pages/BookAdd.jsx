@@ -51,7 +51,7 @@ export class BookAdd extends React.Component {
         const { books, searchName } = this.state;
         // console.log('books', books)
         return (
-            <section className="search-page">
+            <section className="search-page main-layout">
                 <h2>Search the name of the book you want to add</h2>
                 <input type="search" placeholder="Search" value={searchName} name="searchName" ref={this.inputRef}
                     onChange={this.handleChange} />

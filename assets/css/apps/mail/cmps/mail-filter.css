@@ -71,7 +71,7 @@
     z-index: 4;
 }
 
-@media (min-width: 560px) {
+@media (min-width: 800px) {
     .mail-filter {
         flex-direction: unset;
     }

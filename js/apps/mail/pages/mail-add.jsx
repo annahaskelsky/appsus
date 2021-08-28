@@ -65,7 +65,7 @@ export class MailAdd extends React.Component {
                 <input type="email" name="to" placeholder="To" value={to} required onChange={this.onHandlechange} />
                 <input type="text" name="subject" placeholder="Subject" value={subject} onChange={this.onHandlechange} />
                 <textarea placeholder="Text goes here" name="body" value={body} onChange={this.onHandlechange}></textarea>
-                <button>Send</button>
+                <button className="main-button">Send</button>
             </form>
         </section>
     }
