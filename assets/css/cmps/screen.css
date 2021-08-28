@@ -16,11 +16,12 @@
 
 .mail-app aside.aside-menu-open .screen {
     top: 0;
-    left: -138px;
-    width: 55%;
+    left: -35vw;
+    width: 900px;
+    z-index: -1;
 }
 
-@media (min-width: 560px) {
+@media (min-width: 800px) {
     .screen {
         display: none;
     }
