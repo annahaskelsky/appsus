@@ -1,68 +1,11 @@
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/storage.service.js'
 
-// let notes = [
-//     {
-//         id: "n101",
-//         isPinned: true,
-//         info: {
-//             img: null,
-//             video: null,
-//             title: null,
-//             txt: "Fullstack Me Baby!",
-//             todos: []
-//         },
-//         backgroundColor: "#ffffff"
-//     },
-//     {
-//         id: "n102",
-//         info: {
-//             img: "https://picsum.photos/100",
-//             video: null,
-//             title: "Bobi and Me",
-//             txt: null,
-//             todos: []
-//         },
-//         backgroundColor: "#ccff90"
-//     },
-//     {
-//         id: "n103",
-//         info: {
-//             img: null,
-//             video: null,
-//             title: "Get my stuff together",
-//             txt: null,
-//             todos: [
-//                 { id: utilService.makeId(), txt: "Driving liscence", doneAt: null },
-//                 { id: utilService.makeId(), txt: "Coding power", doneAt: 187111111 }
-//             ]
-//         },
-//         backgroundColor: "#fdcfe8"
-//     },
-//     {
-//         id: "n104",
-//         info: {
-//             img: null,
-//             video: "https://www.youtube.com/embed/tgbNymZ7vqY",
-//             title: "JS is AWESOME!",
-//             txt: null,
-//             todos: []
-//         },
-//         backgroundColor: "#f28b82"
-//     }
-// ]
-
 let gNotes
 let gPinnedNotes
 
-// const pinnedNotes = []
-
-// _createNotes()
-
-// _createPinnedNotes()
-
 const getPinnedNotes = () => {
-    let pinnedNotes = storageService.loadFromStorage('pinnedNotesDB')
+    let pinnedNotes = storageService.loadFromStorage('uniquePinnedNotesDB')
     if (!pinnedNotes || !pinnedNotes.length) {
         pinnedNotes = []
         const pinnedNotesIds = gNotes.filter(note => note.isPinned).map(note => note.id)
@@ -76,9 +19,6 @@ const getPinnedNotes = () => {
     gPinnedNotes = pinnedNotes
     savePinnedNotesToStorage()
     return Promise.resolve(gPinnedNotes)
-
-    // const pinnedNotes = notes.filter(note => note.isPinned)
-    // return Promise.resolve(pinnedNotes)
 }
 
 const query = filterBy => {
@@ -101,7 +41,7 @@ const query = filterBy => {
     }
     return Promise.resolve(gNotes)
 }
-// ZZZ
+
 const markUnmark = (note, todoId) => {
     if (!note) return
     let currNote
@@ -262,7 +202,7 @@ const removeTodo = (noteId, todoId) => {
 }
 
 const createNotes = () => {
-    let notes = storageService.loadFromStorage('notesDB')
+    let notes = storageService.loadFromStorage('uniqueNotesDB')
     if (!notes || !notes.length) {
         notes = [
             {
@@ -289,7 +229,7 @@ const createNotes = () => {
                 backgroundColor: "#ccff90"
             },
             {
-                id: "n107",
+                id: "n103",
                 info: {
                     img: "https://images.pexels.com/photos/776656/pexels-photo-776656.jpeg?cs=srgb&dl=pexels-ylanite-koppens-776656.jpg&fm=jpg",
                     video: null,
@@ -301,7 +241,7 @@ const createNotes = () => {
                 backgroundColor: "#fff475"
             },
             {
-                id: "n110",
+                id: "n104",
                 info: {
                     img: "https://images.pexels.com/photos/847483/pexels-photo-847483.jpeg?cs=srgb&dl=pexels-victor-freitas-847483.jpg&fm=jpg",
                     video: null,
@@ -313,7 +253,7 @@ const createNotes = () => {
                 backgroundColor: "#d7aefb"
             },
             {
-                id: "n108",
+                id: "n105",
                 info: {
                     img: null,
                     video: null,
@@ -324,7 +264,7 @@ const createNotes = () => {
                 backgroundColor: "#a7ffeb"
             },
             {
-                id: "n111",
+                id: "n106",
                 info: {
                     img: "https://media.giphy.com/media/QGBWk7DnckEN2/giphy.gif?cid=ecf05e47i817cu36thxz6vksiqyvrdwvzqjel0sebata7klk&rid=giphy.gif&ct=g",
                     video: null,
@@ -336,7 +276,7 @@ const createNotes = () => {
             },
             
             {
-                id: "n109",
+                id: "n107",
                 info: {
                     img: "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
                     video: null,
@@ -344,10 +284,10 @@ const createNotes = () => {
                     txt: "In case you needed a pick me up",
                     todos: []
                 },
-                backgroundColor: "#ccff90"
+                backgroundColor: "#f28b82"
             },
             {
-                id: "n104",
+                id: "n108",
                 info: {
                     img: null,
                     video: null,
@@ -360,9 +300,8 @@ const createNotes = () => {
                 },
                 backgroundColor: "#fdcfe8"
             },
-          
             {
-                id: "n105",
+                id: "n109",
                 info: {
                     img: null,
                     video: "https://www.youtube.com/embed/astISOttCQ0",
@@ -373,7 +312,7 @@ const createNotes = () => {
                 backgroundColor: "#f28b82"
             },
             {
-                id: "n106",
+                id: "n110",
                 info: {
                     img: "https://images.pexels.com/photos/2740954/pexels-photo-2740954.jpeg?cs=srgb&dl=pexels-prateek-katyal-2740954.jpg&fm=jpg",
                     video: null,
@@ -384,7 +323,7 @@ const createNotes = () => {
                 backgroundColor: "#aecbfa"
             },
             {
-                id: "n112",
+                id: "n111",
                 info: {
                     img: "https://images.pexels.com/photos/4577175/pexels-photo-4577175.jpeg?cs=srgb&dl=pexels-rachel-claire-4577175.jpg&fm=jpg",
                     video: null,
@@ -398,7 +337,7 @@ const createNotes = () => {
     }
     gNotes = notes.filter(note => !note.isPinned)
     saveNotesToStorage()
-    let pinnedNotes = storageService.loadFromStorage('pinnedNotesDB')
+    let pinnedNotes = storageService.loadFromStorage('uniquePinnedNotesDB')
     if (!pinnedNotes || !pinnedNotes.length) {
         gPinnedNotes = notes.filter(note => note.isPinned)
         savePinnedNotesToStorage()
@@ -406,12 +345,11 @@ const createNotes = () => {
 }
 
 const saveNotesToStorage = () => {
-    storageService.saveToStorage('notesDB', gNotes)
+    storageService.saveToStorage('uniqueNotesDB', gNotes)
 }
 
 const savePinnedNotesToStorage = () => {
-    storageService.saveToStorage('pinnedNotesDB', gPinnedNotes)
-
+    storageService.saveToStorage('uniquePinnedNotesDB', gPinnedNotes)
 }
 
 export const NoteService = {

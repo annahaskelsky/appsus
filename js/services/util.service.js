@@ -35,11 +35,8 @@ function getRandomIntInclusive(min, max) {
 
 function debounce(func, wait) {
     let timeout;
-    // console.log('debouncing')
 
     return function executedFunction(...args) {
-        // console.log('executing', args)
-
         const later = () => {
             clearTimeout(timeout);
             func(...args);

@@ -560,7 +560,6 @@ function getTopResults(searchName) {
 }
 
 function addGoogleBook(googleBook) {
-    console.log(googleBook)
     let newBook = {
         id: googleBook.id,
         title: googleBook.volumeInfo.title,
