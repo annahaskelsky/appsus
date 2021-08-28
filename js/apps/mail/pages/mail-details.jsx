@@ -1,5 +1,6 @@
 const { Link } = ReactRouterDOM
 
+import { NoteService } from '../../keep/services/note.service.js'
 import { mailService } from '../services/mail.service.js'
 
 export class MailDetails extends React.Component {
@@ -34,6 +35,12 @@ export class MailDetails extends React.Component {
         return new Date(date).toLocaleString();
     }
 
+    onSendToNote = () => {
+        NoteService.createNotes()
+        NoteService.addNote(null, this.state.mail)
+        this.props.history.push('/keep')
+    }
+
     render() {
         const {mail} = this.state;
         if(!mail) return <div>Loading...</div>
@@ -41,6 +48,7 @@ export class MailDetails extends React.Component {
             <nav>
                 <Link to="/mail"><i className="fas fa-arrow-left icon-button" title="Go to inbox"></i></Link>
                 <button onClick={()=>this.onDeleteMail(mail.id)} className="icon-button"><i className="fa fa-trash" aria-hidden="true" title="Remove to trash"></i></button>
+                <button onClick={this.onSendToNote} className="icon-button"><i className="fas fa-paper-plane"></i></button>
             </nav>
             <h2>{mail.subject}</h2>
             <h4>{mail.from}</h4>

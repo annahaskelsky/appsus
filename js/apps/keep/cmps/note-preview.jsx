@@ -44,7 +44,8 @@ export class NotePreview extends React.Component {
                     handleColorChange={this.handleColorChange}
                     onRemoveNote={this.props.onRemoveNote}
                     onDuplicateNote={this.props.onDuplicateNote}
-                    onPinUnpinNote={this.props.onPinUnpinNote} />
+                    onPinUnpinNote={this.props.onPinUnpinNote}
+                    sendNoteAsEmail={this.props.sendNoteAsEmail} />
             </article>
         )
     }

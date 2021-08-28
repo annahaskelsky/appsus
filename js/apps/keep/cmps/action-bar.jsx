@@ -1,10 +1,13 @@
+import { mailService } from "../../mail/services/mail.service.js"
 import { NoteService } from "../services/note.service.js"
 import { NoteDetails } from "./note-details.jsx"
 import { Palette } from "./palette.jsx"
 
-export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNote, onPinUnpinNote, handleEdit }) => {
+export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNote, onPinUnpinNote, handleEdit, sendNoteAsEmail }) => {
 
     const modalRef = React.createRef()
+
+    // let history = useHistory()
 
     const handleWindowClick = event => {
         if (modalRef.current && event.target === modalRef.current) {
@@ -18,6 +21,7 @@ export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNo
         })
     }
 
+
     return (
         <div>
             <div className="action-bar-container">
@@ -25,7 +29,7 @@ export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNo
                 <button className="icon-button" onClick={() => onDuplicateNote(note.id)}><i className="far fa-copy"></i></button>
                 <button className="icon-button" onClick={() => onRemoveNote(note.id)}><i className="far fa-trash-alt"></i></button>
                 <button className="icon-button" onClick={() => modalRef.current.style.display = "block"}><i className="fas fa-pencil-alt"></i></button>
-                <button className="icon-button" onClick=""><i className="fas fa-paper-plane"></i></button>
+                <button className="icon-button" onClick={() => sendNoteAsEmail(note)}><i className="fas fa-paper-plane"></i></button>
                 <button className="icon-button" onClick={() => onPinUnpinNote(note)}><i className={`fas fa-thumbtack ${note.isPinned && "pinned"}`}></i></button>
             </div>
             <div id="myModal" className="modal" ref={modalRef} onMouseDown={handleWindowClick}>

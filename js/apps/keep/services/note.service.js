@@ -126,13 +126,13 @@ const markUnmark = (note, todoId) => {
 }
 
 const addNote = (noteInfo, mail) => {
-    if (mail) {
+    if (mail && !noteInfo) {
         noteInfo = {
             img: null,
             video: null,
             title: mail.subject,
             txt: mail.body,
-            color: mail.color
+            color: "#ffffff"
         }
     }
     const newNote = {
@@ -142,7 +142,7 @@ const addNote = (noteInfo, mail) => {
             img: noteInfo.img,
             video: noteInfo.video,
             title: noteInfo.title,
-            txt: noteInfo.content,
+            txt: noteInfo.txt,
             todos: [...(noteInfo.todos || [])]
         },
         backgroundColor: noteInfo.color

@@ -4,6 +4,7 @@ import { NoteFilter } from "./cmps/note-filter.jsx"
 import { AddNote } from "./cmps/add-note.jsx"
 import { NoteList } from "./cmps/note-list.jsx"
 import { NoteDetails } from "./cmps/note-details.jsx"
+import { mailService } from "../mail/services/mail.service.js"
 
 export class NotesApp extends React.Component {
     state = {
@@ -44,6 +45,13 @@ export class NotesApp extends React.Component {
         })
     }
 
+    sendNoteAsEmail = (note) => {
+        mailService.getMailFromNote(note)
+            .then(mailId => {;
+                this.props.history.push(`/mail/edit/${mailId}`) 
+            })
+    }
+
     render() {
         const { notes, pinnedNotes } = this.state
         if (!notes) return <div>Loading...</div>
@@ -57,6 +65,7 @@ export class NotesApp extends React.Component {
                     onRemoveNote={this.onRemoveNote}
                     onDuplicateNote={this.onDuplicateNote}
                     onPinUnpinNote={this.onPinUnpinNote}
+                    sendNoteAsEmail={this.sendNoteAsEmail}
                 />
                 <Switch>
                     <Route path="/keep/:noteId" component={NoteDetails} />

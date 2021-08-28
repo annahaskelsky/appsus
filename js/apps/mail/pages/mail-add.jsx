@@ -18,8 +18,10 @@ export class MailAdd extends React.Component {
     componentDidMount() {
         this.draftInterval = setInterval(this.onSaveToDraft, 5000);
         const urlParam = this.props.match.params.mailId;
+        console.log(urlParam);
         mailService.getMailById(urlParam)
             .then(mail => {
+                console.log(mail);
                 if (mail) this.setDraftInfo(mail)
             })
     }
