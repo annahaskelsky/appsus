@@ -28,9 +28,24 @@
 
 .mail-filter label {
     margin-inline-end: 10px;
+    font-size: 12px;
 }
 
 .mail-filter select {
+    text-align: center;
+    font-size: 16px;
+    margin-inline-end: 10px;
+    border: none;
+    border-bottom: 1px solid;
+    /* border-radius: 8px; */
+    border-color: #9b9595;
+    /* box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%); */
+    cursor: pointer;
+    transition: box-shadow 0.4s;
+}
+
+
+/* .mail-filter select {
     text-align: center;
     font-size: 18px;
     margin-inline-end: 10px;
@@ -39,7 +54,7 @@
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
     cursor: pointer;
     transition: box-shadow 0.4s;
-}
+} */
 
 .mail-filter select:hover {
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 60%), 0 2px 6px 2px rgb(60 64 67 / 40%);

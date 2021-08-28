@@ -89,6 +89,7 @@
         justify-content: center;
         align-items: center;
         font-size: 25px;
+        background-color: white;
     }
     
     @media (min-width: 560px) {
@@ -122,7 +123,6 @@
         .buttons-hover {
             top: 0;
             right: 0;
-            background-color: white;
             height: 98%;
         }
         .mail-preview .buttons-hover {

@@ -1,5 +1,6 @@
 import { mailService } from '../services/mail.service.js';
 import { MailPreview } from '../cmps/mail-preview.jsx';
+import { MailFilter } from '../cmps/mail-filter.jsx';
 import { eventBusService } from '../../../services/eventbus.service.js'
 
 export class MailList extends React.Component {
@@ -77,7 +78,7 @@ export class MailList extends React.Component {
         if (!currUser) return 0;
         let count = 0;
         mails.map(mail => {
-            if (mail.to === currUser.email && !mail.isRead) count++;
+            if (mail.to === currUser.email && !mail.isRead && !mail.isTrash) count++;
         })
         eventBusService.emit('unread-mails-count', count)
     }
@@ -99,9 +100,12 @@ export class MailList extends React.Component {
     }
 
     render() {
-        const { mails, isCheckedAll } = this.state;
+        console.log(this.props)
+        const { mails } = this.state;
+        const {toggleMenu}=this.props;
         if (!mails) return <React.Fragment>Loading...</React.Fragment>
         return <section className="mail-list">
+            <MailFilter toggleMenu={toggleMenu} />
             {mails && mails.map(mail =>
                 <MailPreview key={mail.id} mail={mail}
                     onToggleReadStatus={this.onToggleReadStatus}
