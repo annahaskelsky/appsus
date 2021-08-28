@@ -107,10 +107,17 @@ function toogleStar(mailId) {
 }
 
 function getMailFromNote(note) {
+    const {title, txt, img, video, todos} = note.info
+    const mailContent = txt || ''
+    const mailImg = img ? `Image Url: ${img}` : ''
+    const mailVideo = video ? `Video Url: ${video}` : '' 
+    const todosArr = todos && todos.map(todo => todo.txt)
+    const mailTodos = todos.length ? `Todos: ${todosArr.join(', ')}.` : ''
+    const mailBody = `${mailContent} \n ${mailImg} \n ${mailVideo} \n ${mailTodos}`
     const newMail = {
         id: utilService.makeId(),
-        subject: note.info.title,
-        body: note.info.txt,
+        subject: title,
+        body: mailBody,
         isRead: true,
         sentAt: Date.now(),
         to: null,
@@ -124,20 +131,6 @@ function getMailFromNote(note) {
     _saveMailsToStorage()
     return Promise.resolve(newMail.id)
 }
-
-// {
-//     id: "n105",
-//     info: {
-//         img: null,
-//         video: "https://www.youtube.com/embed/8aGhZQkoFbQ",
-//         title: "JS is AWESOME!",
-//         txt: null,
-//         todos: [
-//             { id: utilService.makeId(), txt: "Master javascript", doneAt: null },
-//             { id: utilService.makeId(), txt: "Finish this project", doneAt: null }]
-//     },
-//     backgroundColor: "#f28b82"
-// }
 
 function _sortMails(mails, sortBy) {
     if (sortBy !== 'subject') mails.sort((mail1, mail2) => mail2.sentAt - mail1.sentAt);

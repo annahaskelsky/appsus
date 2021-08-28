@@ -112,7 +112,7 @@ export class NoteDetails extends React.Component {
                 </div>
                 <input type="file" className="note-details-img-input" id="edit-image" ref={this.imageRef} onChange={this.handleChangeFile} />
 
-                <input type="text" id="video" ref={this.videoRef} name="video" placeholder="Youtube Url" onChange={this.handleChange} />
+                <input type="text" ref={this.videoRef} name="video" placeholder="Youtube Url" onChange={this.handleChange} />
                 {video && <iframe src={video} width="100%" height="200" />}
 
                 <input type="text" name="title" placeholder="Note Title" onChange={this.handleChange} value={title || ''} />

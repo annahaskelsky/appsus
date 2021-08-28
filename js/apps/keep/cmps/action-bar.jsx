@@ -26,11 +26,11 @@ export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNo
         <div>
             <div className="action-bar-container">
                 <Palette className="action-bar-item" handleColorChange={handleColorChange} />
-                <button className="icon-button" onClick={() => onDuplicateNote(note.id)}><i className="far fa-copy"></i></button>
-                <button className="icon-button" onClick={() => onRemoveNote(note.id)}><i className="far fa-trash-alt"></i></button>
-                <button className="icon-button" onClick={() => modalRef.current.style.display = "block"}><i className="fas fa-pencil-alt"></i></button>
-                <button className="icon-button" onClick={() => sendNoteAsEmail(note)}><i className="fas fa-paper-plane"></i></button>
-                <button className="icon-button" onClick={() => onPinUnpinNote(note)}><i className={`fas fa-thumbtack ${note.isPinned && "pinned"}`}></i></button>
+                <button className="icon-button" onClick={() => onDuplicateNote(note.id)}><i title="duplicate" className="far fa-copy"></i></button>
+                <button className="icon-button" onClick={() => onRemoveNote(note.id)}><i title="delete" className="far fa-trash-alt"></i></button>
+                <button className="icon-button" onClick={() => modalRef.current.style.display = "block"}><i title="edit" className="fas fa-pencil-alt"></i></button>
+                <button className="icon-button" onClick={() => sendNoteAsEmail(note)}><i title="send as email" className="fas fa-paper-plane"></i></button>
+                <button className="icon-button" onClick={() => onPinUnpinNote(note)}><i title={note.isPinned ? 'unpin' : 'pin'} className={`fas fa-thumbtack ${note.isPinned && "pinned"}`}></i></button>
             </div>
             <div id="myModal" className="modal" ref={modalRef} onMouseDown={handleWindowClick}>
                 <div className="modal-content">

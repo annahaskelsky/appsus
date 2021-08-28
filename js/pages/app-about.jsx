@@ -22,7 +22,8 @@ export function About() {
         <div className="team-member">
           <img src="./assets/img/anna.jpg" />
           <h2>Anna Haskelsky</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt molestiae qui aut, eveniet necessitatibus, animi hic repellendus quia doloremque sint, dolorem alias voluptatum incidunt illo aperiam consequuntur sit adipisci repudiandae! Delectus totam sed voluptate ullam tempore hic quod similique error minus, non iusto, autem possimus dolorem quasi. Officia, sequi a.
+          <p>I'm Anna, 23 years old from Yoqneam, Israel. I am currently a fullstack student at Coding Academy,
+          coding my way into the world of programming one short circuit at a time with the help of HTML, CSS & JS. 
           </p>
           <div className="flex socials">
             <a href="https://www.facebook.com/anna.haskelsky/" target="_blank"><i className="fab fa-facebook-square"></i></a>

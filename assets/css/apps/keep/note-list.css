@@ -1,13 +1,8 @@
 .other-notes, .pinned-notes {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: masonry;
-    /* grid-auto-rows: calc((100vw / 5) - ((5 - 1) * 5px)); */
+    columns: auto 290px;
     justify-content: center;
     justify-items: center;
-    /* align-items: flex-start; */
-    gap: 20px;
-    margin: 0 20px;
+    margin: 20px;
 }
 
 .pinned-notes {
@@ -18,11 +13,4 @@
     margin: 25px;
     font-size: 1.2rem;
     color: rgb(114, 114, 114);
-}
-
-@media (min-width:560px) {
-    .other-notes, .pinned-notes {
-        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-        gap: 20px;
-    }
 }

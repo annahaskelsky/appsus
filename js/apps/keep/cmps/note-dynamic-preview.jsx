@@ -9,7 +9,7 @@ export const NoteDynamicPreview = ({ note, onMarkUnmarkTodo }) => {
                 {note.info.title && <h3>{note.info.title}</h3>}
                 <p>{note.info.txt}</p>
                 <ul>
-                    {note.info.todos.map(todo => <li key={todo.id} className={`${todo.doneAt ? "done" : ""}`} onClick={() => onMarkUnmarkTodo(todo.id)}>{todo.txt}</li>)}
+                    {note.info.todos.map(todo => <li key={todo.id} className={`${todo.doneAt ? "done" : ""}`} style={{cursor: 'pointer'}} onClick={() => onMarkUnmarkTodo(todo.id)}>{todo.txt}</li>)}
                 </ul>
             </div>
         </div>

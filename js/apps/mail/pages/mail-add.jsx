@@ -21,7 +21,6 @@ export class MailAdd extends React.Component {
         console.log(urlParam);
         mailService.getMailById(urlParam)
             .then(mail => {
-                console.log(mail);
                 if (mail) this.setDraftInfo(mail)
             })
     }

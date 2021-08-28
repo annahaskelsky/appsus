@@ -68,7 +68,9 @@
 .home .description-section {
     background-color: #212121;
     color: white;
-    height: 20vh;
+    /* height: 20vh; */
+    min-height: fit-content;
+    padding: 20px;
     min-height: fit-content;
     text-align: center;
     display: flex;
@@ -101,4 +103,10 @@
 .home .book-hero {
     background-image: url(../../img/book-hero-2.jpeg);
     background-position: bottom;
+}
+
+@media (min-width: 840px) {
+    .home .description-section {
+        height: 20vh;
+    }
 }

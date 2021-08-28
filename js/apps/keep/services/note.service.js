@@ -189,11 +189,15 @@ const duplicateNote = noteId => {
     if (idx < 0) {
         idx = gPinnedNotes.findIndex(note => note.id === noteId)
         note = gPinnedNotes[idx]
-        gPinnedNotes.unshift({ ...note, id: utilService.makeId() })
+        const endOfArr = gPinnedNotes.splice(idx)
+        gPinnedNotes.push({ ...note, id: utilService.makeId() })
+        gPinnedNotes = [...gPinnedNotes, ...endOfArr]
         savePinnedNotesToStorage()
     } else {
         note = gNotes[idx]
-        gNotes.unshift({ ...note, id: utilService.makeId() })
+        const endOfArr = gNotes.splice(idx)
+        gNotes.push({ ...note, id: utilService.makeId() })
+        gNotes = [...gNotes, ...endOfArr]
         saveNotesToStorage()
     }
     return Promise.resolve()
