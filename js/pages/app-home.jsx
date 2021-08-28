@@ -5,7 +5,7 @@ export function Home() {
     <section className='home'>
       <section className='main-hero-container app-hero-section'>
         <h1>Welcome to Appsus</h1>
-        <i class="fas fa-angle-down"></i>
+        <i className="fas fa-angle-down"></i>
       </section>
       <section className='main-description description-section'>
         <p>
