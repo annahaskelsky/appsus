@@ -93,8 +93,13 @@ header {
         transform: none;
         transition: none;
     }
-    .app-header nav a:hover {
+    .app-header nav a {
+        /* transform: rotate(0deg); */
+        transition: all .7s;
+    }
+    .header-nav a:hover {
         color: #cae9ff;
+        transform: rotate(15deg);
     }
     .btn-menu-toggle {
         display: none;
