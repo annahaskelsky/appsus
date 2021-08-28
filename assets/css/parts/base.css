@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --mainDark: #212121;
+  --mainLight: #b3b3b3;
+}
+
 html {
   font-family: Noto-Reg, sans-serif;
   color: rgb(51, 51, 51);
