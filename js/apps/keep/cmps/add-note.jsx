@@ -11,7 +11,7 @@ export class AddNote extends React.Component {
 
     handleWindowClick = event => {
         if (this.modalRef.current && event.target === this.modalRef.current) {
-            if (this.modalRef.current) this.modalRef.current.style.display = "none";
+            if (this.modalRef.current) this.modalRef.current.style.display = "none"
         }
     }
 
@@ -23,19 +23,10 @@ export class AddNote extends React.Component {
         this.setState({ color })
     }
 
-    handleChangeFile = (e) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0])
-        reader.onloadend = () => {
-            this.setState({ img: reader.result })
-        }
-    }
-
     handleSubmit = noteInfo => {
         const { color } = this.state
         this.props.onAddNote({ ...noteInfo, color }, () => this.setState({ color: '#ffffff' }))
     }
-
 
     render() {
         return (

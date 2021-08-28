@@ -9,7 +9,6 @@ export class NoteDetails extends React.Component {
         txt: null,
         todos: [],
         isAddTodo: true,
-        todosNumber: 1,
         newTodoValue: ''
     }
 
@@ -45,7 +44,7 @@ export class NoteDetails extends React.Component {
             if (!videoId) return
             const embedVideo = '//www.youtube.com/embed/' + videoId
             this.imageRef.current.value = ''
-            this.setState({ video: embedVideo, videoStr: value, img: null })
+            this.setState({ video: embedVideo, img: null })
             return
         }
         this.setState({ [name]: value })
@@ -89,7 +88,6 @@ export class NoteDetails extends React.Component {
             txt: null,
             todos: [],
             isAddTodo: true,
-            todosNumber: 1,
             newTodoValue: ''
         })
     }

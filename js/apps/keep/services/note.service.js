@@ -125,7 +125,16 @@ const markUnmark = (note, todoId) => {
     return Promise.resolve(currNote)
 }
 
-const addNote = (noteInfo) => {
+const addNote = (noteInfo, mail) => {
+    if (mail) {
+        noteInfo = {
+            img: null,
+            video: null,
+            title: mail.subject,
+            txt: mail.body,
+            color: mail.color
+        }
+    }
     const newNote = {
         id: utilService.makeId(),
         isPinned: false,
@@ -134,7 +143,7 @@ const addNote = (noteInfo) => {
             video: noteInfo.video,
             title: noteInfo.title,
             txt: noteInfo.content,
-            todos: [...noteInfo.todos]
+            todos: [...(noteInfo.todos || [])]
         },
         backgroundColor: noteInfo.color
     }
