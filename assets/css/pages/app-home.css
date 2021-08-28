@@ -69,7 +69,7 @@
     background-color: #212121;
     color: white;
     height: 20vh;
-    min-height: fit-content;
+    min-height: 35vh;
     text-align: center;
     display: flex;
     flex-direction: column;

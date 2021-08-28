@@ -135,6 +135,7 @@ function _sortMails(mails, sortBy) {
 }
 
 function _getMailsByFolder(user, criteria) {
+
     let mails = gMails.filter(mail => {
         switch (criteria.status) {
             case 'sent':
@@ -356,7 +357,7 @@ function _createMails() {
                 isStarred: true,
                 isDraft: false,
                 color: utilService.getRandomColor()
-            }, ,
+            },
             {
                 id: utilService.makeId(),
                 subject: '[Slack] New message from Alon Dai',
