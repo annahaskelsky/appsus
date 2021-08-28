@@ -12,6 +12,7 @@ export class NotesApp extends React.Component {
     }
 
     componentDidMount() {
+        NoteService.createNotes()
         this.loadNotes()
     }
 

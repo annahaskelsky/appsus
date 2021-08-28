@@ -22,7 +22,7 @@ export class NoteFilter extends React.Component {
     render() {
         return (
             <section className="note-filter">
-                <div className="input-container">
+                <div className="input-container note-filter-input">
                     <div className="input-wrapper">
                         <input type="text" name="txt-filter" placeholder="Search for a note" onChange={(ev) => this.handleChange(ev.target.value, true)} />
                         <div className="filter-by-type">

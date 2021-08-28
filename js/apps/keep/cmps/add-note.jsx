@@ -1,4 +1,3 @@
-import { Input } from "../../../cmps/input.jsx";
 import { AddNoteInput } from "./add-note-input.jsx";
 
 export class AddNote extends React.Component {

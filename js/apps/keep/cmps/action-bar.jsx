@@ -7,7 +7,6 @@ export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNo
     const modalRef = React.createRef()
 
     const handleWindowClick = event => {
-        console.log(event.target);
         if (modalRef.current && event.target === modalRef.current) {
             if (modalRef.current) modalRef.current.style.display = "none";
         }
@@ -26,7 +25,7 @@ export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNo
                 <button className="icon-button" onClick={() => onDuplicateNote(note.id)}><i className="far fa-copy"></i></button>
                 <button className="icon-button" onClick={() => onRemoveNote(note.id)}><i className="far fa-trash-alt"></i></button>
                 <button className="icon-button" onClick={() => modalRef.current.style.display = "block"}><i className="fas fa-pencil-alt"></i></button>
-                <button className="icon-button" onClick={() => onPinUnpinNote(note)}><i className="fas fa-thumbtack"></i></button>
+                <button className="icon-button" onClick={() => onPinUnpinNote(note)}><i className={`fas fa-thumbtack ${note.isPinned && "pinned"}`}></i></button>
             </div>
             <div id="myModal" className="modal" ref={modalRef} onClick={handleWindowClick}>
                 <div className="modal-content">

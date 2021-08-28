@@ -90,26 +90,26 @@ export class NoteDetails extends React.Component {
                     {img && <img src={img} />}
                 </div>
                 <div className="note-details-img-icon">
-                    <span>Upload Image</span> <button className="icon-button" onClick={() => this.imageRef.current.click()}><i class="fas fa-upload"></i></button>
+                    <span>Upload Image</span> <button className="icon-button" onClick={() => this.imageRef.current.click()}><i className="fas fa-upload"></i></button>
                 </div>
                 <input type="file" className="note-details-img-input" id="edit-image" ref={this.imageRef} onChange={this.handleChangeFile} />
 
                 <input type="text" id="video" ref={this.videoRef} name="video" placeholder="Youtube Url" onChange={this.handleChange} />
                 {video && <iframe src={video} width="100%" height="200" />}
 
-                <input type="text" name="title" onChange={this.handleChange} value={title || ''} />
-                <textarea name="txt" onChange={this.handleChange} value={txt || ''} />
+                <input type="text" name="title" placeholder="Note Title" onChange={this.handleChange} value={title || ''} />
+                <textarea name="txt" placeholder="Note Content" onChange={this.handleChange} value={txt || ''} />
                 {isAddTodo &&
                     todos.map(todo => (
                         <div key={todo.id} className="note-details-todo-container">
                             <div>{todo.txt}</div>
-                            <button className="icon-button" onClick={() => this.handleRemoveTodo(todo.id)}><i class="far fa-times-circle"></i></button>
+                            <button className="icon-button" onClick={() => this.handleRemoveTodo(todo.id)}><i className="far fa-times-circle"></i></button>
                         </div>
                     ))
                 }
                 <div className="note-details-todo-container">
                     <input ref={this.newTodoRef} type="text" name="todo" placeholder="Add Todo" onChange={this.handleTodoChange} />
-                    <button className="icon-button" onClick={this.onAddTodo}><i class="fas fa-plus-circle"></i></button>
+                    <button className="icon-button" onClick={this.onAddTodo}><i className="fas fa-plus-circle"></i></button>
                 </div>
 
                 <button className="note-details-submit" onClick={this.handleSubmit}>Submit</button>

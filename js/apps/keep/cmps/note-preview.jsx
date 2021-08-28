@@ -25,8 +25,7 @@ export class NotePreview extends React.Component {
 
     onMarkUnmarkTodo = (todoId) => {
         const { note } = this.state
-        NoteService.markUnmark(note, todoId)
-        this.setState({ note })
+        NoteService.markUnmark(note, todoId).then((note) => this.setState({ note }))
     }
 
     render() {

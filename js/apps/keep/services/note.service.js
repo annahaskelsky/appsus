@@ -1,78 +1,90 @@
 import { utilService } from '../../../services/util.service.js'
-import { AddNote } from '../cmps/add-note.jsx'
+import {storageService} from '../../../services/storage.service.js'
 
-let notes = [
-    {
-        id: "n101",
-        isPinned: true,
-        info: {
-            img: null,
-            video: null,
-            title: null,
-            txt: "Fullstack Me Baby!",
-            todos: []
-        },
-        backgroundColor: "#ffffff"
-    },
-    {
-        id: "n102",
-        info: {
-            img: "https://picsum.photos/100",
-            video: null,
-            title: "Bobi and Me",
-            txt: null,
-            todos: []
-        },
-        backgroundColor: "#ccff90"
-    },
-    {
-        id: "n103",
-        info: {
-            img: null,
-            video: null,
-            title: "Get my stuff together",
-            txt: null,
-            todos: [
-                { id: utilService.makeId(), txt: "Driving liscence", doneAt: null },
-                { id: utilService.makeId(), txt: "Coding power", doneAt: 187111111 }
-            ]
-        },
-        backgroundColor: "#fdcfe8"
-    },
-    {
-        id: "n104",
-        info: {
-            img: null,
-            video: "https://www.youtube.com/embed/tgbNymZ7vqY",
-            title: "JS is AWESOME!",
-            txt: null,
-            todos: []
-        },
-        backgroundColor: "#f28b82"
-    }
-]
+// let notes = [
+//     {
+//         id: "n101",
+//         isPinned: true,
+//         info: {
+//             img: null,
+//             video: null,
+//             title: null,
+//             txt: "Fullstack Me Baby!",
+//             todos: []
+//         },
+//         backgroundColor: "#ffffff"
+//     },
+//     {
+//         id: "n102",
+//         info: {
+//             img: "https://picsum.photos/100",
+//             video: null,
+//             title: "Bobi and Me",
+//             txt: null,
+//             todos: []
+//         },
+//         backgroundColor: "#ccff90"
+//     },
+//     {
+//         id: "n103",
+//         info: {
+//             img: null,
+//             video: null,
+//             title: "Get my stuff together",
+//             txt: null,
+//             todos: [
+//                 { id: utilService.makeId(), txt: "Driving liscence", doneAt: null },
+//                 { id: utilService.makeId(), txt: "Coding power", doneAt: 187111111 }
+//             ]
+//         },
+//         backgroundColor: "#fdcfe8"
+//     },
+//     {
+//         id: "n104",
+//         info: {
+//             img: null,
+//             video: "https://www.youtube.com/embed/tgbNymZ7vqY",
+//             title: "JS is AWESOME!",
+//             txt: null,
+//             todos: []
+//         },
+//         backgroundColor: "#f28b82"
+//     }
+// ]
 
-const pinnedNotes = []
+let gNotes
+let gPinnedNotes
+
+// const pinnedNotes = []
+
+// _createNotes()
+
+// _createPinnedNotes()
 
 const getPinnedNotes = () => {
-    const pinnedNotesIds = notes.filter(note => note.isPinned).map(note => note.id)
-
-    pinnedNotesIds.forEach(id => {
-        const idx = notes.findIndex(note => note.id === id)
-        const currNote = notes[idx]
-        pinnedNotes.push(currNote)
-        notes.splice(idx, 1)
-    })
-    return Promise.resolve(pinnedNotes)
+    let pinnedNotes = storageService.loadFromStorage('pinnedNotesDB')
+   if(!pinnedNotes || !pinnedNotes.length) {
+       pinnedNotes = []
+       const pinnedNotesIds = gNotes.filter(note => note.isPinned).map(note => note.id)
+       pinnedNotesIds.forEach(id => {
+           const idx = gNotes.findIndex(note => note.id === id)
+           const currNote = gNotes[idx]
+           pinnedNotes.push(currNote)
+           gNotes.splice(idx, 1)
+       })
+   }
+   gPinnedNotes = pinnedNotes
+   savePinnedNotesToStorage()
+    return Promise.resolve(gPinnedNotes)
 
     // const pinnedNotes = notes.filter(note => note.isPinned)
     // return Promise.resolve(pinnedNotes)
 }
 
 const query = filterBy => {
-    if (!filterBy) return Promise.resolve(notes)
+    if (!filterBy) return Promise.resolve(gNotes)
     if (filterBy.type) {
-        const notesToShow = notes.filter(note => {
+        const notesToShow = gNotes.filter(note => {
             if (filterBy.type === 'todos') return note.info.todos.length
             return note.info[filterBy.type]
         })
@@ -87,21 +99,30 @@ const query = filterBy => {
         })
         return Promise.resolve(notesToShow)
     }
-    return Promise.resolve(notes)
+    return Promise.resolve(gNotes)
 }
-
+// ZZZ
 const markUnmark = (note, todoId) => {
     if (!note) return
-    const idx = notes.findIndex(n => note.id === n.id)
+    let currNote
+    let todo
+    let idx = gNotes.findIndex(n => note.id === n.id)
     if (idx >= 0) {
-        const note = notes[idx]
-        const todo = note.info.todos.find(todo => todo.id === todoId)
-        if (todo.doneAt) {
-            todo.doneAt = null
-        } else {
-            todo.doneAt = Date.now()
-        }
+        currNote = gNotes[idx]
+        todo = currNote.info.todos.find(todo => todo.id === todoId)
+    } else {
+        idx = gPinnedNotes.findIndex(n => note.id === n.id)
+        currNote = gPinnedNotes[idx]
+        todo = currNote.info.todos.find(todo => todo.id === todoId)
     }
+    if (todo.doneAt) {
+        todo.doneAt = null
+    } else {
+        todo.doneAt = Date.now()
+    }
+    saveNotesToStorage()
+    savePinnedNotesToStorage()
+    return Promise.resolve(currNote)
 }
 
 const addNote = (note) => {
@@ -117,71 +138,82 @@ const addNote = (note) => {
         },
         backgroundColor: note.color
     }
-    notes.unshift(newNote)
+    gNotes.unshift(newNote)
+    saveNotesToStorage()
     return Promise.resolve()
 }
 
 const editNoteContent = (noteInfo, id) => {
-    let note = notes.find(n => n.id === id)
-    if (!note) note = pinnedNotes.find(n => n.id === id)
+    let note = gNotes.find(n => n.id === id)
+    if (!note) note = gPinnedNotes.find(n => n.id === id)
     note.info = noteInfo
+    saveNotesToStorage()
+    savePinnedNotesToStorage()
     return Promise.resolve()
 }
 
 const removeNote = noteId => {
-    let idx = notes.findIndex(note => note.id === noteId)
+    let idx = gNotes.findIndex(note => note.id === noteId)
     if (idx >= 0) {
-        notes.splice(idx, 1)
-        return Promise.resolve(notes)
+        gNotes.splice(idx, 1)
+        saveNotesToStorage()
+        return Promise.resolve(gNotes)
     } else {
-        idx = pinnedNotes.findIndex(note => note.id === noteId)
-        pinnedNotes.splice(idx, 1)
-        return Promise.resolve(pinnedNotes)
+        idx = gPinnedNotes.findIndex(note => note.id === noteId)
+        gPinnedNotes.splice(idx, 1)
+        savePinnedNotesToStorage()
+        return Promise.resolve(gPinnedNotes)
     }
 }
 
 const changeColor = (noteId, color) => {
-    const note = notes.find(note => note.id === noteId) || pinnedNotes.find(note => note.id === noteId)
+    const note = gNotes.find(note => note.id === noteId) || gPinnedNotes.find(note => note.id === noteId)
     note.backgroundColor = color
+    saveNotesToStorage()
+    savePinnedNotesToStorage()
     return Promise.resolve()
 }
 
 const duplicateNote = noteId => {
     let note
-    let idx = notes.findIndex(note => note.id === noteId)
+    let idx = gNotes.findIndex(note => note.id === noteId)
     if (idx < 0) {
-        idx = pinnedNotes.findIndex(note => note.id === noteId)
-        note = pinnedNotes[idx]
-        pinnedNotes.unshift({ ...note, id: utilService.makeId() })
+        idx = gPinnedNotes.findIndex(note => note.id === noteId)
+        note = gPinnedNotes[idx]
+        gPinnedNotes.unshift({ ...note, id: utilService.makeId() })
+        savePinnedNotesToStorage()
     } else {
-        note = notes[idx]
-        notes.unshift({ ...note, id: utilService.makeId() })
+        note = gNotes[idx]
+        gNotes.unshift({ ...note, id: utilService.makeId() })
+        saveNotesToStorage()
     }
     return Promise.resolve()
 }
 
 const pinUnpinNote = (note) => {
     if (note.isPinned) {
-        const idx = pinnedNotes.findIndex(n => n.id === note.id)
-        const currNote = pinnedNotes[idx]
+        const idx = gPinnedNotes.findIndex(n => n.id === note.id)
+        const currNote = gPinnedNotes[idx]
         currNote.isPinned = false
-        pinnedNotes.splice(idx, 1)
-        notes.unshift(currNote)
+        gPinnedNotes.splice(idx, 1)
+        gNotes.unshift(currNote)
     } else {
-        const idx = notes.findIndex(n => n.id === note.id)
-        const currNote = notes[idx]
+        const idx = gNotes.findIndex(n => n.id === note.id)
+        const currNote = gNotes[idx]
         currNote.isPinned = true
-        notes.splice(idx, 1)
-        pinnedNotes.unshift(currNote)
+        gNotes.splice(idx, 1)
+        gPinnedNotes.unshift(currNote)
     }
+    saveNotesToStorage()
+    savePinnedNotesToStorage()
     return Promise.resolve()
 }
 
 const getNoteById = (noteId) => {
-    let note = notes.find(note => note.id === noteId)
+    let note = gNotes.find(note => note.id === noteId)
     if (note) return Promise.resolve(note)
     else {
-        note = pinnedNotes.find(note => note.id === noteId)
+        note = gPinnedNotes.find(note => note.id === noteId)
         return Promise.resolve(note)
     }
 }
@@ -196,19 +228,107 @@ const getId = url => {
 }
 
 const addTodo = (noteId, todo) => {
-    let note = notes.find(note => note.id === noteId)
-    if (!note) note = pinnedNotes.find(note => note.id === noteId)
+    let note = gNotes.find(note => note.id === noteId)
+    if (!note) note = gPinnedNotes.find(note => note.id === noteId)
     note.info.todos.push({ id: utilService.makeId(), txt: todo, doneAt: null })
+    saveNotesToStorage()
+    savePinnedNotesToStorage()
     return Promise.resolve()
 }
 
 const removeTodo = (noteId, todoId) => {
-    let note = notes.find(note => note.id === noteId)
-    if (!note) note = pinnedNotes.find(note => note.id === noteId)
+    let note = gNotes.find(note => note.id === noteId)
+    if (!note) note = gPinnedNotes.find(note => note.id === noteId)
     const idx = note.info.todos.findIndex(t => t.id !== todoId)
     note.info.todos.splice(idx, 1)
-    console.log(notes);
+    saveNotesToStorage()
+    savePinnedNotesToStorage()
     return Promise.resolve()
+}
+
+const createNotes = () => {
+    let notes = storageService.loadFromStorage('notesDB')
+    if(!notes || !notes.length) {
+        notes = [
+            {
+                id: "n101",
+                isPinned: true,
+                info: {
+                    img: null,
+                    video: null,
+                    title: null,
+                    txt: "Fullstack Me Baby!",
+                    todos: []
+                },
+                backgroundColor: "#ffffff"
+            },
+            {
+                id: "n102",
+                info: {
+                    img: "assets/img/note-img-1.jpeg",
+                    video: null,
+                    title: "Need Coffee!",
+                    txt: null,
+                    todos: []
+                },
+                backgroundColor: "#ccff90"
+            }, 
+            {
+            id: "n103",
+                info: {
+                    img: "assets/img/note-img-2.jpeg",
+                    video: null,
+                    title: "This too shall pass...",
+                    txt: null,
+                    todos: []
+                },
+                backgroundColor: "#fff475"
+            },
+            {
+                id: "n104",
+                info: {
+                    img: null,
+                    video: null,
+                    title: "Get my stuff together",
+                    txt: null,
+                    todos: [
+                        { id: utilService.makeId(), txt: "Driving liscence", doneAt: null },
+                        { id: utilService.makeId(), txt: "Coding power", doneAt: 187111111 }
+                    ]
+                },
+                backgroundColor: "#fdcfe8"
+            },
+            {
+                id: "n105",
+                info: {
+                    img: null,
+                    video: "https://www.youtube.com/embed/8aGhZQkoFbQ",
+                    title: "JS is AWESOME!",
+                    txt: null,
+                    todos: [
+                        { id: utilService.makeId(), txt: "Master javascript", doneAt: null },
+                    { id: utilService.makeId(), txt: "Finish this project", doneAt: null }]
+                },
+                backgroundColor: "#f28b82"
+            }
+        ]
+    }
+    gNotes = notes.filter(note => !note.isPinned)
+    saveNotesToStorage()
+    let pinnedNotes = storageService.loadFromStorage('pinnedNotesDB')
+    if(!pinnedNotes || !pinnedNotes.length){
+        gPinnedNotes = notes.filter(note => note.isPinned)
+        savePinnedNotesToStorage()
+    }
+}
+
+const saveNotesToStorage = () => {
+    storageService.saveToStorage('notesDB', gNotes)
+}
+
+const savePinnedNotesToStorage = () => {
+    storageService.saveToStorage('pinnedNotesDB', gPinnedNotes)
+
 }
 
 export const NoteService = {
@@ -224,5 +344,6 @@ export const NoteService = {
     getNoteById,
     getId,
     addTodo,
-    removeTodo
+    removeTodo,
+    createNotes
 }

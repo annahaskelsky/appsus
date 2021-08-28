@@ -1,4 +1,4 @@
-.input-container {
+.input-container.note-filter-input {
     border: 1px solid transparent;
     box-sizing: border-box;
     overflow: hidden;
@@ -9,12 +9,12 @@
     transition-timing-function: ease-in;
     border-color: #e0e0e0;
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
-    margin: 32px auto 16px auto;
+    margin: 0;
     position: relative;
     width: 400px;
 }
 
-.input-container > input {
+.input-container.note-filter-input > input {
     border-color: #e0e0e0;
     border: 1px solid transparent !important;
     outline: none !important;
@@ -22,9 +22,9 @@
     width: 100%;
 }
 
-@media (min-width:560px) {
+/* @media (min-width:560px) {
     .input-container {
         width: 600px;
 
     }
-}
+} */

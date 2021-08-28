@@ -17,7 +17,7 @@ export const AddNoteInput = ({ placeholder, handleChange, color, handleColorChan
     }
 
     return (
-        <div onClick={() => setIsExpanded(true)} className="input-container" ref={inputContainerRef} style={{ borderColor: color }}>
+        <div onClick={() => setIsExpanded(true)} className="input-container note-filter-input" ref={inputContainerRef} style={{ borderColor: color }}>
             <input name="title" onChange={handleChange} placeholder={placeholder} autoComplete="off" />
             {isExpanded &&
                 <div className="add-note-bottom">
