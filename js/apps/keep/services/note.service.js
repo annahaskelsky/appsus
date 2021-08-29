@@ -274,7 +274,6 @@ const createNotes = () => {
                 },
                 backgroundColor: "#fbbc04"
             },
-            
             {
                 id: "n107",
                 info: {

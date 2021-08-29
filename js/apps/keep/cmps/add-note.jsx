@@ -1,5 +1,3 @@
-import { NoteService } from "../services/note.service.js";
-import { AddNoteInput } from "./add-note-input.jsx";
 import { NoteDetails } from "./note-details.jsx";
 
 export class AddNote extends React.Component {
@@ -15,9 +13,9 @@ export class AddNote extends React.Component {
         }
     }
 
-    handleChange = ({ target: { name, value } }) => {
-        this.setState({ [name]: value })
-    }
+    // handleChange = ({ target: { name, value } }) => {
+    //     this.setState({ [name]: value })
+    // }
 
     handleColorChange = (color) => {
         this.setState({ color })

@@ -1,4 +1,3 @@
-import { mailService } from "../../mail/services/mail.service.js"
 import { NoteService } from "../services/note.service.js"
 import { NoteDetails } from "./note-details.jsx"
 import { Palette } from "./palette.jsx"
@@ -6,8 +5,6 @@ import { Palette } from "./palette.jsx"
 export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNote, onPinUnpinNote, handleEdit, sendNoteAsEmail }) => {
 
     const modalRef = React.createRef()
-
-    // let history = useHistory()
 
     const handleWindowClick = event => {
         if (modalRef.current && event.target === modalRef.current) {
@@ -20,7 +17,6 @@ export const ActionBar = ({ handleColorChange, onRemoveNote, note, onDuplicateNo
             handleEdit(noteInfo)
         })
     }
-
 
     return (
         <div>

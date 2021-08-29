@@ -1,9 +1,7 @@
-const { Route, Switch } = ReactRouterDOM
 import { NoteService } from "./services/note.service.js"
 import { NoteFilter } from "./cmps/note-filter.jsx"
 import { AddNote } from "./cmps/add-note.jsx"
 import { NoteList } from "./cmps/note-list.jsx"
-import { NoteDetails } from "./cmps/note-details.jsx"
 import { mailService } from "../mail/services/mail.service.js"
 
 export class NotesApp extends React.Component {
@@ -67,9 +65,6 @@ export class NotesApp extends React.Component {
                     onPinUnpinNote={this.onPinUnpinNote}
                     sendNoteAsEmail={this.sendNoteAsEmail}
                 />
-                <Switch>
-                    <Route path="/keep/:noteId" component={NoteDetails} />
-                </Switch>
             </section>
         )
     }

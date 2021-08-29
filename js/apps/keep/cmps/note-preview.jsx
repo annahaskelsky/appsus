@@ -1,7 +1,6 @@
 import { NoteService } from "../services/note.service.js"
 import { ActionBar } from "./action-bar.jsx"
 import { NoteDynamicPreview } from "./note-dynamic-preview.jsx"
-const { Link } = ReactRouterDOM
 
 export class NotePreview extends React.Component {
     state = {
@@ -31,7 +30,6 @@ export class NotePreview extends React.Component {
     render() {
         const { note } = this.state
         if (!note) return <div>Loading...</div>
-
         return (
             <article className="note-preview" style={{ backgroundColor: note.backgroundColor }}>
                 <NoteDynamicPreview

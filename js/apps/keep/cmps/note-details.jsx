@@ -8,7 +8,6 @@ export class NoteDetails extends React.Component {
         title: null,
         txt: null,
         todos: [],
-        isAddTodo: true,
         newTodoValue: ''
     }
 
@@ -87,7 +86,6 @@ export class NoteDetails extends React.Component {
             title: null,
             txt: null,
             todos: [],
-            isAddTodo: true,
             newTodoValue: ''
         })
     }
@@ -101,7 +99,7 @@ export class NoteDetails extends React.Component {
     }
 
     render() {
-        const { img, video, title, txt, todos, isAddTodo } = this.state
+        const { img, video, title, txt, todos } = this.state
         return (
             <div className="note-details-container">
                 <div className="note-details-img-container">
@@ -117,7 +115,7 @@ export class NoteDetails extends React.Component {
 
                 <input type="text" name="title" placeholder="Note Title" onChange={this.handleChange} value={title || ''} />
                 <textarea name="txt" placeholder="Note Content" onChange={this.handleChange} value={txt || ''} />
-                {isAddTodo &&
+                {
                     todos.map(todo => (
                         <div key={todo.id} className="note-details-todo-container">
                             <div>{todo.txt}</div>
